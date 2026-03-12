@@ -1,0 +1,225 @@
+import re
+
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Yuwang Gu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --black: #111;
+            --gray: #666;
+            --site-pad: clamp(24px, 6vw, 80px);
+            --font-sans: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--black);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 56px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 var(--site-pad); z-index: 1000;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            opacity: 0; animation: fadeInDown 0.8s forwards;
+        }
+        .nav-left { display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 15px; }
+        .nav-left img { width: 40px; height: 40px; object-fit: contain; }
+        .nav-center { display: flex; gap: 32px; font-weight: 500; font-size: 15px; }
+        .nav-right { display: flex; align-items: center; gap: 24px; font-weight: 500; font-size: 15px; }
+        .nav-icon { width: 24px; height: 24px; display: flex; align-items: center; }
+        .nav-icon img { width: 24px; height: 24px; object-fit: contain; }
+        .nav-resume { text-decoration: underline; text-underline-offset: 4px; font-weight: 600; }
+        .nav-about { background: var(--black); color: #fff; padding: 8px 20px; border-radius: 999px; transition: transform 0.2s; }
+        .nav-about:hover { transform: scale(1.05); }
+        .nav-cat { transition: transform 0.3s; }
+        .nav-cat:hover { transform: rotate(1turn); }
+
+        /* INTERACTIVE CANVAS */
+        .interactive-canvas {
+            position: relative;
+            width: 100%;
+            height: 120vh;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .center-text {
+            position: relative;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            padding: 60px;
+            border-radius: 32px;
+            max-width: 680px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+            pointer-events: none;
+            opacity: 0;
+            animation: fadeInUp 1s 0.2s forwards;
+        }
+
+        .center-text h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 500;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .center-text p {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .center-text strong {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 700;
+            color: var(--black);
+            font-size: 20px;
+        }
+
+        /* FLOATING IMAGES */
+        .float-img {
+            position: absolute;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            object-fit: cover;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10;
+        }
+
+        .float-img:hover {
+            transform: scale(1.2) rotate(0deg) !important;
+            z-index: 100 !important;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2) !important;
+        }
+
+        /* Positions and Animations */
+        .img-1 { width: 280px; top: 15%; left: 8%; transform: rotate(-8deg); animation: float 6s ease-in-out infinite alternate; }
+        .img-2 { width: 200px; bottom: 20%; left: 5%; transform: rotate(12deg); animation: float 7s ease-in-out infinite alternate 1s; }
+        .img-3 { width: 250px; top: 10%; right: 10%; transform: rotate(6deg); animation: float 8s ease-in-out infinite alternate 0.5s; }
+        .img-4 { width: 220px; bottom: 15%; right: 8%; transform: rotate(-12deg); animation: float 6s ease-in-out infinite alternate 2s; }
+        .img-5 { width: 180px; top: 50%; left: 20%; transform: rotate(5deg); animation: float 7.5s ease-in-out infinite alternate 1.5s; z-index: 5;}
+        .img-6 { width: 260px; top: 60%; right: 25%; transform: rotate(-7deg); animation: float 5.5s ease-in-out infinite alternate 0.8s; z-index: 6;}
+        .img-7 { width: 190px; top: 5%; left: 40%; transform: rotate(-3deg); animation: float 6s ease-in-out infinite alternate 0.3s; z-index: 4;}
+        .img-8 { width: 240px; bottom: 5%; left: 35%; transform: rotate(9deg); animation: float 9s ease-in-out infinite alternate 1.2s; z-index: 7;}
+        .img-9 { width: 210px; bottom: 35%; left: 15%; transform: rotate(-15deg); animation: float 6.5s ease-in-out infinite alternate 2.5s; z-index: 8;}
+        .img-10 { width: 230px; top: 30%; right: 5%; transform: rotate(15deg); animation: float 8.5s ease-in-out infinite alternate 0.7s; z-index: 9;}
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(inherit); }
+            100% { transform: translateY(-20px) rotate(inherit); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FOOTER */
+        footer {
+            max-width: 1440px; margin: 0 auto; width: 100%;
+            padding: 60px var(--site-pad);
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid #ebebeb; font-size: 15px; color: var(--gray);
+            position: relative; z-index: 100; background: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .nav-center { display: none; }
+            .interactive-canvas { height: auto; padding: 120px 20px; flex-direction: column; overflow: visible;}
+            .float-img { position: relative; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; transform: none !important; margin: 20px auto; display: block; width: 90% !important; animation: none !important;}
+            .float-img:hover { transform: scale(1.05) !important; }
+            .center-text { padding: 40px 20px; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-left">
+            <img src="images/homepage/Oiiai 1.png" alt="Logo" class="nav-cat">
+            Yuwang Gu
+        </a>
+        <div class="nav-center">
+            <a href="index.html">UX / Product</a>
+            <a href="archive/">Archive</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.linkedin.com/in/yuwang-gu" target="_blank" class="nav-icon">
+                <img src="images/homepage/linkedin.png" alt="LinkedIn">
+            </a>
+            <a href="#" class="nav-resume">Resume</a>
+            <a href="about.html" class="nav-about">About</a>
+        </div>
+    </nav>
+
+    <main class="interactive-canvas">
+        <img src="images/about/IMG_1300.JPG" class="float-img img-1" alt="About Image 1">
+        <img src="images/about/IMG_1309.JPG" class="float-img img-2" alt="About Image 2">
+        <img src="images/about/IMG_2390.jpg" class="float-img img-3" alt="About Image 3">
+        <img src="images/about/IMG_2502.jpg" class="float-img img-4" alt="About Image 4">
+        <img src="images/about/IMG_2511.jpg" class="float-img img-5" alt="About Image 5">
+        
+        <div class="center-text">
+            <h1>Hi, I’m Yuwang.</h1>
+            <p>A multi-disciplinary designer who cares deeply about <strong>clarity, quality and collaboration.</strong></p>
+            <p>I used to work as an interior designer before shifting to digital experience design.<br>
+            My love for <strong>creativity</strong> drives me to solve complex problems and create meaningful, intuitive experiences.<br>
+            I am currently a Master’s student in UX Design at SCAD.</p>
+            <p>Fun facts about me:<br>
+            I’m a twin 👯‍♀️ , I love cat memes and anything cute 🐱.</p>
+        </div>
+
+        <img src="images/about/IMG_3546.jpg" class="float-img img-6" alt="About Image 6">
+        <img src="images/about/IMG_8377.jpg" class="float-img img-7" alt="About Image 7">
+        <img src="images/about/IMG_8622.JPG" class="float-img img-8" alt="About Image 8">
+        <img src="images/about/1.png" class="float-img img-9" alt="About Image 9">
+        <img src="images/about/0e10ae5607fe99d5924638503b828279.JPG" class="float-img img-10" alt="About Image 10">
+    </main>
+
+    <footer>
+        <div class="footer-left">Email: guyuwang151926934@gmail.com</div>
+        <div class="footer-right">Seeking for work!</div>
+    </footer>
+</body>
+</html>
+"""
+
+with open("about.html", "w") as f:
+    f.write(html_content)
