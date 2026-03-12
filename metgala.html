@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Met Gala - Yuwang Gu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-black: #000000;
+            --bg-gray: #1a1a1a;
+            --bg-white: #ffffff;
+            --text-white: #ffffff;
+            --text-black: #000000;
+            --text-gray: #a1a1aa;
+            --red: #fe2b55;
+            /* TikTok Brand Red */
+            --site-pad: clamp(24px, 6vw, 80px);
+            --font-sans: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-black);
+            color: var(--text-white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ─────────── NAV ─────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 52px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--site-pad);
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.45);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--text-white);
+        }
+
+        .nav-left img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            filter: invert(1);
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 32px;
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--text-gray);
+        }
+
+        .nav-center a:hover {
+            color: var(--text-white);
+            transition: color 0.3s ease;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-resume {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        .nav-about {
+            background: var(--bg-white);
+            color: var(--text-black);
+            padding: 8px 24px;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-about:hover {
+            transform: scale(1.05);
+        }
+
+        /* ─────────── LAYOUT UTILS ─────────── */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--site-pad);
+        }
+
+        img,
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ─────────── HERO ─────────── */
+        .hero {
+            padding-top: 160px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 200px;
+        }
+
+        /* TikTok logo — render at natural size, capped */
+        .hero-logo {
+            width: 200px;    /* explicit width so it’s clearly visible */
+            height: auto;
+            display: block;
+        }
+
+        /* Row gap logo → subtitle = 100px */
+        .hero-logo-wrap {
+            margin-bottom: 100px;
+        }
+
+        /* Row gap subtitle → phones = 100px */
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-gray);
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 100px;
+        }
+
+        /* Two phones — same fixed height, 64px gap, centred */
+        .hero-phones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 64px;
+            width: 100%;
+        }
+
+        .hero-phones img {
+            height: 680px;        /* fixed height → both images identical height */
+            width: auto;          /* width scales naturally to maintain aspect ratio */
+            border-radius: 32px;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        /* ─────────── PROJECT METADATA ─────────── */
+        .overview-section {
+            margin-bottom: 200px;
+        }
+
+        .overview-intro {
+            font-size: clamp(20px, 2.5vw, 28px);
+            line-height: 1.5;
+            max-width: 900px;
+            margin-bottom: 64px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* 4-column grid: column-gap 61px, row-gap 24px, LEFT-aligned body */
+        .grid-4-col {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 61px;
+            row-gap: 24px;
+            margin-bottom: 64px;
+            text-align: left;
+        }
+
+        /* Red column headers */
+        .grid-col h3 {
+            font-size: 14px;
+            color: var(--red);
+            margin-bottom: 24px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .grid-col p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            color: var(--text-white);
+        }
+
+        /* ─────────── IMPACT SECTION — flat, no card ─────────── */
+        .impact-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 24px;
+        }
+
+        .impact-title {
+            font-size: 14px;
+            color: var(--red);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .impact-desc {
+            font-size: clamp(18px, 2.2vw, 24px);
+            max-width: 860px;
+            line-height: 1.5;
+            font-weight: 500;
+            color: var(--text-white);
+        }
+
+        /* 3-col stats — left-aligned, moderate size */
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 61px;
+            row-gap: 12px;
+            width: 100%;
+            margin-top: 48px;    /* breathing room above stats */
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .stat-num {
+            font-size: 40px;     /* reduced from 72px to match reference */
+            font-weight: 700;
+            color: var(--text-white);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-gray);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* ─────────── CONTEXT & CHALLENGE ─────────── */
+        .section-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-desc {
+            font-size: 20px;
+            line-height: 1.6;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin-bottom: 60px;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 140px;
+        }
+
+        .challenge-card {
+            background: var(--bg-gray);
+            padding: 40px;
+            border-radius: 24px;
+        }
+
+        .challenge-icon {
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+
+        .challenge-card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-white);
+        }
+
+        .challenge-card-desc {
+            font-size: 16px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* ─────────── HIGHLIGHTS (WHITE INSET) ─────────── */
+        .white-inset-section {
+            background: var(--bg-white);
+            color: var(--text-black);
+            border-radius: 80px;
+            padding: 120px 0;
+            margin: 0 calc(var(--site-pad) * -1);
+            /* Full bleed */
+            padding-left: var(--site-pad);
+            padding-right: var(--site-pad);
+            margin-bottom: 140px;
+        }
+
+        .highlight-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .highlight-block {
+            margin-bottom: 120px;
+        }
+
+        .highlight-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-num {
+            font-family: var(--font-serif);
+            font-size: 64px;
+            color: var(--red);
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-style: italic;
+            line-height: 1;
+        }
+
+        .highlight-title {
+            font-size: clamp(28px, 3vw, 36px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .highlight-desc {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .highlight-visual {
+            width: 100%;
+            border-radius: 32px;
+            overflow: hidden;
+            background: #f4f4f5;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            border-radius: 32px;
+            overflow: hidden;
+            background: #111;
+        }
+
+        /* ─────────── ITERATIONS & FINAL ─────────── */
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 100px;
+        }
+
+        .full-width-visual {
+            width: 100%;
+            border-radius: 32px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .full-width-visual:last-child {
+            margin-bottom: 0;
+        }
+
+        .mb-200 {
+            margin-bottom: 200px;
+        }
+
+        .mb-100 {
+            margin-bottom: 100px;
+        }
+
+        /* ─────────── FOOTER ─────────── */
+        footer {
+            padding: 60px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 15px;
+            color: var(--text-gray);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .grid-4-col {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .impact-stats {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .white-inset-section {
+                border-radius: 40px;
+                padding: 80px var(--site-pad);
+            }
+
+            .impact-box {
+                padding: 40px 20px;
+                border-radius: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="homepage.html" class="nav-left">
+            <img src="images/homepage/Oiiai 1.png" alt="Logo">
+            Yuwang Gu
+        </a>
+        <div class="nav-center">
+            <a href="homepage.html">UX / Product</a>
+            <a href="archive/">Archive</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://linkedin.com" target="_blank" class="nav-icon">
+                <img src="images/homepage/linkedin.png" alt="LinkedIn">
+            </a>
+            <a href="#" class="nav-resume">Resume</a>
+            <a href="#" class="nav-about">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <!-- Nav mark logo (IMG_0640.PNG) -->
+        <div class="hero-logo-wrap">
+            <img class="hero-logo" src="images/project-tiktok-metgala/TikTok logo.png" alt="TikTok">
+        </div>
+
+        <!-- Subtitle -->
+        <p class="hero-subtitle">a campaign page for the 2024 Met Gala</p>
+
+        <!-- Two phone screenshots -->
+        <div class="hero-phones">
+            <img src="images/project-tiktok-metgala/1.png" alt="Met Gala Campaign Screen 1">
+            <img src="images/project-tiktok-metgala/2.png" alt="Met Gala Campaign Screen 2">
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Overview & Metadata -->
+        <section class="overview-section">
+            <div class="grid-4-col">
+                <div class="grid-col">
+                    <h3>My role</h3>
+                    <!-- The long description goes under My role -->
+                    <p>Translated complex product requirements into structured user flows, collaborated with the PM to ensure logical transitions between screens, refined interaction flows, and gathered visual and typography references.</p>
+                </div>
+                <div class="grid-col">
+                    <h3>Time line</h3>
+                    <p>4 weeks</p>
+                    <p>March - May. 2024</p>
+                    <p>launched in may 2024</p>
+                </div>
+                <div class="grid-col">
+                    <h3>skills</h3>
+                    <p>prototyping</p>
+                    <p>User research</p>
+                    <p>Interaction design</p>
+                    <p>Micro-interaction</p>
+                </div>
+                <div class="grid-col">
+                    <h3>Team</h3>
+                    <p>2 UX designers (including me)</p>
+                    <p>1 Product managers</p>
+                    <p>Engineers team</p>
+                    <p>1 visual designers</p>
+                </div>
+            </div>
+
+            <!-- Impact — flat, left-aligned, no card -->
+            <div class="impact-section">
+                <div class="impact-title">impact</div>
+                <p class="impact-desc">Designed a gamified campaign experience featuring a voting mechanism that drove engagement and participation, contributing to a record-breaking launch reaching 13.6M+ viewers and +71% content growth.</p>
+                <div class="impact-stats">
+                    <div class="stat-item">
+                        <div class="stat-num">13.6M+</div>
+                        <div class="stat-label">total viewers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">The #1</div>
+                        <div class="stat-label">Most-Watched Red Carpet Live</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">+71%</div>
+                        <div class="stat-label">Engagement Growth（Since April 29）</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Context & Challenge -->
+        <section class="mb-200">
+            <h2 class="section-title">Context</h2>
+            <p class="section-desc">As the lead sponsor of the 2024 Met Gala and The Costume Institute’s exhibition
+                Sleeping Beauties: Reawakening Fashion, TikTok sought to extend the event experience beyond livestream
+                viewing and into interactive platform engagement. 🤩</p>
+
+            <h2 class="section-title" style="margin-top: 80px;">The Challenge</h2>
+            <p class="section-desc">Our team was tasked with translating complex product requirements into
+                development-ready deliverables within just one month, with minimal official visual assets available.</p>
+
+            <div class="challenge-grid">
+                <div class="challenge-card">
+                    <div class="challenge-icon">⏳</div>
+                    <h3 class="challenge-card-title">Tight Timeline</h3>
+                    <p class="challenge-card-desc">Had only one month to convert complex requirements into finalized,
+                        developer-ready designs.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="challenge-icon">🧩</div>
+                    <h3 class="challenge-card-title">Multi-Phase Interaction Logic</h3>
+                    <p class="challenge-card-desc">Designed a multi-phase experience integrating voting, rewards,
+                        rankings, and timed content transitions.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="challenge-icon">✨</div>
+                    <h3 class="challenge-card-title">High Visual Bar</h3>
+                    <p class="challenge-card-desc">Established a fashion-level aesthetic with only a few official brand
+                        visual assets available.</p>
+                </div>
+            </div>
+
+            <div class="full-width-visual">
+                <img src="images/project-tiktok-metgala/2.png" alt="Context Graphic">
+            </div>
+        </section>
+    </div>
+
+    <!-- Highlights Section (Inverted White Background) -->
+    <div class="white-inset-section">
+        <div class="highlight-container">
+            <h2 class="section-title" style="color: black; margin-bottom: 60px;">Highlights</h2>
+
+            <div class="highlight-block">
+                <div class="highlight-num">01/</div>
+                <h3 class="highlight-title">An Animated Entry That Draws Users In</h3>
+                <p class="highlight-desc">Inspired by the Met Gala dress code The Garden of Time, we incorporated a
+                    rotating kaleidoscope visual motif. The experience opens with an entrance animation, uses motion to
+                    present rewards, and builds curiosity.</p>
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline>
+                        <source src="images/project-tiktok-metgala/MyMovie_已改.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="highlight-block">
+                <div class="highlight-num">02/</div>
+                <h3 class="highlight-title">Vote, Compete, Unlock</h3>
+                <p class="highlight-desc">Users could first vote on past Met Gala looks , then vote on current looks
+                    once the event launches. <br>A competitive card interaction adds playfulness and implies that
+                    selecting one option discards the other. </p>
+                <div class="highlight-visual">
+                    <img src="images/project-tiktok-metgala/3.png" alt="Vote, Compete Interface">
+                </div>
+            </div>
+
+            <div class="highlight-block">
+                <div class="highlight-num">03/</div>
+                <h3 class="highlight-title">Designing for Continued Participation</h3>
+                <p class="highlight-desc">After the initial 5 votes are used, users must complete tasks to earn more
+                    voting chances. The ranking of their favorite look is revealed only after all votes are cast.</p>
+                <div class="highlight-visual">
+                    <img src="images/project-tiktok-metgala/4 .png" alt="Participation Architecture">
+                </div>
+            </div>
+
+            <div class="highlight-block">
+                <div class="highlight-num">04/</div>
+                <h3 class="highlight-title">rewards & compete with your friends</h3>
+                <p class="highlight-desc">See what rewards you’ve earned, compete with friends on the leaderboard, and
+                    discover others who share your taste—encouraging sharing and connection.</p>
+                <p style="text-decoration: underline; color: #fe2b55; font-weight: 600; font-size: 16px;">share my
+                    favorite look</p>
+                <div class="highlight-visual" style="margin-top: 30px;">
+                    <img src="images/project-tiktok-metgala/5.png" alt="Rewards Flow">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Iterations & Final Design (Back to Dark) -->
+    <div class="container">
+
+        <div class="mb-200">
+            <h2 class="section-title">iterations</h2>
+
+            <div class="mb-100">
+                <h3 class="challenge-card-title">1st iteration: </h3>
+                <p class="section-desc">Translated PM requirements into a structured user flow, but uncovered hierarchy
+                    issues. </p>
+                <ul class="section-desc" style="margin-left: 20px; list-style-type: disc;">
+                    <li style="margin-bottom: 8px;">The reward section was too long and negatively affected the first
+                        screen efficiency .</li>
+                    <li style="margin-bottom: 8px;">The rewards themselves lacked strong appeal.</li>
+                    <li style="margin-bottom: 8px;">Simplified PM requirements into concise UX writing and a structured
+                        layout, streamlining the campaign’s interaction flow.</li>
+                    <li style="margin-bottom: 8px;">Drawing from previous Disney and Oscars campaign designs, i
+                        implemented a dark theme to evoke a evening-gala aesthetic.</li>
+                    <li style="margin-bottom: 8px;">The magazine-tearing concept fit past looks better but felt
+                        inconsistent with this year’s Met Gala visuals.</li>
+                </ul>
+                <p class="section-desc" style="color: var(--text-white); font-weight: 500;">goal : improve the page
+                    hierarchy while keeping rewards engaging</p>
+                <p class="section-desc" style="margin-bottom: 24px;">Team insights</p>
+                <p class="section-desc" style="color: var(--text-white); font-weight: 500;">goal : make a complex flow
+                    clearer and more focused</p>
+                <div class="full-width-visual">
+                    <img src="images/project-tiktok-metgala/6.png" alt="1st Iteration">
+                </div>
+            </div>
+
+            <div class="mb-100">
+                <h3 class="challenge-card-title">2nd iteration: </h3>
+                <p class="section-desc" style="color: var(--text-white); font-weight: 500;">Restructured Entry
+                    Interaction, Yet Still Lacking a Strong Fashion Identity</p>
+                <ul class="section-desc" style="margin-left: 20px; list-style-type: disc;">
+                    <li style="margin-bottom: 8px;">redesigned the reward section to appear at entry and automatically
+                        collapse afterward, and shifted the voting interaction to a card-based concept.</li>
+                    <li style="margin-bottom: 8px;">Simplified the visual language for greater clarity.</li>
+                    <li style="margin-bottom: 8px;">Used blur as a motivational cue to drive engagement.</li>
+                    <li style="margin-bottom: 8px;">lacked a strong fashion tone</li>
+                </ul>
+                <p class="section-desc" style="color: var(--text-white); font-weight: 500;">goal : Establish a Strong
+                    Fashion Aesthetic</p>
+                <div class="full-width-visual">
+                    <img src="images/project-tiktok-metgala/7.png" alt="2nd Iteration">
+                </div>
+            </div>
+
+            <div class="mb-100">
+                <h3 class="challenge-card-title">3rd iteration: </h3>
+                <ul class="section-desc" style="margin-left: 20px; list-style-type: disc;">
+                    <li style="margin-bottom: 8px;">Added an Opening Animation, but Misaligned with This Year’s Theme
+                    </li>
+                    <li style="margin-bottom: 8px;">Repositioned Rewards to Prioritize Voting and Improve Flow
+                        Efficiency</li>
+                    <li style="margin-bottom: 8px;">The spotlight concept did not align with this year’s Met Gala theme
+                    </li>
+                    <li style="margin-bottom: 8px;">The reward section still disrupted the overall fashion tone of the
+                        page</li>
+                </ul>
+                <div class="full-width-visual">
+                    <img src="images/project-tiktok-metgala/8.png" alt="3rd Iteration">
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-200">
+            <h2 class="section-title">final design</h2>
+            <p class="section-desc">Snipets of the final design and interactions details that I feel proud of!</p>
+
+            <div class="full-width-visual"><img src="images/project-tiktok-metgala/9.png" alt="Final Design 1"></div>
+            <div class="full-width-visual"><img src="images/project-tiktok-metgala/10.png" alt="Final Design Detail 2">
+            </div>
+            <div class="full-width-visual"><img src="images/project-tiktok-metgala/11.png" alt="Final Design Detail 3">
+            </div>
+            <div class="full-width-visual"><img src="images/project-tiktok-metgala/12.png" alt="Final Design Detail 4">
+            </div>
+        </div>
+
+        <div class="mb-200">
+            <h2 class="section-title">My biggest learnings</h2>
+            <p class="section-desc">Collaborating in a fast-paced environment with designs that impact millions have
+                taught me…</p>
+
+            <div class="learning-grid">
+                <div class="challenge-card">
+                    <h3 class="challenge-card-title">Iterate, fail, learn, repeat!<br>Design Under Pressure</h3>
+                    <p class="challenge-card-desc">There’s always room to improve. I’ve learned to move fast - iterate,
+                        learn, and repeat - while seeking experienced perspectives and asking for feedback
+                        strategically.</p>
+                    <p class="challenge-card-desc" style="margin-top: 16px;">Working in high-expectation, high-pressure
+                        environments strengthened my resilience and discipline. The more intense the situation, the more
+                        essential it becomes to clarify the logic, move step by step according to plan.</p>
+                </div>
+                <div class="challenge-card">
+                    <h3 class="challenge-card-title">Transparent Communication & Team Alignment</h3>
+                    <p class="challenge-card-desc">Not all requirements are equal.</p>
+                    <p class="challenge-card-desc" style="margin-top: 16px;">Proactive and transparent communication
+                        keeps teams aligned and focused. Cross-functional collaboration often brings unexpected support
+                        and valuable insights that refine and elevate the final design.</p>
+                    <p class="challenge-card-desc" style="margin-top: 16px;">In complex projects, the ability to
+                        prioritize what matters most determines the strength of the final outcome.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-left">Email: guyuwang151926934@gmail.com</div>
+            <div class="footer-right">Seeking for work!</div>
+        </footer>
+    </div>
+
+</body>
+
+</html>

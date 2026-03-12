@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Yuwang Gu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            --black: #111;
+            --gray: #666;
+            --tag-bg: #e2e4e7;
+            --site-pad: clamp(24px, 6vw, 80px);
+            --font-sans: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(180deg, #edf0f5 0%, #ffffff 40%, #ffffff 100%);
+            color: var(--black);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--site-pad);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            opacity: 0;
+            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .nav-left img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 32px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icon img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .nav-resume {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 600;
+        }
+
+        .nav-about {
+            background: var(--black);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 999px;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-about:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-cat {
+            transition: transform 0.3s ease;
+        }
+
+        .nav-cat:hover {
+            animation: spin 1s linear infinite;
+        }
+
+        /* ABOUT CONTENT */
+        .about-section {
+            padding: 180px var(--site-pad) 80px;
+            max-width: 1440px;
+            margin: 0 auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            width: 100%;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 100ms;
+        }
+
+        .about-header {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 400;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: start;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .about-statement {
+            font-size: 20px;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        .about-statement strong {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 700;
+            color: var(--black);
+        }
+        
+        .about-content p {
+            margin: 0;
+        }
+
+        .about-content strong {
+            font-weight: normal;
+        }
+
+        .about-image {
+            width: 100%;
+            /* Removed border-radius as per the reference image, it has sharp corners */
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* FOOTER */
+        footer {
+            max-width: 1440px;
+            margin: auto auto 0 auto;
+            width: 100%;
+            padding: 60px var(--site-pad);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ebebeb;
+            font-size: 15px;
+            color: var(--gray);
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 300ms;
+        }
+
+        /* ANIMATIONS */
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+            .about-section {
+                padding-top: 140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="homepage.html" class="nav-left">
+            <img src="images/homepage/Oiiai 1.png" alt="Logo" class="nav-cat">
+            Yuwang Gu
+        </a>
+        <div class="nav-center">
+            <a href="homepage.html">UX / Product</a>
+            <a href="archive/">Archive</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.linkedin.com/in/yuwang-gu" target="_blank" class="nav-icon">
+                <img src="images/homepage/linkedin.png" alt="LinkedIn">
+            </a>
+            <a href="#" class="nav-resume">Resume</a>
+            <a href="about.html" class="nav-about">About</a>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="about-section">
+        <h1 class="about-header">Hi, I’m Yuwang .</h1>
+        
+        <div class="about-grid">
+            <div class="about-content">
+                <div class="about-statement">
+                    A multi-disciplinary designer who cares deeply about <strong>clarity , quality and collaboration.</strong>
+                </div>
+                <p>
+                    I used to work as an interior designer before shifting to digital experience design.<br>
+                    My love for <strong>creativity</strong> drives me to solve complex problems and create meaningful, intuitive experiences.<br>
+                    I am currently a Master’s student in UX Design at SCAD, with a background in Architecture from Tongji University.
+                </p>
+                <p>
+                    Fun facts about me:<br>
+                    I’m a twin 👯‍♀️ , I love cat memes and anything cute 🐱.
+                </p>
+            </div>
+            
+            <div class="about-image">
+                <img src="images/about/IMG_1300.JPG" alt="Yuwang Gu Portrait">
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-left">Email: guyuwang151926934@gmail.com</div>
+        <div class="footer-right">Seeking for work!</div>
+    </footer>
+
+</body>
+
+</html>

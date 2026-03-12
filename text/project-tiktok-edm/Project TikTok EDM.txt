@@ -1,0 +1,117 @@
+# Project TikTok EDM — 文案顺序与网站从上到下一致
+# 修改此处或从 edm.docx 导出覆盖后，可同步到 edm.html
+
+——— 1. HERO 首屏 ———
+Reframed the email from a notification to a
+Curiosity-Driven, Personalized Experience
+
+——— 2. OVERVIEW 概述 ———
+I removed the notification banner that previously dominated the first screen, and replaced it with more compelling video thumbnails, larger and more prominent CTAs. The core goal is to hook users as quickly as possible using video imagery.
+
+My role
+As the sole designer of Electronic Direct Mails, collaborating with PMs to define visual and content strategies to increase user engagement
+
+Timeline
+6 weeks
+March – May 2024
+v1 launched June 2024
+
+Skills
+Prototyping, User research, Product design, Product strategy
+
+Team
+1 UX designer (me), 1 Product manager, Engineer team
+
+Impact
+Used data-driven insights to identify core user needs, quickly prototyped multiple strategic directions, and delivered a set of product solutions. This feature was approved and entered development before my internship concluded. Although the final release occurred after my departure, my design work directly informed the implemented experience.
+
+——— 3. CONTEXT ———
+Context
+Email has become a popular marketing tool. U.S. users are overwhelmed with "useless" marketing emails and looking for useful and relevant email content.
+Over 30% of surveyed users are dissatisfied with useless and irrelevant content.
+
+🥱 Not useful
+Some emails are not informative or useful. Topics or recommendations are irrelevant to me.
+
+Not engaging
+Some topics are fine, but the content itself is not engaging.
+
+Can't customize
+Can't customize my email preferences to control what I receive. The wording is confusing or not well localized.
+
+Q: How did TikTok emails dissatisfy you?
+
+——— 4. GOAL ———
+Goal
+Business goal: Email notifications as a standalone, value-driven content and marketing channel.
+User goal: Receive more personalized and meaningful content. Improve upon its value to compete as an independent marketing channel.
+
+——— 5. PROBLEM BREAKDOWN ———
+Problem breakdown — Why does everyone hate email notification?
+
+Strategic level
+Not treated as an independent product experience. Lack of audience segmentation strategy.
+
+Content level
+No differentiated content strategy by engagement level & identity type.
+
+Visual & interaction
+Weak visual cues, lack of storytelling.
+
+"Stop sending me a million emails telling me I have 75, 100 etc notifications. Trust me I don't. I'm on the app daily." — CA user
+
+Heavy users perceive emails as redundant. Creators (57.5% CA, 66.8% BR) report [Create and share my own videos] as a main reason for using TikTok — they expected more relevant topics.
+
+"Actually my email always appear the notification but I directly go in TikTok instead open the email. When I check my emails, I also see the email of TikTok and I also check and directly to TikTok after my other email done checking." — TT users
+
+~46% users in both countries go to the TikTok app directly instead of checking content via email.
+
+Visual & interaction painpoint: 22.6% BR users don't realise the email content is clickable. Unclear CTAs and no narrative flow. Repetitive content that doesn't add value wastes valuable vertical space.
+
+——— 6. HIGHLIGHTS ———
+Highlights — Visual improvement
+Capture user attention in the shortest amount of time using video thumbnails with personally relevant content.
+
+Design decision
+Remove the notification section
+Text-heavy, low visual impact. Adding personalized information alongside video tags to provide more useful context. Enlarged play button for immediately recognizable clickability. Added social CTA buttons and amplified the people info section to drive curiosity.
+
+Before / After
+
+Design directions
+Option 1 — Scenario: People and social relationship-driven
+Pros: Added social CTA buttons, amplified the people info section, de-emphasized video content to build curiosity. Best suited for social-first post types: friend posts, suggested friends, follow posts, and interactive posts.
+Cons: Not ideal for pure content recommendation scenarios where the content itself takes center stage.
+
+Option 2 — Scenario: Video Cover First / Content-Driven
+Pros: Best suited for content-forward post types like suggested videos and reposts. Prioritizes the video thumbnail, with de-emphasized people info.
+Cons: Not ideal for posts with a strong social context.
+
+Option 3 — Scenario: Promotional-style email
+Pros: High visual impact, drives immediate action, works well for campaign launches, sales, and event announcements. Prioritizes bold visuals and strong CTAs over social context or personalization.
+Cons: Feels less personal, lower relevance for users not already interested, risk of being perceived as spam.
+
+——— 7. THE PROCESS ———
+The process
+Content and visual strategies create endless combinations. The permutations were endless, but exhausting every combination didn't make sense. User data pointed to one thing: curiosity and social connection. Rethought the content first, then the visuals. Does it actually matter to users?
+
+Step 1: Some parts of the project during 2nd iteration
+Step 2: User data pointed to curiosity and social connection
+Step 3: Rethought the content first, then the visuals
+
+——— 8. LAYOUT STRUCTURE ———
+Layout structure
+Email Header [No Header, Icon Link] → Title Section [Official Style Copy, Left, Colorful Vibe] → Main Content Area [Middle Size, Single Column, Cover First Video Card] → Secondary Content Area [Single Column, Avatar Card, Small Size] → Email Footer [General Style Copy, Button Link, Large Size, Center]. Display: Go to TikTok / Go to TikTok video page / Go to TikTok avatar profile page.
+
+——— 9. TAKEAWAYS ———
+Something you can't learn in a class
+
+01 — I realized I could contribute more than just visual execution
+Working on this project taught me that as a designer — even as an intern — you can and should engage with the product direction, not just the visual execution. When the initial brief felt unclear, asking questions and understanding the "why" behind the design helped me make more intentional decisions.
+
+02 — Looking back at existing data and past design iterations gave me a lot of context
+For a product that had gone through many iterations, I found it incredibly valuable to dig into existing data, past design files, and how previous designers had approached similar problems. It gave me context I couldn't have gotten from the brief alone, and helped me arrive at a more informed direction rather than starting from scratch.
+
+——— 10. FOOTER ———
+Email: guyuwang151926934@gmail.com
+Seeking for work!

@@ -1,0 +1,2391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>EDM - Electronic Direct Mails - Yuwang Gu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-page: #ffffff;
+            --bg-card: #ffffff;
+            --bg-subtle: #f5f5f5;
+            --text-primary: #1a1a1a;
+            --text-body: #333333;
+            --text-secondary: #555555;
+            --text-muted: #777777;
+            --border: #e8e8e8;
+            --accent: #2c2c2c;
+            --heading-purple: #512DA8;
+            --site-width: 1000px;
+            --site-pad: clamp(24px, 6vw, 80px);
+            --font-sans: -apple-system, 'SF Pro Text', 'SF Pro Display', BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            overflow-x: auto;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: auto;
+        }
+
+        /* Global widow/orphan prevention */
+        p, li, h1, h2, h3, h4, h5, h6, span, div.section-desc, div.goal-intro {
+            text-wrap: pretty;
+        }
+
+        /* 1. 全局去除所有 Bold(700)，凡是加粗都用 Semi-Bold(600) */
+        strong, b {
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 56px;
+            min-height: 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--site-pad);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 400;
+            font-size: 13px;
+            color: var(--text-primary);
+        }
+
+        .nav-left img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 24px;
+            font-weight: 400;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .nav-center a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 400;
+            font-size: 13px;
+        }
+
+        .nav-icon img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+
+        .nav-resume {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .nav-about {
+            background: var(--text-primary);
+            color: #fff;
+            padding: 5px 16px;
+            border-radius: 999px;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        .container {
+            max-width: var(--site-width);
+            margin: 0 auto;
+            padding: 0 var(--site-pad);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* HERO — full-bleed: images start right under nav, text floats on top */
+        .hero-wrapper {
+            width: 100%;
+            position: relative;
+            background-color: var(--bg-page);
+            margin-top: 56px;
+        }
+
+        /* The image stack defines the height of the entire hero */
+        .hero-image-stack {
+            position: relative;
+            width: 100%;
+            /* Removed forced 54.7vw height. Let natural aspect ratio rule. */
+            line-height: 0;
+            overflow: hidden;
+        }
+
+        /* 1.1.png — background layer, sets the height naturally */
+        .hero-bg-img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* 1.2.png — second background layer (purple gradient net). 
+           Since it is exactly the same size as 1.1.png, we just absolute position it on top
+           with identical scale logic to perfectly align them bottom-to-bottom. */
+        .hero-bg-img2 {
+            position: absolute;
+            bottom: 0; 
+            left: 0;
+            width: 100%;
+            height: 100%; /* Maps identically onto the height 1.1.png established */
+        }
+
+        /* 4 phones row — positioned without flex to strictly avoid any squishing */
+        .hero-phones {
+            position: absolute;
+            bottom: 0; 
+            left: 0;
+            width: 100%;
+            height: 100%; /* Use full area so bottom:0 coordinates perfectly */
+            z-index: 1;
+            /* Scale the entire group down slightly as a single unit */
+            transform: scale(0.88);
+            transform-origin: center bottom;
+        }
+
+        .hero-phones img {
+            position: absolute;
+            bottom: 0;
+            width: 38vw !important; /* Scale so the phone inner content is sizable (~15.3vw) */
+            height: auto !important; /* natural aspect ratio enforced */
+            max-width: none !important;
+            display: block;
+        }
+
+        /* Absolutely center and offset each phone independently.
+           Stride = 16.6vw. 
+           CRITICAL FIX: The opaque phone inside the exported PNGs is NOT perfectly centered 
+           (it sits ~12% to the LEFT of the image center). 
+           We must add +4.54vw to all margin-left values to cancel out the PNG's built-in drift
+           and ensure the group visually sits precisely in the center of the screen. */
+        .hero-phone-1 { left: 50%; margin-left: -20.36vw; transform: translateX(-50%); bottom: 0; }
+        .hero-phone-2 { left: 50%; margin-left: -3.76vw;  transform: translateX(-50%); bottom: 0; }
+        .hero-phone-3 { left: 50%; margin-left: 12.84vw;  transform: translateX(-50%); bottom: -4.5vw; }
+        .hero-phone-4 { left: 50%; margin-left: 29.44vw;  transform: translateX(-50%); bottom: 0; }
+
+        /* Text overlay — logo + subtitle, centered near top of image area */
+        .hero {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2;
+            text-align: center;
+            padding: clamp(28px, 4vw, 56px) var(--site-pad) 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero .container {
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-logo {
+            width: auto;
+            max-width: clamp(120px, 12vw, 180px);
+            height: auto;
+            margin: 0 auto 16px;
+            display: block;
+        }
+
+        .hero-title {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: clamp(16px, 1.8vw, 22px);
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .hero-title-line2 {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: clamp(16px, 1.8vw, 22px);
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 0;
+            color: var(--text-primary);
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* OVERVIEW */
+        .overview-section {
+            margin-top: 120px; /* Separates the overview from the hero section */
+            margin-bottom: 72px;
+        }
+
+        .overview-intro {
+            font-size: clamp(18px, 2.2vw, 24px);
+            line-height: 1.5;
+            max-width: 900px;
+            margin-bottom: 56px;
+            font-weight: 500;
+            color: var(--text-body);
+        }
+
+        .grid-4-col {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 48px;
+            row-gap: 0;
+            margin-bottom: 72px;
+            text-align: left;
+        }
+
+        .grid-col h3 {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 24px;
+            color: var(--heading-purple);
+            margin-bottom: 14px;
+            font-weight: 600; /* Semi-Bold */
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .grid-col p {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px;
+            line-height: 1.65;
+            color: var(--text-body);
+            font-weight: 400;
+        }
+
+        .impact-box {
+            background: transparent;
+            padding: 0;
+            border: none;
+            text-align: left;
+        }
+
+        .impact-title {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 24px;
+            color: var(--heading-purple);
+            font-weight: 600; /* Semi-Bold */
+            letter-spacing: 0;
+            margin-bottom: 14px;
+            text-transform: none;
+        }
+
+        .impact-desc {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px;
+            max-width: none;
+            margin: 0 0 12px 0;
+            line-height: 1.65;
+            color: var(--text-body);
+            font-weight: 400;
+        }
+
+        .impact-desc:last-child {
+            margin-bottom: 0;
+        }
+
+        /* SECTION COMMON — 参考图：标题深紫，正文深灰 */
+        .section-title {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 24px;
+            font-weight: 600; /* Semi-Bold */
+            margin-bottom: 14px;
+            letter-spacing: 0;
+            color: var(--heading-purple);
+            text-transform: none;
+        }
+
+        .section-desc {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px;
+            line-height: 1.65;
+            color: var(--text-body);
+            max-width: 800px;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .mb-section {
+            margin-bottom: 72px;
+        }
+
+        /* HIGHLIGHT SECTION */
+        .highlight-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 24px; /* Matches the gap in .highlight-row-2 for vertical/horizontal consistency */
+            margin-top: 24px;
+        }
+
+        .highlight-row-1 img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 24px; /* Optional slight rounding to look nice */
+        }
+
+        .highlight-row-2 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .highlight-vid-card {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .highlight-vid-bg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* 外部的手机边框 (Blue.png) */
+        .phone-mockup-frame {
+            position: relative;
+            width: 100%;
+            height: auto;
+            z-index: 2; /* 覆盖在视频上 */
+            display: block;
+            pointer-events: none;
+        }
+
+        /* 内部真正的视频内容，定位到 Blue.png 透明屏幕凹槽上 */
+        .phone-mockup-vid {
+            position: absolute;
+            /* 继续往上移，配合 object-position: center top 将录屏视频顶部原生的白色窄边完美隐藏在蓝色硬件边框下，让软刘海抵着硬刘海 */
+            top: 2%; 
+            left: 4.5%;
+            width: 91%;
+            height: 96.5%;
+            object-fit: cover;
+            object-position: center top; /* 锚定在顶部，杜绝底部截断影响上方刘海对齐 */
+            border-radius: 9%; /* 模拟内屏圆角 */
+            z-index: 1; /* 落在边框下方，绝不仅会露出背后的背景 */
+            background: #fff; /* 防穿帮黑边 */
+        }
+
+        /* 统一横向居中 */
+        .phone-mockup-wrap {
+            position: absolute;
+            z-index: 10;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 定制每张卡里手机的缩放和偏移位置 */
+        /* 左1 (4.mp4): 中等大小，稍微缩放让左右紫边距变大，垂直居中切掉部分头尾 */
+        .mockup-size-1 {
+            width: 84%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 中2 (2.mp4): 缩小以展示全机身，并且增加上下左右的边距留白 */
+        .mockup-size-2 {
+            width: 53%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 右3 (1.mp4): 大小处于左1和中2之间，设置 top 展示出完整的顶部留白，切断底部 */
+        .mockup-size-3 {
+            width: 78%;
+            top: 15%;
+        }
+
+        /* CONTEXT — 左右两栏，右侧问卷图表带阴影 */
+        .context-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-top: 24px;
+        }
+
+        .context-text .section-desc {
+            margin-bottom: 16px;
+        }
+
+        .context-chart {
+            background: #fff;
+            border-radius: 14px; /* Reduced from 20px */
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(81, 45, 168, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .context-chart-header {
+            background: #EBE6F4; /* Even lighter, matching reference purple bg */
+            color: rgba(0, 0, 0, 0.7); /* Slightly semi-transparent for priority 2 text */
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 20px; /* Reduced further to compress table height */
+        }
+
+        .context-chart-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .context-chart-list li {
+            font-size: 12px;
+            line-height: 1.4;
+            color: rgba(0, 0, 0, 0.45);
+            padding: 7px 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            background: #ffffff;
+            white-space: nowrap;
+        }
+
+        .context-chart-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* GOAL — 文字 + 退后靠右定宽的卡片 */
+        .goal-intro {
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-body);
+            font-weight: 400;
+            margin-bottom: 24px;
+            text-transform: capitalize;
+            max-width: 60%; /* 限制宽度让它跟卡片产生错落感 */
+        }
+
+        .goal-cards {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .goal-card {
+            background: #ffffff;
+            border-radius: 16px;
+            width: 260px;
+            padding: 18px 20px;
+            border: 1px solid rgba(108,76,198,0.15);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+        }
+
+        .goal-card-icon {
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .goal-card-icon img {
+            width: 28px;
+            height: 28px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .goal-card h3 {
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-body);
+            margin-bottom: 6px;
+        }
+
+        .goal-card p {
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--text-muted);
+            margin: 0;
+            text-transform: capitalize;
+        }
+
+        /* CARDS — 白卡 + 细边框 */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .problem-card {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .problem-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            color: var(--heading-purple);
+        }
+
+        .problem-card p {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.65;
+        }
+
+        /* PROBLEM BREAKDOWN — 副标题+表情，左卡片群，右分类漏斗 */
+        .problem-breakdown-intro {
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 18px;
+            color: var(--text-body);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center; /* 确保超大 emoji 能垂直居中对齐文字 */
+        }
+
+        .problem-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%; /* 充满容器宽度，确立最外边缘对其 */
+        }
+
+        /* 左侧：分隔开带阴影的白底卡片 */
+        .problem-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch; /* 让所有卡片自动跟最长的对其 */
+            gap: 16px;
+            width: 365px; /* 控制短一点的卡片 */
+            flex-shrink: 0;
+        }
+
+        .problem-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: #f7f7f8;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.06);
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 13px;
+            line-height: 1.4;
+            color: var(--text-body);
+            white-space: nowrap;
+        }
+
+        .problem-list .problem-x {
+            color: #7B61FF; 
+            font-size: 14px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        /* 右侧：纯色彩倒三角漏斗，标签在左，连线插入漏斗内 */
+        .problem-funnel-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+            flex-shrink: 0; /* 绝对禁止容器被挤压，防断线 */
+        }
+
+        .funnel-labels {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 230px;
+            z-index: 2;
+            padding: 16px 0;
+            align-items: flex-start; /* 全部左对齐，强制文字处于同一垂直参考线 */
+            /* width 交给里面每个单独控制，形成阶梯 */
+        }
+
+        .funnel-label-group {
+            display: flex;
+            align-items: center;
+            /* width 将在 HTML 中以内联形式提供，形成阶梯状右边缘 */
+        }
+
+        .funnel-label {
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-body);
+            white-space: nowrap;
+        }
+        
+        /* 穿透进入漏斗的精确引线 */
+        .funnel-line {
+            flex: 1; /* 自动填充满 group 的剩余宽度空间拉到指定坐标 */
+            height: 1px;
+            background: rgba(123, 97, 255, 0.4);
+            margin-left: 12px; /* 和文字隔开间隙 */
+            position: relative;
+        }
+
+        .funnel-line::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -1.5px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(123, 97, 255, 0.7);
+        }
+
+        .problem-funnel {
+            width: 240px;
+            height: 240px;
+            display: flex;
+            flex-direction: column;
+            clip-path: polygon(0 0, 100% 0, 50% 100%); /* 倒三角裁切 */
+            flex-shrink: 0; /* 绝对禁止容器挤压缩小导致变形 */
+            margin-left: -32px; /* 漏斗向左滑动，强行让左侧所有线插进漏斗边缘 */
+        }
+
+        .funnel-band-1 { flex: 1; background: #9688F2; } 
+        .funnel-band-2 { flex: 1; background: #BAB0F4; } 
+        .funnel-band-3 { flex: 1; background: #DFDAF8; } 
+
+        .quote-box {
+            background: var(--bg-card);
+            padding: 28px 36px;
+            border-radius: 16px;
+            margin: 28px 0;
+            font-style: italic;
+            color: var(--text-body);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--heading-purple);
+        }
+
+        /* CONTENT LEVEL PAINPOINT — 纯净淡背景面板与语录卡片布局 */
+        .content-pain-card {
+            border-radius: 32px;
+            padding: 56px 64px 80px;
+            background: #F9F9FB; /* 参考图中的极简淡色微紫/微灰底 */
+            margin-bottom: 80px;
+        }
+
+        .pain-section-title {
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: 40px;
+            margin-top: 56px;
+        }
+
+        .pain-group-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            margin-left: 50px;
+            margin-bottom: 32px;
+        }
+
+        .pain-quote-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px 32px;
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-body);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+            position: relative;
+        }
+        
+        .pain-quote-card .author {
+            display: block;
+            text-align: right;
+            margin-top: 16px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .pain-quote-card.italic-text {
+            font-style: italic;
+        }
+
+        .pain-takeaway {
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 16px;
+            margin-left: 12px;
+        }
+
+        .pain-persona {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 160px;
+            flex-shrink: 0;
+        }
+
+        .pain-persona img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .pain-persona p {
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.4;
+            color: var(--text-primary);
+        }
+
+        .pain-persona p strong {
+            font-weight: 600;
+        }
+
+        .pain-quote-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .pain-visual-mockup {
+            width: 240px;
+            flex-shrink: 0;
+            margin-left: 24px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+
+        .pain-visual-mockup img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        /* DESIGN DECISION — 布局结构示意图卡片 */
+        .design-decision-card {
+            border-radius: 32px;
+            padding: 40px 40px 32px;
+            background: linear-gradient(180deg, #f6f3ff 0%, #f8f6ff 45%, #ffffff 100%);
+            box-shadow: 0 20px 70px rgba(81, 45, 168, 0.12);
+        }
+
+        .design-decision-card .section-title {
+            margin-bottom: 10px;
+        }
+
+        .design-decision-card .section-desc {
+            margin-bottom: 28px;
+            max-width: 640px;
+        }
+
+        .design-decision-diagram {
+            display: flex;
+            align-items: stretch;
+            position: relative;
+        }
+
+        .decision-flow-col {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .decision-header-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px; 
+            position: relative;
+            z-index: 3;
+        }
+
+        .decision-header-left {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 24px;
+        }
+
+        .decision-header-center {
+            width: 200px;
+            flex-shrink: 0;
+        }
+
+        .decision-header-right {
+            width: 62px; 
+        }
+
+        .decision-header-badge {
+            color: var(--heading-purple);
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .decision-group {
+            position: absolute;
+            width: 100%;
+            transform: translateY(-50%);
+            right: 0;
+        }
+
+        .decision-row {
+            position: absolute;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .decision-left-text {
+            flex: 1;
+            text-align: right;
+            padding-right: 24px;
+            font-size: 13px;
+            color: var(--text-body);
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        .decision-pills {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            width: 180px; 
+            flex-shrink: 0;
+        }
+
+        .decision-pill-main {
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.06);
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            position: relative; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .decision-pill-sub {
+            background: #EBEBEB;
+            border: 1px solid #E2E2E2;
+            color: #666;
+            font-size: 12px;
+            padding: 6px 16px;
+            border-radius: 16px;
+            position: relative;
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+
+        .decision-pill-sub::before {
+            content: "";
+            position: absolute;
+            left: -12px;
+            top: -10px;
+            width: 12px;
+            height: 22px;
+            border-left: 1px solid #D0D0D0;
+            border-bottom: 1px solid #D0D0D0;
+            border-bottom-left-radius: 6px;
+        }
+
+        .decision-connector {
+            flex-grow: 1;
+            height: 1px;
+            background: #A3A3A3;
+            margin-left: 12px;
+            position: relative;
+        }
+
+        .decision-connector::after {
+            content: '';
+            position: absolute;
+            right: -2.5px;
+            top: -2.5px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #A3A3A3;
+        }
+
+        .decision-sub-connector {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .decision-sub-connector::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            right: var(--extend, -90px);
+            top: 50%;
+            height: 1px;
+            background: #A3A3A3;
+        }
+
+        .decision-sub-connector::after {
+            content: '';
+            position: absolute;
+            right: calc(var(--extend, -90px) - 2px);
+            top: calc(50% - 2.5px);
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #A3A3A3;
+        }
+
+        .decision-phone-col {
+            flex-shrink: 0;
+            position: relative;
+            padding-left: 32px; 
+            z-index: 1;
+        }
+
+        .decision-axis {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #C0C0C0;
+        }
+
+        .dim-bound {
+            position: absolute;
+            left: -4px;
+            width: 9px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: translateY(-50%);
+        }
+
+        .dim-tick {
+            width: 9px;
+            height: 1px;
+            background: #A3A3A3;
+            margin: 2px 0;
+        }
+
+        .dim-arrow-down {
+            border-left: 3.5px solid transparent;
+            border-right: 3.5px solid transparent;
+            border-top: 5px solid #A3A3A3;
+        }
+
+        .dim-arrow-up {
+            border-left: 3.5px solid transparent;
+            border-right: 3.5px solid transparent;
+            border-bottom: 5px solid #A3A3A3;
+        }
+
+        .decision-phone-col img {
+            display: block;
+            width: 190px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+
+        .design-decision-card {
+            border-radius: 32px;
+            padding: 56px 64px 64px;
+            background: #F8F8FA;
+            margin-bottom: 80px;
+        }
+
+        .design-decision-card .section-title {
+            margin-bottom: 10px;
+        }
+
+        /* DESIGN DIRECTIONS — 三个视觉方案 */
+        .design-directions-intro {
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--text-body);
+            max-width: 720px;
+            margin-bottom: 24px;
+        }
+
+        .design-directions-main {
+            margin-top: 24px;
+            margin-bottom: 32px;
+            border-radius: 28px;
+            padding: 28px 32px 24px;
+            background: radial-gradient(160% 200% at 0% 0%, rgba(81, 45, 168, 0.14) 0%, rgba(81, 45, 168, 0.03) 32%, #ffffff 100%);
+        }
+
+        .design-directions-phones {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .design-directions-phones img {
+            display: block;
+            width: 26%;
+            max-width: 210px;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.18);
+            background: #f5f5f8;
+        }
+
+        .design-directions-variants {
+            display: none;
+        }
+
+        /* DESIGN OPTIONS 2 & 3 */
+        .option-section {
+            margin-top: 56px;
+        }
+
+        .option-eyebrow {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--heading-purple);
+            margin: 0 0 4px 0;
+        }
+
+        .option-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--heading-purple);
+            margin: 0 0 12px 0;
+        }
+
+        .option-body {
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--text-body);
+            margin: 0 0 6px 0;
+        }
+
+        .option-layout {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 40px;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .option-phone-card {
+            border-radius: 28px;
+            padding: 24px 20px 26px;
+            background: linear-gradient(180deg, #f6f3ff 0%, #f7f3ff 55%, #ffffff 100%);
+            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.12);
+            display: flex;
+            justify-content: center;
+        }
+
+        .option-phone-card img {
+            display: block;
+            width: 74%;
+            max-width: 260px;
+            height: auto;
+            border-radius: 24px;
+        }
+
+        .option-thumbs {
+            margin-top: 18px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .option-thumbs img {
+            display: block;
+            width: 80px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+            background: #f5f5f8;
+        }
+
+        .option-card-promo {
+            margin-top: 20px;
+            border-radius: 32px;
+            padding: 28px 32px 32px;
+            background: radial-gradient(160% 200% at 0% 0%, rgba(81, 45, 168, 0.14) 0%, rgba(81, 45, 168, 0.03) 32%, #ffffff 100%);
+            box-shadow: 0 20px 70px rgba(81, 45, 168, 0.12);
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .option3-phones {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .option3-phones img {
+            display: block;
+            width: 48%;
+            max-width: 260px;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
+            background: #f5f5f8;
+        }
+
+        /* FINAL OUTCOME — 单个最终效果视频 */
+        .final-outcome-card {
+            border-radius: 32px;
+            padding: 32px 32px 40px;
+            background: radial-gradient(180% 220% at 0% 0%, rgba(81, 45, 168, 0.12) 0%, rgba(81, 45, 168, 0.04) 32%, #ffffff 100%);
+            box-shadow: 0 20px 70px rgba(81, 45, 168, 0.12);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .final-outcome-title {
+            width: 100%;
+            max-width: 640px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--heading-purple);
+            margin-bottom: 20px;
+        }
+
+        .final-outcome-frame {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .final-outcome-frame img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .final-outcome-video {
+            position: absolute;
+            left: 50%;
+            top: 2.6%;
+            width: 89%;
+            height: 94.8%;
+            transform: translateX(-50%);
+            border-radius: 36px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 0 0 rgba(0,0,0,0);
+            z-index: 3;
+        }
+
+        .final-outcome-video video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* HIGHLIGHTS — 背景 3.png，主图 2.png，内嵌 4.mp4 / 1.mp4 / 2.mp4 */
+        .white-inset {
+            background-image: url("images/project-tiktok-edm/3.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: var(--bg-card);
+            color: var(--text-body);
+            border-radius: 24px;
+            padding: 72px 0;
+            margin: 0 calc(var(--site-pad) * -1);
+            margin-bottom: 72px;
+            border-top: 1px solid rgba(0,0,0,0.07);
+            border-bottom: 1px solid rgba(0,0,0,0.07);
+            box-shadow: 0 -2px 16px rgba(0,0,0,0.04), 0 2px 16px rgba(0,0,0,0.04);
+        }
+
+        .white-inset .section-title {
+            color: var(--heading-purple);
+            margin-bottom: 14px;
+        }
+
+        .white-inset .section-desc {
+            color: var(--text-body);
+            margin-bottom: 36px;
+        }
+
+        .highlight-block {
+            margin-bottom: 56px;
+        }
+
+        .highlight-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-num {
+            font-size: 18px;
+            color: var(--heading-purple);
+            font-weight: 600;
+            letter-spacing: 0;
+            margin-bottom: 14px;
+            text-transform: none;
+        }
+
+        .highlight-title {
+            font-size: clamp(20px, 2.2vw, 26px);
+            font-weight: 600;
+            margin-bottom: 14px;
+            color: var(--heading-purple);
+        }
+
+        .highlight-desc {
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--text-body);
+            max-width: 720px;
+            margin-bottom: 28px;
+        }
+
+        /* HIGHLIGHTS — Before / After 双卡片 */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .highlight-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 22px 22px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .highlight-card-before {
+            opacity: 0.96;
+        }
+
+        .highlight-card-after {
+            opacity: 1;
+        }
+
+        .highlight-phone {
+            border-radius: 24px;
+            overflow: hidden;
+            background: #f5f5f8;
+            padding: 16px 18px 20px;
+        }
+
+        .highlight-phone img {
+            display: block;
+            width: 82%;
+            max-width: 260px;
+            margin: 0 auto;
+            height: auto;
+        }
+
+        .highlight-callouts {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-body);
+            max-width: 260px;
+        }
+
+        .highlight-callouts p {
+            margin: 0 0 6px 0;
+        }
+
+        .highlight-callouts p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-label {
+            margin-top: 4px;
+            font-size: 13px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .highlight-visual {
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .before-after figcaption {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* DESIGN DIRECTIONS */
+        .direction-option {
+            background: var(--bg-subtle);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .direction-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .direction-option .scenario {
+            font-size: 18px;
+            color: var(--heading-purple);
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .direction-option .pros-cons {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.65;
+        }
+
+        .direction-option .pros-cons strong {
+            color: var(--text-body);
+        }
+
+        /* PROCESS STEPS */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .process-step {
+            text-align: left;
+        }
+
+        .process-step .step-num {
+            font-size: 14px;
+            color: var(--heading-purple);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .process-step p {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.65;
+        }
+
+        .process-images {
+            margin-top: 24px;
+        }
+
+        .process-row {
+            display: flex;
+            justify-content: center;
+            gap: 2px;
+            margin-bottom: 32px;
+        }
+
+        .process-row img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 0;
+            box-shadow: none;
+            background: #000;
+        }
+
+        .process-row-single img {
+            max-width: 100%;
+        }
+
+        /* TAKEAWAYS / LEARNING */
+        .learning-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .learning-card {
+            max-width: 880px;
+        }
+
+        .learning-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            color: var(--heading-purple);
+        }
+
+        .learning-card p {
+            font-size: 15px;
+            color: var(--text-body);
+            line-height: 1.65;
+        }
+
+        /* LAYOUT STRUCTURE */
+        .layout-diagram {
+            max-width: 800px;
+            margin: 40px auto 0;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            font-size: 15px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--site-width);
+            margin: 0 auto;
+            padding-left: var(--site-pad);
+            padding-right: var(--site-pad);
+        }
+
+        @media (max-width: 900px) {
+            .context-row {
+                grid-template-columns: 1fr;
+            }
+
+            .content-pain-card {
+                padding: 40px 24px 32px;
+                border-radius: 24px;
+            }
+
+            .content-pain-items .pain-item {
+                grid-template-columns: 1fr;
+            }
+
+            .pain-item-right {
+                justify-content: flex-start;
+            }
+
+            .goal-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .problem-row {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-4-col {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .before-after {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .process-row {
+                grid-template-columns: 1fr;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .white-inset {
+                border-radius: 24px;
+                padding: 60px var(--site-pad);
+            }
+
+            .design-directions-variants {
+                justify-content: center;
+            }
+
+            .option3-phones {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="homepage.html" class="nav-left">
+            <img src="images/homepage/Oiiai 1.png" alt="Logo">
+            Yuwang Gu
+        </a>
+        <div class="nav-center">
+            <a href="homepage.html">UX / Product</a>
+            <a href="archive/">Archive</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://linkedin.com" target="_blank" class="nav-icon">
+                <img src="images/homepage/linkedin.png" alt="LinkedIn">
+            </a>
+            <a href="#" class="nav-resume">Resume</a>
+            <a href="#" class="nav-about">About</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO: 1.1.png background, 1.2.png overlay, 4 phones (1`-4`) overlaid, text on top -->
+        <div class="hero-wrapper">
+            <div class="hero-image-stack">
+                <!-- Background sets the hero height -->
+                <img class="hero-bg-img" src="images/project-tiktok-edm/1.1.png" alt="">
+                <!-- Second background layer -->
+                <img class="hero-bg-img2" src="images/project-tiktok-edm/1.2.png" alt="">
+                <!-- 4 phone mockups in a row -->
+                <div class="hero-phones">
+                    <img class="hero-phone-1" src="images/project-tiktok-edm/1`.png" alt="EDM design option 1">
+                    <img class="hero-phone-2" src="images/project-tiktok-edm/2`.png" alt="EDM design option 2">
+                    <img class="hero-phone-3" src="images/project-tiktok-edm/3`.png" alt="EDM design option 3">
+                    <img class="hero-phone-4" src="images/project-tiktok-edm/4`.png" alt="EDM design option 4">
+                </div>
+                <!-- Text overlay: TikTok logo + subtitle -->
+                <header class="hero">
+                    <div class="container">
+                        <img class="hero-logo" src="images/project-tiktok-edm/TikTokLogo.png" alt="TikTok" onerror="this.onerror=null; this.src='images/project-tiktok-edm/icon.png';">
+                        <h1 class="hero-title">Reframed the email from a notification to a</h1>
+                        <p class="hero-title-line2">Curiosity-Driven, Personalized Experience</p>
+                    </div>
+                </header>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- OVERVIEW -->
+            <section class="overview-section">
+                <div class="grid-4-col">
+                    <div class="grid-col">
+                        <h3>My Role</h3>
+                        <p>As The Sole Designer Of Electronic Direct Mails, Collaborating With PMs To Define Visual And Content Strategies To Increase User&nbsp;Engagement.</p>
+                    </div>
+                    <div class="grid-col">
+                        <h3>Time Line</h3>
+                        <p>6 Weeks<br>March - May. 2024<br>V1 Launched in June&nbsp;2024</p>
+                    </div>
+                    <div class="grid-col">
+                        <h3>Skills</h3>
+                        <p>Prototyping<br>User Research<br>Product Design<br>Product&nbsp;Strategy</p>
+                    </div>
+                    <div class="grid-col">
+                        <h3>Team</h3>
+                        <p>1 UX Designers (Me)<br>1 Product Managers<br>Engineer&nbsp;Team</p>
+                    </div>
+                </div>
+
+                <div class="impact-box">
+                    <h2 class="impact-title">Impact</h2>
+                    <p class="impact-desc">Used data-driven insights to identify core user needs, quickly prototyped multiple strategic directions, and delivered a set of product&nbsp;solutions.</p>
+                    <p class="impact-desc">This feature was approved and entered development before my internship concluded. Although the final release occurred after my departure, my design work directly informed the implemented&nbsp;experience.</p>
+                </div>
+            </section>
+
+            <!-- HIGHLIGHT -->
+            <section class="mb-section">
+                <h2 class="section-title">Highlight</h2>
+                <div class="highlight-stack">
+                    <!-- Row 1: Image -->
+                    <div class="highlight-row-1">
+                        <img src="images/project-tiktok-edm/2.png" alt="Highlight Overview">
+                    </div>
+                    
+                    <!-- Row 2: 3 Videos on Purple Background -->
+                    <div class="highlight-row-2">
+                        <!-- Video 1 (Left - Zoomed out of bounds) -->
+                        <div class="highlight-vid-card">
+                            <img class="highlight-vid-bg" src="images/project-tiktok-edm/3.png" alt="Purple background">
+                            <div class="phone-mockup-wrap mockup-size-1">
+                                <img class="phone-mockup-frame" src="images/project-tiktok-edm/Blue.png" alt="Phone frame">
+                                <video class="phone-mockup-vid" autoplay loop muted playsinline>
+                                    <source src="images/project-tiktok-edm/4.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                        <!-- Video 2 (Middle - Fully inside) -->
+                        <div class="highlight-vid-card">
+                            <img class="highlight-vid-bg" src="images/project-tiktok-edm/3.png" alt="Purple background">
+                            <div class="phone-mockup-wrap mockup-size-2">
+                                <img class="phone-mockup-frame" src="images/project-tiktok-edm/Blue.png" alt="Phone frame">
+                                <video class="phone-mockup-vid" autoplay loop muted playsinline>
+                                    <source src="images/project-tiktok-edm/1.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                        <!-- Video 3 (Right - Slightly zoomed and cut bottom) -->
+                        <div class="highlight-vid-card">
+                            <img class="highlight-vid-bg" src="images/project-tiktok-edm/3.png" alt="Purple background">
+                            <div class="phone-mockup-wrap mockup-size-3">
+                                <img class="phone-mockup-frame" src="images/project-tiktok-edm/Blue.png" alt="Phone frame">
+                                <video class="phone-mockup-vid" autoplay loop muted playsinline>
+                                    <source src="images/project-tiktok-edm/2.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTEXT -->
+            <section class="mb-section">
+                <h2 class="section-title">Context</h2>
+                <div class="context-row">
+                    <div class="context-text">
+                        <p class="section-desc"><strong>Email has become a popular marketing tool.</strong> U.S. users are overwhelmed with "useless" marketing emails and looking for useful and relevant email&nbsp;content.</p>
+                        <div style="display: flex; align-items: center; gap: 24px; margin-top: 48px;">
+                            <p class="section-desc" style="margin-bottom: 0; color: #8E8A95; font-weight: 400; line-height: 1.6; max-width: 75%;">
+                                Over 30% Of Surveyed Users Are Dissatisfied With Useless And Irrelevant&nbsp;Content
+                            </p>
+                            <span style="font-size: 4.5em; line-height: 1; flex-shrink: 0;">🥱</span>
+                        </div>
+                    </div>
+                    <div class="context-chart">
+                        <div class="context-chart-header">Q: How Did TikTok Emails Dissatisfy You?</div>
+                        <ul class="context-chart-list">
+                            <li>Some emails are not informative or&nbsp;useful.</li>
+                            <li>Some email topics or recommendations are irrelevant to&nbsp;me.</li>
+                            <li>Some email topics are fine, but the content itself is not&nbsp;engaging.</li>
+                            <li>Can't customize my email preferences to control what I&nbsp;receive.</li>
+                            <li>The email wording is confusing or not well&nbsp;localized.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GOAL -->
+            <section class="mb-section">
+                <h2 class="section-title">Goal</h2>
+                <p class="goal-intro">Improve upon its value to compete as an independent marketing&nbsp;channel.</p>
+                <div class="goal-cards">
+                    <div class="goal-card">
+                        <div class="goal-card-icon">
+                            <!-- solid bullseye / target — Business Goal -->
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="#7c3aed" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-13a5 5 0 1 0 0 10A5 5 0 0 0 12 7zm0 8a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-4a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            </svg>
+                        </div>
+                        <h3>Business Goal</h3>
+                        <p>Email notifications as a standalone, value-driven content and marketing&nbsp;channel.</p>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-card-icon">
+                            <!-- solid person — User Goal -->
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="#7c3aed" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+                            </svg>
+                        </div>
+                        <h3>User Goal</h3>
+                        <p>Receive more personalized and meaningful&nbsp;content.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROBLEM BREAKDOWN -->
+            <section class="mb-section">
+                <h2 class="section-title">Problem Breakdown</h2>
+                <p class="problem-breakdown-intro">Why Does Everyone Hate Email Notification? <span style="font-size: 3.2em; margin-left: 16px;">🤨</span></p>
+                <div class="problem-row">
+                    <ul class="problem-list">
+                        <li><span class="problem-x" aria-hidden="true">✕</span> Not Treated As An Independent Product Experience</li>
+                        <li><span class="problem-x" aria-hidden="true">✕</span> Lack Of Audience Segmentation Strategy</li>
+                        <li><span class="problem-x" aria-hidden="true">✕</span> Weak Visual Cues, Lack Of Storytelling</li>
+                    </ul>
+                    <div class="problem-funnel-wrap">
+                        <div class="funnel-labels">
+                            <div class="funnel-label-group" style="width: 180px;">
+                                <span class="funnel-label">Strategic Level</span>
+                                <span class="funnel-line"></span>
+                            </div>
+                            <div class="funnel-label-group" style="width: 220px;">
+                                <span class="funnel-label">Content Level</span>
+                                <span class="funnel-line"></span>
+                            </div>
+                            <div class="funnel-label-group" style="width: 260px;">
+                                <span class="funnel-label">Visual &amp; Interaction Level</span>
+                                <span class="funnel-line"></span>
+                            </div>
+                        </div>
+                        <div class="problem-funnel">
+                            <div class="funnel-band-1"></div>
+                            <div class="funnel-band-2"></div>
+                            <div class="funnel-band-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- CONTENT LEVEL PAINPOINT -->
+            <section class="mb-section content-pain-section">
+                <h2 class="section-title">Painpoint</h2>
+                <div class="content-pain-card">
+
+                     <!-- 01 -->
+                    <div class="pain-section">
+                        <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 2px;">01/</div>
+                        <h3 class="pain-section-title" style="margin-top: 0; font-style: italic; font-weight: 400; color: rgba(0,0,0,0.6); letter-spacing: -0.005em;">Why do I keep getting the same spam mail as everyone else?</h3>
+
+                        <!-- user1 + user2 stacked vertically, centered -->
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: 32px; margin-bottom: 40px;">
+                            <img src="images/project-tiktok-edm/user1.png" alt="Heavy User"
+                                 style="width: 100%; max-width: 640px; border-radius: 12px; object-fit: cover; display: block;">
+                            <img src="images/project-tiktok-edm/user2.png" alt="Creator"
+                                 style="width: 100%; max-width: 640px; border-radius: 12px; object-fit: cover; display: block; margin-top: -47px;">
+                        </div>
+                    </div>
+
+                    <!-- 02 -->
+                    <div class="pain-section" style="margin-top: 0;">
+                        <div style="display: flex; align-items: center; gap: 48px;">
+
+                            <!-- Left: section2.png -->
+                            <div style="flex-shrink: 0;">
+                                <img src="images/project-tiktok-edm/section2.png" alt="Email notification example"
+                                     style="width: 340px; display: block;">
+                            </div>
+
+                            <!-- Right: text + data card -->
+                            <div style="flex: 1;">
+                                <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 2px;">02/</div>
+                                <h3 class="pain-section-title" style="margin-top: 0; margin-bottom: 32px; font-style: italic; font-weight: 400; color: rgba(0,0,0,0.6); letter-spacing: -0.005em;">
+                                    "An email just to tell me I got a like?"<br>
+                                    "I didn't even know I could click it — where does it&nbsp;go?"
+                                </h3>
+                                <div class="pain-quote-card italic-text" style="font-size: 12px; padding: 28px 24px 20px; position: relative;">
+                                    <img src="images/project-tiktok-edm/light.png" alt="" style="position: absolute; top: -18px; left: -18px; width: 36px; height: 36px; object-fit: contain; transform: rotate(-20deg);">
+                                    22.6% BR users don't realise the email content is <strong>clickable</strong>.
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- 03 -->
+                    <div class="pain-section" style="margin-top: 48px;">
+                        <div style="display: flex; align-items: center; gap: 48px;">
+
+                            <!-- Left: text + data card -->
+                            <div style="flex: 1;">
+                                <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 2px;">03/</div>
+                                <h3 class="pain-section-title" style="margin-top: 0; margin-bottom: 32px; font-style: italic; font-weight: 400; color: rgba(0,0,0,0.6); letter-spacing: -0.005em;">
+                                    I just go straight to TikTok — I don't even bother opening the&nbsp;email.
+                                </h3>
+                                <div class="pain-quote-card italic-text" style="font-size: 12px; padding: 20px 24px; position: relative;">
+                                    <img src="images/project-tiktok-edm/speaker.png" alt="" style="position: absolute; top: -14px; right: -14px; width: 28px; height: 28px; object-fit: contain;">
+                                    <p style="margin: 0; line-height: 1.6;">" Actually my email always appear the notification but I directly go in TikTok instead open the email. When I check my emails, I also see the email of TikTok and I also check and directly to TikTok after my other email done checking. "</p>
+                                    <span style="display: block; font-size: 11px; text-align: right; margin-top: 8px; font-style: normal; color: var(--text-muted);">— TT Users</span>
+                                </div>
+                            </div>
+
+                            <!-- Right: section3.png -->
+                            <div style="flex-shrink: 0;">
+                                <img src="images/project-tiktok-edm/section3.png" alt="Going straight to TikTok"
+                                     style="width: 360px; display: block;">
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Divider before summary -->
+                    <div style="border-top: 1px solid rgba(0,0,0,0.10); margin-top: 48px;"></div>
+
+                    <!-- Summary: 3 icon cards -->
+                    <div style="margin-top: 48px;">
+                        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.7px; text-transform: uppercase; margin-bottom: 16px;">Summary</div>
+                        <div style="display: flex; gap: 16px; align-items: stretch;">
+
+                            <!-- Card 1: Weak Visual Cues — muted lavender -->
+                            <div style="flex: 1; background: linear-gradient(135deg, #e8e4f5 0%, #edeaf8 55%, #f5f4fb 100%); border: 1px solid rgba(108,76,198,0.12); border-radius: 16px; padding: 22px 24px;">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 14px; display: block;">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                <div style="font-size: 14px; font-weight: 700; color: #332566; margin-bottom: 8px; line-height: 1.3;">Weak Visual Cues</div>
+                                <p style="font-size: 12px; color: #5a5080; line-height: 1.6; margin: 0;">Weak visual cues and unclear CTAs make users fail to recognize interactive or clickable content.</p>
+                            </div>
+
+                            <!-- Card 2: No User Segmentation -->
+                            <div style="flex: 1; background: #f7f7f8; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 22px 24px;">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 14px; display: block;">
+                                    <rect x="4" y="2" width="16" height="20" rx="2"/>
+                                    <line x1="8" y1="8" x2="16" y2="8"/>
+                                    <line x1="8" y1="12" x2="16" y2="12"/>
+                                    <line x1="8" y1="16" x2="12" y2="16"/>
+                                </svg>
+                                <div style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; line-height: 1.3;">No User Segmentation</div>
+                                <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6; margin: 0;">Lack of differentiated content strategy across engagement levels and user identity types.</p>
+                            </div>
+
+                            <!-- Card 3: Meaningful Content -->
+                            <div style="flex: 1; background: #f7f7f8; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 22px 24px;">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 14px; display: block;">
+                                    <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                </svg>
+                                <div style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; line-height: 1.3;">Meaningful Content</div>
+                                <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6; margin: 0;">Emails mirror in-app notifications with no added value — users see nothing new and go straight to TikTok instead.</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+
+
+
+            <!-- FIRST ITERATION -->
+            <section class="mb-section">
+                <h2 class="section-title">First Iteration</h2>
+                
+                <!-- NARRATIVE COLUMN WRAPPER -->
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <p class="section-desc" style="margin-bottom: 56px;">I added a highlight section to the existing notification format to surface content tied to the user's network: friends, posts, followers, and community activity.</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 64px;">
+                        
+                        <!-- 1. The Design Change Showcase -->
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 32px; margin-bottom: 24px;">
+                            
+                            <!-- Original Image -->
+                            <img src="images/project-tiktok-edm/section2.png" alt="Original Design" style="width: 200px; border-radius: 12px; flex-shrink: 0; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                            
+                            <!-- Original Wireframe -->
+                            <div style="flex-shrink: 0; width: 160px;">
+                                <div style="font-size: 11px; font-weight: 700; color: #888; text-align: center; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 12px;">Original Layout</div>
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div style="border: 1px solid #e5e5e5; border-radius: 8px; padding: 10px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Header</div>
+                                    <div style="border: 1px solid #e5e5e5; border-radius: 8px; padding: 10px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Title</div>
+                                    <div style="border: 1px dashed #e5e5e5; border-radius: 8px; padding: 32px 10px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Notification</div>
+                                    <div style="border: 1px solid #e5e5e5; border-radius: 8px; padding: 10px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Footer</div>
+                                </div>
+                            </div>
+                
+                            <!-- Connecting Arrow -->
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin: 0 8px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                
+                            <!-- New Structure Wireframe -->
+                            <div style="flex-shrink: 0; width: 170px;">
+                                <div style="font-size: 11px; font-weight: 700; color: #111; text-align: center; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 12px;">New Structure</div>
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div style="border: 1px solid #e5e5e5; border-radius: 8px; padding: 10px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Header</div>
+                                    <div style="border: 1px solid #e5e5e5; border-radius: 8px; padding: 10px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Title</div>
+                                    <div style="border: 1px solid rgba(139, 92, 246, 0.4); border-radius: 8px; padding: 12px; font-size: 12px; text-align: center; color: #7c3aed; background: rgba(139, 92, 246, 0.05);">Current Notifications</div>
+                                    <div style="border: 1px solid #7c3aed; border-radius: 8px; padding: 12px; font-size: 12px; text-align: center; color: #7c3aed; background: rgba(139, 92, 246, 0.08); font-weight: 500;">Highlight Section<br><span style="font-size: 11px; opacity: 0.8; font-weight: 400; margin-top: 4px; display: block;">Videos / Avatars</span></div>
+                                    <div style="border: 1px solid #e5e5e5; border-radius: 8px; padding: 10px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Footer</div>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- 2. The Dialogue & Exploration Loop -->
+                        <div style="display: flex; flex-direction: column; gap: 40px; padding: 0 8px;">
+                            
+                            <!-- PM Feedback -->
+                            <div style="display: flex; align-items: flex-start; gap: 0;">
+                                <div style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #64748b; color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;">PM</div>
+                                <div style="display: flex; align-items: flex-start; flex: 1; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.06)); margin-left: 12px;">
+                                    <!-- Triangle tail -->
+                                    <div style="flex-shrink: 0; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-right: 12px solid #ffffff; margin-top: 14px;"></div>
+                                    <div style="background: #ffffff; border-radius: 16px; padding: 20px 24px; flex: 1; min-width: 0;">
+                                        <div style="font-size: 13px; font-weight: 700; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px;">Product Manager</div>
+                                        <p style="font-size: 15px; color: #444; line-height: 1.6; margin: 0;">Can we explore <strong style="color: #111;">different notification styles</strong>—text-based, page-like, and marketing-style—each with a different <strong style="color: #111;">highlight section</strong>, and each highlight section using <strong style="color: #111;">distinct strategies</strong> to present key content?</p>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <!-- Exploration Visuals -->
+                            <div style="margin-left: 60px;"> <!-- Indented to align with PM chat bubble text area -->
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                                    <img src="images/project-tiktok-edm/19.png" alt="40 combinations" style="width: 100%; border-radius: 12px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 16px rgba(0,0,0,0.02);">
+                                    <img src="images/project-tiktok-edm/20.png" alt="Iterations" style="width: 100%; border-radius: 12px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 16px rgba(0,0,0,0.02);">
+                                </div>
+                                <div style="font-size: 13px; color: #888; text-align: center;">Part of my exploration, I came up with 40 combinations in 2 days!!! 🫠</div>
+                            </div>
+                
+                            <!-- Designer Inner Thought -->
+                            <div style="display: flex; align-items: flex-start; gap: 0;">
+                                <div style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #f0f0f0; border: 1px solid rgba(0,0,0,0.08); overflow: hidden;">
+                                    <img src="images/homepage/Oiiai 1.png" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div style="display: flex; align-items: flex-start; flex: 1; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.06)); margin-left: 12px;">
+                                    <!-- Triangle tail -->
+                                    <div style="flex-shrink: 0; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-right: 12px solid #ffffff; margin-top: 14px;"></div>
+                                    <div style="background: #ffffff; border-radius: 16px; padding: 20px 24px; flex: 1; min-width: 0;">
+                                        <div style="font-size: 13px; font-weight: 700; color: #6b21a8; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px;">UX Designer (Me)</div>
+                                        <p style="font-size: 15px; color: #444; line-height: 1.6; margin: 0 0 12px;">I felt lost in my design, and I began to wonder: <strong style="color: #111;">does notification actually matter to users?</strong></p>
+                                        <p style="font-size: 15px; color: #444; line-height: 1.6; margin: 0;">All content can be meaningful in different scenarios—the question is how to attract people to read it in different scenarios.</p>
+                                    </div>
+                                </div>
+                            </div>
+                
+                        </div>
+                
+                        <!-- 3. Final Strategic Pivot Box -->
+                        <div style="position: relative; margin-top: -16px;">
+                            <!-- Center connecting arrow -->
+                            <div style="display: flex; justify-content: center; position: absolute; left: 50%; top: -36px; transform: translateX(-50%); z-index: 10;">
+                                <div style="background: #ffffff; border-radius: 50%; padding: 6px;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                                </div>
+                            </div>
+                    
+                            <div style="background: linear-gradient(180deg, #ffffff 0%, #fbf9ff 100%); border: 1px solid #ede9fe; border-radius: 16px; padding: 56px 40px 48px 40px; text-align: center; box-shadow: 0 16px 48px rgba(107,33,168,0.06); position: relative; overflow: hidden;">
+                                <!-- Soft purple glow in the background -->
+                                <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 200px; height: 100px; background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);"></div>
+                                
+                                <div style="position: relative; z-index: 1;">
+                                    <div style="font-size: 13px; font-weight: 700; color: #a855f7; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;">Core Strategy Shift</div>
+                                    <h3 style="font-size: 36px; font-weight: 700; color: #111; margin-bottom: 0; line-height: 1.3;">
+                                        Design for <br>
+                                        <span style="background: linear-gradient(90deg, #a855f7, #ec4899); -webkit-background-clip: text; color: transparent; background-clip: text;">Curiosity &amp; Social Connection!</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- OPTION 1: SCENARIO PROMOTIONAL STYLE EMAIL -->
+            <section class="mb-section">
+                <div class="option-section">
+                    <p class="option-eyebrow">Option 1</p>
+                    <h3 class="option-title">Scenario: Promotional-Style Email</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.65; margin: 0 0 20px; max-width: 680px;">Prioritizes bold visuals and strong CTAs over social context or personalization. Best for campaign launches, sales, and event announcements.</p>
+                    <div style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px;">
+                        <div style="flex: 1; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 14px; padding: 18px 20px;">
+                            <div style="font-size: 11px; font-weight: 700; color: #16a34a; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#16a34a"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Pros
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                <div style="display: flex; gap: 8px; align-items: flex-start;"><div style="flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: #16a34a; margin-top: 5px;"></div><span style="font-size: 12px; color: #166534; line-height: 1.55;">High visual impact — instantly grabs attention</span></div>
+                                <div style="display: flex; gap: 8px; align-items: flex-start;"><div style="flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: #16a34a; margin-top: 5px;"></div><span style="font-size: 12px; color: #166534; line-height: 1.55;">Drives immediate action through strong CTAs</span></div>
+                                <div style="display: flex; gap: 8px; align-items: flex-start;"><div style="flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: #16a34a; margin-top: 5px;"></div><span style="font-size: 12px; color: #166534; line-height: 1.55;">Works well for campaigns, sales, and event announcements</span></div>
+                            </div>
+                        </div>
+                        <div style="flex: 1; background: #fff1f2; border: 1px solid #fecdd3; border-radius: 14px; padding: 18px 20px;">
+                            <div style="font-size: 11px; font-weight: 700; color: #dc2626; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#dc2626"/><path d="M4.5 4.5l5 5M9.5 4.5l-5 5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Cons
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                <div style="display: flex; gap: 8px; align-items: flex-start;"><div style="flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: #dc2626; margin-top: 5px;"></div><span style="font-size: 12px; color: #991b1b; line-height: 1.55;">Feels less personal, lower relevance for non-interested users</span></div>
+                                <div style="display: flex; gap: 8px; align-items: flex-start;"><div style="flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: #dc2626; margin-top: 5px;"></div><span style="font-size: 12px; color: #991b1b; line-height: 1.55;">Risk of being perceived as spam</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="option3-phones" style="margin-top: 20px; justify-content: center; width: 100%;">
+                        <img src="images/project-tiktok-edm/17.png" alt="Promotional-style email option 3 screen 1">
+                        <img src="images/project-tiktok-edm/18.png" alt="Promotional-style email option 3 screen 2">
+                    </div>
+                </div>
+            </section>
+            <!-- TRANSITION: IN REALITY -->
+
+            <section class="mb-section" style="margin-bottom: 40px;">
+                <p style="font-size: 20px; font-weight: 600; color: var(--text-primary); line-height: 1.5; margin: 0;">
+                    In reality… We also take some safe steps.
+                </p>
+            </section>
+
+            <!-- DESIGN DECISION -->
+            <section class="mb-section">
+                <h2 class="section-title">Layout Design Anatomy and Strategy</h2>
+                
+                <div style="display: flex; gap: 32px; align-items: stretch; margin-top: 32px;">
+                    
+                    <!-- LEFT COLUMN: GREY BOXES -->
+                    <div style="display: flex; flex-direction: column; gap: 12px; width: 170px; flex-shrink: 0; padding-top: 24px;">
+                        <div style="background: #F1F1F1; padding: 18px 12px; font-weight: 600; font-size: 15px; color: #111; text-align: center; border-radius: 2px;">Email Header</div>
+                        <div style="background: #F1F1F1; padding: 18px 12px; font-weight: 600; font-size: 15px; color: #111; text-align: center; border-radius: 2px;">Email Title</div>
+                        <div style="background: #ffffff; border: 1px solid #333; padding: 48px 12px; font-weight: 600; font-size: 15px; color: #111; text-align: center; border-radius: 2px;">Main Content Area</div>
+                        <div style="background: #ffffff; border: 1px solid #333; padding: 48px 12px; font-weight: 600; font-size: 15px; color: #111; text-align: center; border-radius: 2px;">Secondary Content Area</div>
+                        <div style="background: #F1F1F1; padding: 18px 12px; font-weight: 600; font-size: 15px; color: #111; text-align: center; border-radius: 2px;">Email Footer</div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: PHONE + RAINBOW BARS -->
+                    <div class="design-decision-card" style="flex: 1; padding: 32px; display: flex; gap: 32px; align-items: flex-start; margin: 0; background: #fafafa; border-radius: 12px;">
+                        
+                        <!-- Phone mockup -->
+                        <div style="position: relative; flex-shrink: 0; width: 200px;">
+                            <img src="images/project-tiktok-edm/6.png" alt="Email design mockup" style="width: 200px; display: block; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                            <!-- Dot indicators -->
+                            <div style="position: absolute; left: 50%; top: 22%; width: 7px; height: 7px; background: #111; border-radius: 50%; transform: translate(-50%, -50%);"></div>
+                            <div style="position: absolute; left: 38%; top: 54%; width: 7px; height: 7px; background: #111; border-radius: 50%; transform: translate(-50%, -50%);"></div>
+                            <div style="position: absolute; left: 78%; top: 79%; width: 7px; height: 7px; background: #111; border-radius: 50%; transform: translate(-50%, -50%);"></div>
+                        </div>
+
+                        <!-- Proportional colour bars column -->
+                        <div style="flex: 1; align-self: stretch; display: flex; flex-direction: column;">
+                            <!-- 1. Email Header -->
+                            <div style="flex: 5; display: flex; gap: 14px; align-items: flex-start; padding: 3px 0;">
+                                <div style="width: 6px; background: #7C3AED; border-radius: 3px; align-self: stretch; flex-shrink: 0;"></div>
+                                <div style="padding-top: 2px;">
+                                    <div style="font-weight: 700; font-size: 12px; color: var(--text-primary);">Email Header</div>
+                                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4;">No Header, Icon Link</div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Title Section -->
+                            <div style="flex: 13; display: flex; gap: 14px; align-items: flex-start; padding: 3px 0;">
+                                <div style="width: 6px; background: #2563EB; border-radius: 3px; align-self: stretch; flex-shrink: 0;"></div>
+                                <div style="padding-top: 2px;">
+                                    <div style="font-weight: 700; font-size: 12px; color: var(--text-primary);">Title Section</div>
+                                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4;">Official Style Copy, Left, Colorful Vibe</div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Email Main CTA -->
+                            <div style="flex: 10; display: flex; gap: 14px; align-items: flex-start; padding: 3px 0;">
+                                <div style="width: 6px; background: #10B981; border-radius: 3px; align-self: stretch; flex-shrink: 0;"></div>
+                                <div style="padding-top: 2px;">
+                                    <div style="font-weight: 700; font-size: 12px; color: var(--text-primary);">Email Main CTA</div>
+                                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4;">General Style Copy, Button Link, Large Size, Center<br>→ Go To TikTok</div>
+                                </div>
+                            </div>
+
+                            <!-- 4. Main Content Area -->
+                            <div style="flex: 43; display: flex; gap: 14px; align-items: flex-start; padding: 3px 0;">
+                                <div style="width: 6px; background: #F59E0B; border-radius: 3px; align-self: stretch; flex-shrink: 0;"></div>
+                                <div style="padding-top: 2px;">
+                                    <div style="font-weight: 700; font-size: 12px; color: var(--text-primary);">Main Content Area</div>
+                                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4;">Middle Size, Single Column, Cover First Video Card<br>→ Go To TikTok Video Page</div>
+                                </div>
+                            </div>
+
+                            <!-- 5. Secondary Content Area -->
+                            <div style="flex: 22; display: flex; gap: 14px; align-items: flex-start; padding: 3px 0;">
+                                <div style="width: 6px; background: #F97316; border-radius: 3px; align-self: stretch; flex-shrink: 0;"></div>
+                                <div style="padding-top: 2px;">
+                                    <div style="font-weight: 700; font-size: 12px; color: var(--text-primary);">Secondary Content Area</div>
+                                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4;">Single Column, Avatar Card, Small Size<br>→ Go To TikTok Avatar Profile Page</div>
+                                </div>
+                            </div>
+
+                            <!-- 6. Email Footer -->
+                            <div style="flex: 7; display: flex; gap: 14px; align-items: flex-start; padding: 3px 0;">
+                                <div style="width: 6px; background: #EF4444; border-radius: 3px; align-self: stretch; flex-shrink: 0;"></div>
+                                <div style="padding-top: 2px;">
+                                    <div style="font-weight: 700; font-size: 12px; color: var(--text-primary);">Email Footer</div>
+                                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4;">Display</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- HIGHLIGHTS (WHITE INSET) -->
+        <section class="white-inset" style="padding: 60px 0;">
+            <div class="container">
+                <h2 class="section-title" style="color: #6b21a8; font-size: 24px; text-transform: capitalize; margin-bottom: 24px; font-weight: 600;">Highlights</h2>
+                <div style="font-size: 16px; font-weight: 500; color: #111; line-height: 1.6; margin-bottom: 48px; max-width: 600px;">
+                    Visual Improvement:<br>
+                    Capture User Attention In The Shortest Amount Of Time<br>
+                    Using Video Thumbnails With Personally Relevant Content
+                </div>
+
+                <div style="display: flex; gap: 24px; align-items: stretch;">
+                    
+                    <!-- BEFORE CARD -->
+                    <div style="flex: 1; min-width: 0; background: #f3f4f6; border-radius: 20px; padding: 40px; display: flex; flex-direction: column;">
+                        <div style="display: flex; flex: 1; align-items: center; justify-content: center; gap: 24px;">
+                            
+                            <!-- Left: Annotations -->
+                            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 32px; max-width: 220px;">
+                                <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                    <div style="color: #ef4444; width: 18px; height: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1.5px solid #ef4444; border-radius: 50%; font-size: 10px; font-weight: bold; margin-top: 2px;">✕</div>
+                                    <div style="font-size: 13px; color: #111; line-height: 1.5; font-weight: 500;">Text-Heavy, Low Visual Impact</div>
+                                </div>
+                                <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                    <div style="color: #f59e0b; width: 18px; height: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1.5px solid #f59e0b; border-radius: 50%; font-size: 12px; font-weight: bold; margin-top: 2px;">!</div>
+                                    <div style="font-size: 13px; color: #111; line-height: 1.5; font-weight: 500;">Repetitive Content That Doesn't Add Value Beyond What's Already In The App.</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Middle: Connector Line -->
+                            <div style="width: 2px; background: #cbd5e1; height: 160px; position: relative;">
+                                <div style="position: absolute; left: 0; top: 0; width: 6px; height: 2px; background: #cbd5e1;"></div>
+                                <div style="position: absolute; left: 0; bottom: 0; width: 6px; height: 2px; background: #cbd5e1;"></div>
+                                <div style="position: absolute; left: -6px; top: 50%; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 6px solid #cbd5e1; transform: translateY(-50%);"></div>
+                            </div>
+
+                            <!-- Right: Phone -->
+                            <div style="flex-shrink: 0; width: 150px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08); background: #fff;">
+                                <img src="images/project-tiktok-edm/5.png" alt="Before" style="width: 100%; display: block;">
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 32px; font-size: 16px; font-weight: 500; color: #111;">Before</div>
+                    </div>
+
+                    <!-- AFTER CARD -->
+                    <div style="flex: 1.3; min-width: 0; background: #efeff1; border-radius: 20px; padding: 40px; display: flex; flex-direction: column;">
+                        <div style="display: flex; flex: 1; align-items: stretch; justify-content: center; gap: 24px;">
+                            
+                            <!-- Left: Phone -->
+                            <div style="flex-shrink: 0; width: 150px; display: flex; align-items: center;">
+                                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08); background: #fff; width: 100%;">
+                                    <img src="images/project-tiktok-edm/6.png" alt="After" style="width: 100%; display: block;">
+                                </div>
+                            </div>
+
+                            <!-- Middle: Timeline line with dots -->
+                            <div style="width: 2px; background: #cbd5e1; position: relative; margin: 40px 0;">
+                                <!-- Connector pointing to right -->
+                                <div style="position: absolute; left: 0; top: 15%; width: 6px; height: 2px; background: #cbd5e1;"></div>
+                                <div style="position: absolute; left: 0; top: 38%; width: 6px; height: 2px; background: #cbd5e1;"></div>
+                                <div style="position: absolute; left: 0; top: 62%; width: 6px; height: 2px; background: #cbd5e1;"></div>
+                                <div style="position: absolute; left: 0; top: 85%; width: 6px; height: 2px; background: #cbd5e1;"></div>
+                                
+                                <!-- Dots pointing to left -->
+                                <div style="position: absolute; left: 0; top: 15%; width: 6px; height: 6px; border-radius: 50%; background: #94a3b8; transform: translate(-3px, -2px);"></div>
+                                <div style="position: absolute; left: 0; top: 38%; width: 6px; height: 6px; border-radius: 50%; background: #94a3b8; transform: translate(-3px, -2px);"></div>
+                                <div style="position: absolute; left: 0; top: 62%; width: 6px; height: 6px; border-radius: 50%; background: #94a3b8; transform: translate(-3px, -2px);"></div>
+                                <div style="position: absolute; left: 0; top: 85%; width: 6px; height: 6px; border-radius: 50%; background: #94a3b8; transform: translate(-3px, -2px);"></div>
+                            </div>
+
+                            <!-- Right: Annotations -->
+                            <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 32px 0;">
+                                
+                                <div style="display: flex; gap: 12px; align-items: flex-start; min-height: 48px;">
+                                    <svg style="color: #22c55e; width: 18px; margin-top:2px; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                                    <div style="font-size: 13px; color: #111; line-height: 1.4; font-weight: 500;">Remove The Notification Section</div>
+                                </div>
+                                <div style="display: flex; gap: 12px; align-items: flex-start; min-height: 48px;">
+                                    <svg style="color: #22c55e; width: 18px; margin-top:2px; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                                    <div style="font-size: 13px; color: #111; line-height: 1.4; font-weight: 500;">Adding Personalized Information Alongside Video Tags To Provide More Useful Context.</div>
+                                </div>
+                                <div style="display: flex; gap: 12px; align-items: flex-start; min-height: 48px;">
+                                    <svg style="color: #22c55e; width: 18px; margin-top:2px; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                                    <div style="font-size: 13px; color: #111; line-height: 1.4; font-weight: 500;">Enlarged Play Button For Immediately Recognizable Clickability.</div>
+                                </div>
+                                <div style="display: flex; gap: 12px; align-items: flex-start; min-height: 48px;">
+                                    <svg style="color: #22c55e; width: 18px; margin-top:2px; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+                                    <div style="font-size: 13px; color: #111; line-height: 1.4; font-weight: 500;">Added Social CTA Buttons And Amplified The People Info Section To Drive Curiosity.</div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 32px; font-size: 16px; font-weight: 500; color: #111;">After</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+
+            <!-- DESIGN DIRECTIONS -->
+            <section class="mb-section" style="padding: 60px 0;">
+                <div style="display: flex; gap: 40px; align-items: stretch;">
+                    
+                    <!-- LEFT COLUMN -->
+                    <div style="flex: 1.2; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h2 style="color: #6b21a8; font-size: 24px; font-weight: 600; margin-bottom: 24px;">Design Directions</h2>
+                            <div style="font-size: 20px; font-weight: 500; color: #111; margin-bottom: 8px;">Option1</div>
+                            <div style="font-size: 20px; font-weight: 500; color: #111; margin-bottom: 40px; line-height: 1.4;">Scenario: People And Social Relationship-Driven.</div>
+                            
+                            <div style="font-size: 15px; color: #555; line-height: 1.6; max-width: 480px;">
+                                <strong>Scenario:</strong> People & Social Relationship-Driven, Video Serves As Supplementary Context, With Thumbnails Optionally Hidden To Maximize Curiosity On The Awareness End.<br><br>
+                                <strong>Pros:</strong> Added Social CTA Buttons, Amplified The People Info Section, De-Emphasized Video Content To Build Curiosity. Best Suited For Social-First Post Types: Friend Posts, Suggested Friends, Follow Posts, And Interactive Posts.<br><br>
+                                <strong>Cons:</strong> Not Ideal For Pure Content Recommendation Scenarios Where The Content Itself Takes Center Stage.
+                            </div>
+                        </div>
+
+                        <!-- Small variations image -->
+                        <div style="margin-top: 60px;">
+                            <img src="images/project-tiktok-edm/11.png" alt="Option 1 Variations" style="width: 155%; max-width: none; margin-left: -12%; display: block;">
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN -->
+                    <div style="flex: 1; background: #fafafa; border-radius: 20px; padding: 40px; display: flex; gap: 24px; justify-content: center; align-items: center;">
+                        <img src="images/project-tiktok-edm/9.png" alt="Main UI 1" style="width: 200px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
+                        <img src="images/project-tiktok-edm/10.png" alt="Main UI 2" style="width: 200px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
+                    </div>
+                </div>
+
+                <div class="option-section" style="margin-top: 80px;">
+                    <p class="option-eyebrow">Option 2</p>
+                    <h3 class="option-title">Scenario: Video Cover First / Content-Driven</h3>
+                    <div class="option-layout">
+                        <div class="option-left" style="display: flex; justify-content: center; align-items: flex-start; padding-top: 20px;">
+                            <div class="option-phone-card" style="width: 65%; max-width: 280px;">
+                                <img src="images/project-tiktok-edm/12.png" alt="Option 2 main email screen" style="width: 100%; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+                            </div>
+                        </div>
+                        <div class="option-right">
+                            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.65; margin: 0 0 16px;">Video cover first — prioritizes the video thumbnail, with de-emphasized people info.</p>
+                            <div style="display: flex; gap: 12px; align-items: flex-start;">
+                                <div style="flex: 1; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 14px; padding: 16px 18px;">
+                                    <div style="font-size: 11px; font-weight: 700; color: #16a34a; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#16a34a"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Pros
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 7px;">
+                                        <div style="display: flex; gap: 8px; align-items: flex-start;"><div style="flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: #16a34a; margin-top: 5px;"></div><span style="font-size: 12px; color: #166534; line-height: 1.55;">Best for content-forward post types: suggested videos &amp; reposts</span></div>
+                                        <div style="display: flex; gap: 8px; align-items: flex-start;"><div style="flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: #16a34a; margin-top: 5px;"></div><span style="font-size: 12px; color: #166534; line-height: 1.55;">Strong visual hierarchy with video thumbnail leading</span></div>
+                                    </div>
+                                </div>
+                                <div style="flex: 1; background: #fff1f2; border: 1px solid #fecdd3; border-radius: 14px; padding: 16px 18px;">
+                                    <div style="font-size: 11px; font-weight: 700; color: #dc2626; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#dc2626"/><path d="M4.5 4.5l5 5M9.5 4.5l-5 5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>Cons
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 7px;">
+                                        <div style="display: flex; gap: 8px; align-items: flex-start;"><div style="flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: #dc2626; margin-top: 5px;"></div><span style="font-size: 12px; color: #991b1b; line-height: 1.55;">Not ideal for posts with strong social context</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="option-thumbs">
+                                <img src="images/project-tiktok-edm/13.png" alt="Option 2 variation 1">
+                                <img src="images/project-tiktok-edm/14.png" alt="Option 2 variation 2">
+                                <img src="images/project-tiktok-edm/15.png" alt="Option 2 variation 3">
+                                <img src="images/project-tiktok-edm/16.png" alt="Option 2 variation 4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+
+
+            <!-- FINAL OUTCOME -->
+            <section class="mb-section">
+                <div class="final-outcome-card">
+                    <div class="final-outcome-title">Final Outcome</div>
+                    <div class="final-outcome-frame">
+                        <img src="images/project-tiktok-edm/Blue.png" alt="Final outcome frame">
+                        <div class="final-outcome-video">
+                            <video src="images/project-tiktok-edm/finaloutcome_已改.mp4" controls playsinline></video>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAKEAWAYS -->
+            <section class="mb-section">
+                <h2 class="section-title">Something you can’t learn in a class</h2>
+                <div class="learning-grid">
+                    <div class="learning-card" style="margin-bottom: 48px;">
+                        <h3 style="font-size: 20px; font-weight: 500; color: #111; margin-bottom: 16px;">01 | Exhaustive Exploration Approach Can Be Valuable</h3>
+                        <p style="font-size: 15px; color: #555; line-height: 1.6;">My previous understanding of design was more about innovation—looking for clues, analyzing problems, and doing problem solving, trying to find the “key” through logic. However, through this project, I realized that Design does not always have to be completely innovative; sometimes, by trying many possibilities and making adjustments, meaningful directions can emerge.</p>
+                    </div>
+                    <div class="learning-card" style="margin-bottom: 48px;">
+                        <h3 style="font-size: 20px; font-weight: 500; color: #111; margin-bottom: 16px;">02 | I Realized I Could Contribute More Than Just Visual Execution</h3>
+                        <p style="font-size: 15px; color: #555; line-height: 1.6;">Working on this project taught me that as a designer — even as an intern — you can and should engage with the product direction, not just the visual execution. When the initial brief felt unclear, asking questions and understanding the "why" behind the design helped me make more intentional decisions.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h3 style="font-size: 20px; font-weight: 500; color: #111; margin-bottom: 16px;">03 | Looking Back At Existing Data And Past Design Iterations Gave Me A Lot Of Context That I Wouldn't Have Had Otherwise.</h3>
+                        <p style="font-size: 15px; color: #555; line-height: 1.6;">For a product that had gone through many iterations, I found it incredibly valuable to dig into existing data, past design files, and how previous designers had approached similar problems. It gave me context I couldn't have gotten from the brief alone, and helped me arrive at a more informed direction rather than starting from scratch.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <div class="footer-left">Email: guyuwang151926934@gmail.com</div>
+            <div class="footer-right">Seeking for work!</div>
+        </footer>
+    </main>
+
+</body>
+
+</html>

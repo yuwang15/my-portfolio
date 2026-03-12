@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whirlpool Zero — Statement Machine — Yuwang Gu</title>
+    <meta name="description"
+        content="A sculptural statement washer that transforms everyday laundry into a subtle ritual. Whirlpool Zero by Yuwang Gu.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700&display=swap">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #141414;
+            --white: #ffffff;
+            --gray: rgba(255, 255, 255, 0.45);
+            --teal: #2AB2C0;
+            --green: #92F29E;
+            --pad: clamp(24px, 6vw, 80px);
+            --sans: 'Open Sans', sans-serif;
+            --satoshi: 'Satoshi', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: var(--sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ══ NAV ══════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 52px;
+            padding: 0 var(--pad);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(14, 14, 14, 0.65);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            z-index: 999;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray);
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover {
+            color: var(--white);
+        }
+
+        .nav-back svg {
+            transition: transform 0.2s;
+        }
+
+        .nav-back:hover svg {
+            transform: translateX(-3px);
+        }
+
+        .nav-sep {
+            width: 1px;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.15);
+            margin: 0 16px;
+        }
+
+        .nav-brand {
+            font-family: var(--satoshi);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--white);
+            letter-spacing: 0.06em;
+        }
+
+        .nav-right {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        /* ══ HERO ══════════════════════════════════════ */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            margin-top: 52px;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(20, 20, 20, 0) 30%, rgba(20, 20, 20, 0.92) 100%);
+        }
+
+        .hero-label {
+            position: absolute;
+            bottom: 60px;
+            left: var(--pad);
+            max-width: 700px;
+        }
+
+        .hero-tag {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #2AB2C0 0%, #92F29E 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            margin-bottom: 14px;
+        }
+
+        .hero-heading {
+            font-family: var(--satoshi);
+            font-size: clamp(42px, 5.5vw, 80px);
+            font-weight: 700;
+            line-height: 1.04;
+            background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.55) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            margin-top: 20px;
+            font-size: clamp(15px, 1.15vw, 18px);
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.7;
+            max-width: 560px;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 28px;
+            right: var(--pad);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.32);
+            font-size: 10px;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            animation: bob 2.2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes bob {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(7px);
+            }
+        }
+
+        /* ══ CONTAINER ════════════════════════════════ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--pad);
+        }
+
+        .section {
+            padding: 120px 0;
+        }
+
+        /* ══ LABELS & TITLES ══════════════════════════ */
+        .label {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #2AB2C0 0%, #92F29E 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            margin-bottom: 14px;
+        }
+
+        .title {
+            font-family: var(--satoshi);
+            font-size: clamp(28px, 3vw, 44px);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 18px;
+            color: #fff;
+        }
+
+        .desc {
+            font-size: 17px;
+            line-height: 1.75;
+            color: var(--gray);
+            margin-bottom: 56px;
+        }
+
+        /* ══ FULL-BLEED ════════════════════════════════ */
+        .full-bleed {
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+        }
+
+        .full-bleed img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ══ SPLIT ══════════════════════════════════════ */
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .split img {
+            width: 100%;
+            border-radius: 16px;
+        }
+
+        .split .desc {
+            max-width: 100%;
+            margin-bottom: 0;
+        }
+
+        /* ══ GRIDS ═════════════════════════════════════ */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .grid-3 img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        /* ══ FADE-IN ════════════════════════════════════ */
+        .fi {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+
+        .fi.on {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ══ FOOTER ═════════════════════════════════════ */
+        footer {
+            padding: 60px var(--pad);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 15px;
+            color: var(--gray);
+        }
+
+        .footer-right {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── NAV ─────────────────────────────────────── -->
+    <nav>
+        <div class="nav-left">
+            <a class="nav-back" href="whirlpool.html">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                Back to Whirlpool
+            </a>
+            <div class="nav-sep"></div>
+            <span class="nav-brand">Whirlpool Zero</span>
+        </div>
+        <div class="nav-right">Statement Machine</div>
+    </nav>
+
+    <!-- ── 1. HERO: s7.png ───────────────────────────── -->
+    <div class="hero">
+        <img src="images/project-whirlpool/s7.png" alt="Whirlpool Zero Statement Machine">
+        <div class="hero-overlay"></div>
+        <div class="hero-label">
+            <div class="hero-tag">Whirlpool Zero · Statement Machine</div>
+            <h1 class="hero-heading">Designed to<br>be seen.</h1>
+            <p class="hero-sub">
+                A sculptural statement washer that transforms everyday laundry into a subtle ritual,
+                combining functional artistry, expressive ambient lighting, and a presence designed to be seen.
+            </p>
+        </div>
+        <div class="hero-scroll">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+            Scroll
+        </div>
+    </div>
+
+    <!-- ── 2. FULL-BLEED: statement-2.png + statement-3.png ─── -->
+    <div class="full-bleed fi" style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+        <img src="images/project-whirlpool/statement-2.png" alt="Statement Machine View 2"
+            style="width:100%; height:auto; display:block;">
+        <img src="images/project-whirlpool/statement-3.png" alt="Statement Machine View 3"
+            style="width:100%; height:auto; display:block;">
+    </div>
+
+    <!-- ── 3. SECTION 1: Functional Artistry ─────────── -->
+    <div class="container">
+        <div class="section">
+            <div class="split fi">
+                <div>
+                    <div class="label">Functional Artistry</div>
+                    <h2 class="title">Where function becomes form.</h2>
+                    <p class="desc">
+                        The dual door openings transform the start of each cycle into a subtle spectacle —
+                        adding intention, delight, and just the right amount of drama to your daily routine.
+                    </p>
+                </div>
+                <img src="images/project-whirlpool/statement-1.png" alt="Functional Artistry">
+            </div>
+            <!-- video33 below split -->
+            <div class="fi" style="margin-top: 16px; border-radius: 16px; overflow: hidden;">
+                <video autoplay muted loop playsinline style="width:100%; height:auto; display:block;">
+                    <source src="images/project-whirlpool/video33.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 4. SECTION 2: Ambient Lighting ────────────── -->
+    <div class="container">
+        <div class="section" style="padding-top: 0;">
+            <div class="label fi">Ambient Lighting</div>
+            <h2 class="title fi">Light as the interface.</h2>
+            <p class="desc fi">
+                Expressive ambient lighting runs along the sides of the machine — shifting with cycle
+                state and responding to touch. Which adds personality to your space, and also indicates
+                the stage of the laundry cycle through customizable colors.
+            </p>
+            <div class="grid-3 fi" style="align-items: stretch;">
+                <div style="height: 420px; border-radius: 12px; overflow: hidden;">
+                    <img src="images/project-whirlpool/s6.png" alt="Ambient Lighting s6"
+                        style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+                </div>
+                <div style="height: 420px; border-radius: 12px; overflow: hidden;">
+                    <img src="images/project-whirlpool/s5.png" alt="Ambient Lighting s5"
+                        style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+                </div>
+                <div style="height: 420px; border-radius: 12px; overflow: hidden;">
+                    <img src="images/project-whirlpool/s8.png" alt="Ambient Lighting s8"
+                        style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 5. SECTION 3: Sculptural Form ─────────────── -->
+    <div class="container">
+        <div class="section" style="padding-top: 0;">
+            <div class="label fi">Sculptural Form</div>
+            <h2 class="title fi">A presence you choose to notice.</h2>
+            <p class="desc fi">
+                The Statement Machine adopts a silhouette that plays between tension and grace —
+                drawing the eye, then receding into the daily rhythm of the home.
+                It is an object with a point of view.
+            </p>
+            <!-- statement-3.png full-width -->
+            <div class="fi" style="margin-bottom: 16px;">
+                <img src="images/project-whirlpool/statement-3.png" alt="Sculptural Form"
+                    style="width:100%; height:auto; display:block; border-radius: 16px;">
+            </div>
+            <!-- s4.png below -->
+            <div class="fi">
+                <img src="images/project-whirlpool/s4.png" alt="Detail s4"
+                    style="width:100%; height:auto; display:block; border-radius: 16px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 6. FOOTER ──────────────────────────────────── -->
+    <footer>
+        <div>Email: guyuwang151926934@gmail.com</div>
+        <div class="footer-right">Seeking for work!</div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('on');
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.fi').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

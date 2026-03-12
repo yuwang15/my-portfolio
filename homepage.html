@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuwang Gu - Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #f8f9fa;
+            /* slightly cool light gray */
+            --black: #111;
+            --gray: #666;
+            --tag-bg: #e2e4e7;
+            --site-pad: clamp(24px, 6vw, 80px);
+            --font-sans: -apple-system, 'SF Pro Display', BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: #ffffff;
+            color: var(--black);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--site-pad);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .nav-left img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 32px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icon img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .nav-resume {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 600;
+        }
+
+        .nav-about {
+            background: var(--black);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 999px;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 160px var(--site-pad) 80px;
+            position: relative;
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            max-width: 1100px;
+            font-size: clamp(32px, 4vw, 54px);
+            line-height: 1.3;
+            font-weight: 400;
+            color: #333;
+            letter-spacing: -0.01em;
+            padding-bottom: 100px;
+        }
+
+        .hero-text em {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .cat-img-wrapper {
+            align-self: flex-end;
+            margin-bottom: -50px;
+            margin-left: 20px;
+        }
+
+        .cat-img {
+            width: 160px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .cat-img:hover {
+            transform: rotate(1turn);
+        }
+
+        /* PROJECTS ALREADY */
+        .projects {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--site-pad) 100px;
+        }
+
+        .projects-intro {
+            max-width: 960px;
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+
+        .projects-intro strong {
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .project-card {
+            display: block;
+            margin-bottom: 80px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-image {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            background: #f0f0f0;
+            position: relative; /* relative for inner absolute elements */
+        }
+
+        .project-image-base {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+            object-fit: cover;
+        }
+
+        .project-card:hover .project-image-base {
+            transform: scale(1.02);
+        }
+
+        .project-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .project-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #e9ecef;
+            color: #555;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+
+        .project-desc {
+            font-size: 15px;
+            color: var(--gray);
+            max-width: 700px;
+        }
+
+        /* Grid for 2 columns */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .projects-grid .project-card {
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .projects-grid .project-image {
+            aspect-ratio: 2224 / 2156; /* Matches the left image's native ratio */
+        }
+
+        .projects-grid .project-image-base {
+            height: 100%;
+        }
+
+        /* FOOTER */
+        footer {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 60px var(--site-pad);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ebebeb;
+            font-size: 15px;
+            color: var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            .hero-text {
+                font-size: 28px;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cat-img-wrapper {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                margin-bottom: 0;
+                margin-left: 0;
+                align-self: auto;
+            }
+
+            .cat-img {
+                width: 100px;
+            }
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .fade-in-down {
+            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-cat {
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-cat:hover {
+            transform: rotate(1turn);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="fade-in-down">
+        <a href="homepage.html" class="nav-left">
+            <img src="images/homepage/Oiiai 1.png" alt="Logo" class="nav-cat">
+            Yuwang Gu
+        </a>
+        <div class="nav-center">
+            <a href="homepage.html">UX / Product</a>
+            <a href="archive/">Archive</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.linkedin.com/in/yuwang-gu" target="_blank" class="nav-icon">
+                <img src="images/homepage/linkedin.png" alt="LinkedIn">
+            </a>
+            <a href="#" class="nav-resume">Resume</a>
+            <a href="about.html" class="nav-about">About</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1 class="hero-text fade-in-up delay-100">
+            Yuwang is a <em>Product designer</em> crafting products that 👁️ look good and <em>feel</em> good. She
+            studies UX Design @ Savannah College of Art and Design.<br>
+            Previously interned @🎶 <em>TikTok</em>.
+        </h1>
+        <div class="cat-img-wrapper fade-in-up delay-300">
+            <img src="images/homepage/Oiiai 1.png" alt="Cat" class="cat-img">
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects">
+        <p class="projects-intro animate-on-scroll">
+            <strong>Selected Projects</strong> include work completed during my internship at TikTok, collaborative projects with Whirlpool and a Google Nest Thermostat redesign.
+        </p>
+
+        <!-- Project 1 -->
+        <a href="#" style="cursor: default;" class="project-card animate-on-scroll">
+            <div class="project-image">
+                <img src="images/homepage/1.png" alt="TikTok Met gala" class="project-image-base">
+            </div>
+            <div class="project-info">
+                <div class="project-header">
+                    <h3 class="project-title">TikTok ↗ Met gala</h3>
+                    <div class="project-tags">
+                        <span class="tag">Growth</span>
+                        <span class="tag">Campaign</span>
+                        <span class="tag">Interaction</span>
+                    </div>
+                </div>
+                <p class="project-desc">Designed And Launched An Interactive Campaign To Drive User Engagement During
+                    The 2024 Met Gala.</p>
+            </div>
+        </a>
+
+        <!-- Grid for Projects 2 & 3 -->
+        <div class="projects-grid">
+            <!-- Project 2 -->
+            <a href="edm.html" class="project-card animate-on-scroll">
+                <div class="project-image">
+                    <img src="images/homepage/2.png" alt="TikTok EDM" class="project-image-base">
+                </div>
+                <div class="project-info">
+                    <div class="project-header">
+                        <h3 class="project-title">TikTok ↗ EDM</h3>
+                        <div class="project-tags">
+                            <span class="tag">Email</span>
+                            <span class="tag">User Engagement</span>
+                            <span class="tag">Growth</span>
+                        </div>
+                    </div>
+                    <p class="project-desc">Tailored strategies for different user segments.</p>
+                </div>
+            </a>
+
+            <!-- Project 3 -->
+            <a href="#" style="cursor: default;" class="project-card animate-on-scroll">
+                <div class="project-image">
+                    <img src="images/homepage/3.png" alt="TikTok Lite Reward Campaign" class="project-image-base">
+                </div>
+                <div class="project-info">
+                    <div class="project-header">
+                        <h3 class="project-title">TikTok Lite ↗ Reward Campaign</h3>
+                        <div class="project-tags">
+                            <span class="tag">Growth</span>
+                        </div>
+                    </div>
+                    <p class="project-desc">A referral reward page to drive engagement in TikTok Lite.</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Project 4 -->
+        <a href="whirlpool.html" class="project-card animate-on-scroll">
+            <div class="project-image">
+                <img src="images/homepage/4.png" alt="Whirlpool Reimagining the laundry experience" class="project-image-base">
+            </div>
+            <div class="project-info">
+                <div class="project-header">
+                    <h3 class="project-title">Whirlpool ↗ Reimagining the laundry experience</h3>
+                    <div class="project-tags">
+                        <span class="tag">Hardware + Software Integration</span>
+                        <span class="tag">0 to 1</span>
+                        <span class="tag">System Design</span>
+                    </div>
+                </div>
+                <p class="project-desc">Redefined the brand identity and designed both hardware and software
+                    experiences.</p>
+            </div>
+        </a>
+
+        <!-- Project 5 -->
+        <a href="#" style="cursor: default;" class="project-card animate-on-scroll">
+            <div class="project-image">
+                <img src="images/homepage/5.png" alt="Google thermostat Smart thermostat redesign" class="project-image-base">
+            </div>
+            <div class="project-info">
+                <div class="project-header">
+                    <h3 class="project-title">Google thermostat ↗ Smart thermostat redesign</h3>
+                    <div class="project-tags">
+                        <span class="tag">Smart Home</span>
+                        <span class="tag">Redesign</span>
+                        <span class="tag">Design System</span>
+                    </div>
+                </div>
+                <p class="project-desc">A sustainable smart thermostat redesign that makes energy saving intuitive,
+                    affordable, and human-centered.</p>
+            </div>
+        </a>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="animate-on-scroll">
+        <div class="footer-left">Email: guyuwang151926934@gmail.com</div>
+        <div class="footer-right">Seeking for work!</div>
+    </footer>
+
+    <!-- ANIMATION SCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const elements = document.querySelectorAll(".animate-on-scroll");
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+
+</html>

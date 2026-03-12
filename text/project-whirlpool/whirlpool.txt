@@ -1,0 +1,24 @@
+REIMAGINING THE LAUNDRY EXPERIENCE
+Project overview In a 10-week SCADpro collaboration with Whirlpool, the client asked us to design a disruptive, next-gen laundry system that breaks boundaries in how people experience this essential task. We delivered Whirlpool Zero: a 2-in-1 washer-dryer with a 45-degree angled drum, available in two design expressions (integrated or statement piece), featuring a button interface and companion app. The concepts were prototyped and presented to Whirlpool stakeholders as a 10-year design vision. Impact Timeline Team Task The project received strong stakeholder engagement, with positive reception from Whirlpool's VP of Global and a request for additional presentations to the marketing team and broader stakeholder group. March 2025- May 2025 23 SCADpro students Product design Interface design App design
+Goal design a next-gen laundry system Design a disruptive, next gen laundry system rooted in breaking boundaries of how people Experience this essential task. Challenge How to reactivate the brand and connect with a new generation Younger consumers are unfamiliar with the Whirlpool brand and increasingly hard to convert.How do we breathe new life into a legacy brand, improve to keep up with the competitive market, and maintain consistency across systems.
+Current brand identity
+persona Alex, 24  Laundry happens when the hamper overflows. Alex does it late at night, phone in hand, half-watching something. They want the machine to just run, no checking, no bending, no figuring out settings. Simple, quiet, and out of the way is the whole point. “ I want simplicity and control , but not too much tech.”
+assumption Design Assumptions for Both Digital and Product Experiences Ideal for young people busy lives. Meets the Existing Market App as the Primary Interface As a laundry system designed to reduce mental load, the App integration allows for remote start, cycle tracking, and progress notifications. Designed for diverse living spaces , modular, ergonomic, and compatible with existing setups. For younger users living fast-paced lives, the phone is the natural main touchpoint. The app shouldn't just support the machine , it should lead the experience.
+research What We Expected vs. What We Found We assumed the app would be the dominant interface for younger users , but research told a different story.
+What surprised us:  Even among Gen Z, physical buttons remain the default. Context Drives the Interface, The app only takes over in specific scenarios : leaving the house, scheduling a late-night cycle to avoid peak electricity rates, or checking in remotely. This insight reframed our approach to design. The future-forward laundry experience we were imagining should be:
+Sensory but not distracting Emotionally attuned yet effortless Available when needed, invisible when not
+Laundry should move in rhythm with life – quiet, adaptable, and aligned with the user’s personal ecosystem.
+Result Productive 10 weeks 2 display modes, 8 hi-fi screens , 6-state button system, 2 hardware design expressions, companion widget, and AR interaction concept.
+positive feedback
+Design process Designing Across Two Tracks Simultaneously 01 Secondary Research We analyzed competitors and business models to identify Whirlpool's next strategic opportunities, 02 Primary research 03 Ideate 04 User feedback 05 Prototype 06 deliver
+Design Showcase WHIRLPOOL ZERO
+One core machine, with two expressions. STATEMENT INTEGRATED Earns attention with presence and purpose Blends seamlessly into daily life and any space
+Button one button control nine different selection states
+iteration Simplifying the Flow While Expanding Cycle Flexibility
+before after wash temp wash cycle dry cycle Operation Type cycle
+For those specific cases when you need a little more control, there are 6 additional settings: Wash Only, Dry Only, Quick Refresh, Eco Mode, Heavy Duty, and Delicates. 
+play with me 
+02/ widget : silent companion But you won’t always be at the machine. So we created a widget that integrates into any interface. It displays the progress ring and countdown, and the option to pause your cycle, no matter where you are. 
+03/ The app：Practical Control, Powered by AI But what if you DO want control? What if you need to know EVERYTHING about your laundry?  For the laundry aficionados we have the app. It features everything you could possibly want to know about your laundry: usage history, water and energy saved, connecting smart home devices like the Alexa or Home-Pod, and an AI assistant for any questions you might have. 
+statistics homepage landing page  notification ai assistant
+
