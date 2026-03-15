@@ -425,6 +425,30 @@
             margin-bottom: 0;
         }
 
+        .visual-rounded {
+            width: 100%;
+            border-radius: 32px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .gallery-row-full {
+            margin-bottom: 24px;
+        }
+
+        .gallery-row-two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .gallery-row-three {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+        }
+
         .mb-200 {
             margin-bottom: 200px;
         }
@@ -458,6 +482,11 @@
             }
 
             .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-row-two,
+            .gallery-row-three {
                 grid-template-columns: 1fr;
             }
 
@@ -733,12 +762,17 @@
             <h2 class="section-title">final design</h2>
             <p class="section-desc">Snipets of the final design and interactions details that I feel proud of!</p>
 
-            <div class="full-width-visual"><img src="images/project-tiktok-metgala/9.png" alt="Final Design 1"></div>
-            <div class="full-width-visual"><img src="images/project-tiktok-metgala/10.png" alt="Final Design Detail 2">
+            <div class="gallery-row-full visual-rounded">
+                <img src="images/project-tiktok-metgala/9.png" alt="Final Design 1">
             </div>
-            <div class="full-width-visual"><img src="images/project-tiktok-metgala/11.png" alt="Final Design Detail 3">
+            <div class="gallery-row-two">
+                <div class="visual-rounded"><img src="images/project-tiktok-metgala/10.png" alt="Final Design Detail 2"></div>
+                <div class="visual-rounded"><img src="images/project-tiktok-metgala/11.png" alt="Final Design Detail 3"></div>
             </div>
-            <div class="full-width-visual"><img src="images/project-tiktok-metgala/12.png" alt="Final Design Detail 4">
+            <div class="gallery-row-three">
+                <div class="visual-rounded"><img src="images/project-tiktok-metgala/12.png" alt="Final Design Detail 4"></div>
+                <div class="visual-rounded"><img src="images/project-tiktok-metgala/13.png" alt="Final Design Detail 5"></div>
+                <div class="visual-rounded"><img src="images/project-tiktok-metgala/14.png" alt="Final Design Detail 6"></div>
             </div>
         </div>
 
