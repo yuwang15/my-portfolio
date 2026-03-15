@@ -161,19 +161,18 @@
             position: relative;
             display: flex;
             justify-content: center;
-            align-items: center;
+            height: 520px;
             border-radius: 40px;
             background: radial-gradient(circle at 50% 50%, #fef5f7 0%, #f4e7ea 100%);
-            padding: 40px 0;
             overflow: hidden;
         }
         .video-mockup-wrapper {
-            position: relative;
-            width: auto;
-            height: clamp(500px, 60vh, 700px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: absolute;
+            top: 72px; /* Set same offset distance uniformly */
+            width: 250px; /* Lock aspect ratio safely */
+            height: auto;
+            margin: 0;
+            display: block;
         }
         .mockup-frame {
             position: relative;
