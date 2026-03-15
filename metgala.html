@@ -76,36 +76,28 @@
         .hero-logo { width: clamp(160px, 16vw, 240px); height: auto; display: block; margin: 0 auto; }
         .hero-subtitle {
             font-family: var(--font-serif);
-            font-size: clamp(22px, 2.5vw, 28px);
-            font-weight: 500;
-            font-style: italic;
-            color: var(--text-white);
-            letter-spacing: 0.02em;
-            margin-bottom: 120px;
-            text-shadow: 0 4px 20px rgba(212,175,55,0.2);
+            font-size: 24px; /* Force to 24px semibold matching Figma */
+            font-weight: 600;
+            color: #FE2B55; /* Switch color from white to the exact Figma Red FE2B55 */
+            letter-spacing: -0.005em; /* Use -0.5% letter spacing equivalent */
+            margin-bottom: 96px; /* Space to the images */
+            margin-top: -12px;
         }
         .hero-phones {
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Ensures the group sits tightly in the middle */
             align-items: flex-start;
             width: 100%;
+            gap: 64px; /* Set exact 64px gap */
         }
         .hero-phones img {
-            height: min(78vh, 760px);
-            width: auto;
-            max-width: 48%;
+            width: 337.31px; /* Exact width from Figma */
+            height: 681.56px; /* Exact height from Figma */
             border-radius: 28px;
             display: block;
             flex-shrink: 0;
             object-fit: cover;
             position: relative;
-        }
-        .hero-phones img:first-child {
-            margin-right: -64px;
-            z-index: 1;
-        }
-        .hero-phones img:last-child {
-            z-index: 2;
         }
 
         /* OVERVIEW */
@@ -115,10 +107,10 @@
         .grid-col h3 { font-size: 13px; color: var(--red); margin-bottom: 20px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
         .grid-col p { font-size: 15px; line-height: 1.65; margin-bottom: 6px; color: var(--text-white); }
         .impact-section { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
-        .impact-title { font-family: var(--font-serif); font-style: italic; font-size: 18px; color: var(--red); font-weight: 600; letter-spacing: 0.04em; }
-        .impact-desc { font-family: var(--font-serif); font-size: clamp(22px,2.5vw,30px); max-width: 860px; line-height: 1.6; font-weight: 500; color: var(--text-white); }
+        .impact-title { font-family: var(--font-serif); font-size: 18px; color: var(--red); font-weight: 600; letter-spacing: -0.005em; }
+        .impact-desc { font-family: var(--font-serif); font-size: 32px; max-width: 860px; line-height: 1.45; font-weight: 500; color: #FFFFFF; letter-spacing: -0.005em; }
         .impact-stats { display: grid; grid-template-columns: repeat(3,1fr); column-gap: 48px; width: 100%; margin-top: 40px; }
-        .stat-num { font-size: 40px; font-weight: 700; color: var(--text-white); line-height: 1; margin-bottom: 8px; }
+        .stat-num { font-size: 40px; font-weight: 700; color: var(--text-white); line-height: 1; margin-bottom: 8px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
         .stat-label { font-size: 14px; color: var(--text-gray); }
 
         /* GALLERY */
@@ -227,23 +219,19 @@
             margin-top: 48px;
             display: flex;
             justify-content: center;
-            align-items: flex-end;
-            padding: 0;
-            background: transparent;
-            border-radius: 40px;
-            overflow: hidden;
+            align-items: center; /* Set them to be fully visible from center */
+            background: transparent; /* Changed exactly per Figma to not have a gradient/padding block causing crop problems */
+            overflow: visible; /* Ensure nothing gets chopped off if it spills slightly */
+            gap: 24px; /* User specifically requested exact gap spacing of 24 in this section */
         }
         .phone-spread-card img {
-            height: min(64vh, 640px);
-            width: auto;
+            width: 250px; /* Force an exact appropriate size, don't let flex collapse it to 0 */
+            height: auto;
             flex-shrink: 0;
-            margin-left: -54px; /* Adjust overlap */
-            position: relative;
+            object-fit: contain;
+            border-radius: 20px; /* Phones should have rounded edges */
+            box-shadow: 0 16px 32px rgba(0,0,0,0.15);
         }
-        .phone-spread-card img:first-child { margin-left: 0; z-index: 1; }
-        .phone-spread-card img:nth-child(2) { z-index: 2; }
-        .phone-spread-card img:nth-child(3) { z-index: 3; }
-        .phone-spread-card img:nth-child(4) { z-index: 4; }
 
         /* 04: dual phones */
         .dual-phone-card {
@@ -253,7 +241,7 @@
             padding: 60px 80px 0;
             display: flex;
             justify-content: center;
-            gap: 32px;
+            gap: 82px; /* Set exact gap of 82px as per Figma specifications */
             overflow: hidden;
         }
         .dual-phone-card img {
