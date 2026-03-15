@@ -161,38 +161,40 @@
             position: relative;
             display: flex;
             justify-content: center;
-            height: 520px;
+            height: 475px; /* Match height of other cards */
             border-radius: 40px;
             background: radial-gradient(circle at 50% 50%, #fef5f7 0%, #f4e7ea 100%);
             overflow: hidden;
         }
         .video-mockup-wrapper {
             position: absolute;
-            top: 72px; /* Set same offset distance uniformly */
-            width: 250px; /* Lock aspect ratio safely */
-            height: auto;
+            top: 72px; /* Push the phone down securely relative to the parent */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 219.33px; /* Set exact Figma physical width */
+            height: 443.17px; /* Set exact Figma physical height */
             margin: 0;
-            display: block;
+            display: block; 
         }
         .mockup-frame {
-            position: relative;
+            position: absolute;
             z-index: 2; /* Transparent phone shell goes on top */
-            width: auto;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
             display: block;
             pointer-events: none;
         }
         .mockup-video {
             position: absolute;
-            z-index: 1;
-            top: 2.2%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 89.6%;
-            height: 96%;
+            z-index: 1; /* Placed cleanly behind the mockup mask */
+            top: 2.031%; /* (443.17 - 424.97)/2 / 443.17 */
+            left: 5.259%; /* (219.33 - 196.26)/2 / 219.33 */
+            width: 89.481%; /* 196.26 / 219.33 */
+            height: 95.893%; /* 424.97 / 443.17 */
             object-fit: cover;
-            object-position: top center;
-            border-radius: 12% 12% 0 0 / 6% 6% 0 0; /* Responsive border radius */
+            border-radius: 20px 20px 0 0; /* Smooth rounded corners so it doesn't bleed out */
             display: block;
         }
 
@@ -210,22 +212,9 @@
             border-radius: 40px;
             display: flex;
             justify-content: center;
-            height: 520px; /* Fixed height to enforce clipping area */
+            height: 475px; /* Use the exact height specified for pink bg */
             overflow: hidden;
             position: relative;
-        }
-        .phone-card .video-mockup-wrapper {
-            position: absolute;
-            top: 72px; /* Push the phone down securely relative to the parent */
-            width: 250px; /* Restrict width, preventing any deformation */
-            height: auto;
-            margin: 0;
-            display: block; /* Remove flex to completely ensure intrinsic image aspect ratio */
-        }
-        .phone-card .mockup-frame {
-            width: 100%;
-            height: auto;
-            display: block;
         }
 
         /* 03: text + side image */
@@ -499,24 +488,11 @@
             border-radius: 32px;
             display: flex;
             justify-content: center;
-            height: 520px; /* Enforce bottom cutoff */
+            height: 475px; /* Use the exact height specified for pink bg */
             background-size: cover;
             background-position: top center;
             overflow: hidden;
             position: relative;
-        }
-        .final-video-card .video-mockup-wrapper {
-            position: absolute;
-            top: 64px; /* Pull phone down */
-            width: 250px; /* Match mockup phone sizing to 02 section */
-            height: auto; 
-            margin: 0; 
-            display: block;
-        }
-        .final-video-card .mockup-frame {
-            width: 100%;
-            height: auto;
-            display: block;
         }
         .final-row-3 {
             display: grid;
