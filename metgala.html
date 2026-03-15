@@ -135,11 +135,10 @@
         .section-desc { font-size: 18px; line-height: 1.65; color: var(--text-gray); max-width: 800px; margin-bottom: 48px; }
         
         .context-image { 
-            border-radius: 24px; 
+            border-radius: 12px; 
             overflow: hidden; 
-            margin-top: 48px; 
-            margin-bottom: 160px; 
-            max-width: 700px; /* Made smaller as requested */
+            margin: 48px auto 160px auto; 
+            max-width: 500px; /* Made smaller as requested */
             box-shadow: 0 24px 64px rgba(0,0,0,0.4);
             transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
             transform: translateY(20px);
@@ -208,20 +207,25 @@
         /* Phone card (light, for 02, 04, Share) */
         .phone-card {
             margin-top: 48px;
-            background: url('images/project-tiktok-metgala/10.png') center/cover no-repeat;
+            background: url('images/project-tiktok-metgala/10.png') center top/cover no-repeat;
             border-radius: 40px;
             display: flex;
             justify-content: center;
-            align-items: flex-end;
-            padding-top: 60px;
+            align-items: flex-start; /* Ensure it stays aligned to the top and can be clipped smoothly at bottom */
+            padding-top: 80px; /* Offset the phone down */
+            height: min(60vw, 520px); /* Strictly lock height, avoid backgrounds stretching */
             overflow: hidden;
         }
-        .phone-card video,
-        .phone-card img {
-            height: min(72vh, 680px);
-            width: auto;
-            border-radius: 24px 24px 0 0;
-            flex-shrink: 0;
+        .phone-card .video-mockup-wrapper {
+            width: 100%;
+            max-width: 300px; /* Limits size directly */
+            height: auto;
+            margin: 0 !important;
+            display: flex;
+        }
+        .phone-card .mockup-frame {
+            width: 100%;
+            height: auto;
         }
 
         /* 03: text + side image */
@@ -732,7 +736,7 @@
             <h2 class="highlight-title">Vote, Compete, Unlock</h2>
             <p class="highlight-desc">Users Could First Vote On Past Met Gala Looks, Then Vote On Current Looks Once The Event Launches.<br>A Competitive Card Interaction Adds Playfulness And Implies That Selecting One Option Discards The Other.</p>
             <div class="phone-card">
-                <div class="video-mockup-wrapper" style="margin-bottom: -100px;">
+                <div class="video-mockup-wrapper">
                     <img src="images/project-tiktok-metgala/highlight-mockup.png.png" class="mockup-frame" alt="Phone Mockup">
                     <video class="mockup-video" autoplay loop muted playsinline>
                         <source src="images/project-tiktok-metgala/movie1.mp4" type="video/mp4">
@@ -776,7 +780,7 @@
         <section class="highlight-section">
             <h2 class="share-title">Share My Favorite Look</h2>
             <div class="phone-card">
-                <div class="video-mockup-wrapper" style="margin-bottom: -100px;">
+                <div class="video-mockup-wrapper">
                     <img src="images/project-tiktok-metgala/highlight-mockup.png.png" class="mockup-frame" alt="Phone Mockup">
                     <video class="mockup-video" autoplay loop muted playsinline>
                         <source src="images/project-tiktok-metgala/movie2.mp4" type="video/mp4">
