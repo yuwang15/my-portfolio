@@ -295,6 +295,234 @@
         .annotation.con { color: #f87171; }
         .annotation-dot { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
 
+        /* NEW ITERATION LAYOUT */
+        .iteration-layout-new {
+            background: #252525;
+            border-radius: 32px;
+            padding: 60px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 28px;
+        }
+        .iter-col-prd, .iter-col-after {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 180px;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+        .iter-img-clip {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: transparent;
+            /* 19.5:9 phone ratio */
+            aspect-ratio: 9 / 19.5;
+            position: relative;
+        }
+        .iter-img-clip img {
+            width: 100%;
+            height: 100%; /* Force height for crop */
+            object-fit: cover; /* Crop to fill */
+            object-position: top center;
+            display: block;
+        }
+        .iteration-label-new {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-top: 16px;
+            text-align: center;
+        }
+        .iter-col-pros, .iter-col-cons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+            max-width: 250px;
+            position: relative;
+            z-index: 1;
+        }
+        .iter-arrow {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .annotation-pill {
+            background: #333;
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #ccc;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+        }
+        .check-icon { color: #4ade80; font-weight: bold; font-size: 14px; margin-top: 2px; }
+        .cross-icon { color: #f87171; font-weight: bold; font-size: 14px; margin-top: 2px; }
+
+        /* Connectors */
+        .annotation-pill::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+        }
+        .pro-pill::after { left: 100%; top: 50%; width: 20px; }
+        .con-pill::after { right: 100%; top: 50%; width: 20px; }
+
+        /* WORKSHOP STICKY NOTES */
+        .workshop-section {
+            background: #333336;
+            border-radius: 32px;
+            padding: 60px;
+            margin-top: 32px;
+            margin-bottom: 80px;
+        }
+        .team-insights-pill {
+            display: inline-block;
+            background: #fe2b55;
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 24px;
+            border-radius: 999px;
+            margin-bottom: 48px;
+        }
+        .sticky-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .sticky-note {
+            background: #fde68a;
+            color: #111;
+            width: 160px;
+            height: 160px;
+            padding: 24px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.5;
+            border-radius: 2px;
+            box-shadow: 2px 4px 12px rgba(0,0,0,0.2);
+        }
+        .sticky-note:nth-child(even) { transform: rotate(2deg); }
+        .sticky-note:nth-child(odd) { transform: rotate(-1deg); }
+
+        /* FLOW & MOODBOARD */
+        .flow-layout-section {
+            background: #333336;
+            border-radius: 32px;
+            padding: 60px;
+        }
+        .flow-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .flow-pill-wrap { flex-shrink: 0; width: 180px; text-align: center; }
+        .flow-img {
+            flex: 1;
+            width: 100%;
+            border-radius: 12px;
+        }
+        .mt-48 { margin-top: 48px; }
+
+        .moodboard-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+        .moodboard-grid img {
+            width: 100%;
+            height: 100%;
+            max-height: 280px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        /* FINAL DESIGN */
+        .final-design-section {
+            margin-top: 100px;
+            margin-bottom: 160px;
+        }
+        .final-title {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 600;
+            color: var(--red);
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .final-subtitle {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 48px;
+            font-weight: 600;
+        }
+        .final-card {
+            background: #fdf5f6;
+            border-radius: 32px;
+            padding: 60px 40px;
+            margin-bottom: 24px;
+            background-size: cover;
+            background-position: center;
+        }
+        .final-row-1 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+        .final-row-1 img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .final-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .final-video-card {
+            background: #fdf5f6;
+            border-radius: 32px;
+            padding: 60px 40px;
+            display: flex;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+        .final-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 240px;
+            gap: 24px;
+            background: #fdf5f6;
+            border-radius: 32px;
+            padding: 60px 40px;
+            background-size: cover;
+            background-position: center;
+        }
+        .final-row-3-left img, .final-row-3-right img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: block;
+        }
+        .final-row-3-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+
         /* LEARNINGS */
         .learning-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 48px; }
 
@@ -303,16 +531,24 @@
 
         .mb-160 { margin-bottom: 160px; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .grid-4-col { grid-template-columns: repeat(2,1fr); gap: 32px; }
             .impact-stats { grid-template-columns: 1fr; gap: 32px; }
             .challenge-grid { grid-template-columns: 1fr; }
-            .gallery-row-two { grid-template-columns: 1fr; } /* Stack on phones */
-            .gallery-row-three { grid-template-columns: 1fr; } /* Stack on phones */
+            .gallery-row-two, .gallery-row-three { grid-template-columns: 1fr; }
             .h3-split { grid-template-columns: 1fr; }
             .h3-side-img { width: 100%; }
             .learning-grid { grid-template-columns: 1fr; }
             .iteration-card { grid-template-columns: 1fr; }
+            .iteration-layout-new { flex-direction: column; }
+            .iter-col-pros, .iter-col-cons { max-width: 100%; }
+            .pro-pill::after, .con-pill::after { display: none; }
+            .flow-row { flex-direction: column; align-items: flex-start; gap: 24px; }
+            .moodboard-grid { grid-template-columns: repeat(2, 1fr); }
+            .final-row-1 { grid-template-columns: repeat(2, 1fr); }
+            .final-row-2 { grid-template-columns: 1fr; }
+            .final-row-3 { grid-template-columns: 1fr; }
+            .final-row-3-right { flex-direction: row; gap: 12px; }
             .nav-center { display: none; }
         }
     </style>
@@ -545,45 +781,228 @@
             <div class="iteration-block">
                 <p class="section-desc" style="color:#fff;font-weight:600;font-size:20px;margin-bottom:8px;">1st Iteration:</p>
                 <p class="section-desc">Translated PM Requirements Into A Structured User Flow, But Uncovered Hierarchy Issues.</p>
-                <div class="iteration-card">
-                    <div>
-                        <div class="iteration-img-wrap">
+                <div class="iteration-layout-new">
+                    <!-- Left: PRD Image -->
+                    <div class="iter-col-prd">
+                        <div class="iter-img-clip prd-clip">
                             <img src="images/project-tiktok-metgala/iteration1.PNG" alt="PRD">
                         </div>
-                        <div class="iteration-label">PRD</div>
-                        <div class="iteration-annotations">
-                            <div class="annotation pro"><span class="annotation-dot">✓</span><span>Simplified PM requirements into concise UX writing and a structured layout, streamlining the campaign's interaction flow.</span></div>
-                            <div class="annotation pro"><span class="annotation-dot">✓</span><span>Drawing from previous Disney and Oscars campaign designs, implemented a dark theme to evoke an evening-gala aesthetic.</span></div>
-                            <div class="annotation con"><span class="annotation-dot">✗</span><span>The reward section was too long and negatively affected the first screen efficiency.</span></div>
-                            <div class="annotation con"><span class="annotation-dot">✗</span><span>The rewards themselves lacked strong appeal.</span></div>
-                            <div class="annotation con"><span class="annotation-dot">✗</span><span>The magazine-tearing concept fit past looks better but felt inconsistent with this year's Met Gala visuals.</span></div>
+                        <div class="iteration-label-new">PRD</div>
+                    </div>
+
+                    <!-- Middle: Pros -->
+                    <div class="iter-col-pros">
+                        <div class="iter-arrow">➔</div>
+                        <div class="annotation-pill pro-pill">
+                            <div class="check-icon">✓</div>
+                            <p>Simplified PM requirements into concise UX writing and a structured layout, streamlining the campaign's interaction flow.</p>
+                        </div>
+                        <div class="annotation-pill pro-pill">
+                            <div class="check-icon">✓</div>
+                            <p>Drawing from previous Disney and Oscars campaign designs, implemented a <strong style="color:#fff;">Dark Theme</strong> to evoke an evening-gala aesthetic.</p>
                         </div>
                     </div>
-                    <div>
-                        <div class="iteration-img-wrap">
+
+                    <!-- Right-Center: 1st Iteration Image -->
+                    <div class="iter-col-after">
+                        <div class="iter-img-clip after-clip">
                             <img src="images/project-tiktok-metgala/iteration 2 .PNG" alt="1st Iteration">
                         </div>
-                        <div class="iteration-label">1st Iteration</div>
+                        <div class="iteration-label-new">1st Iteration</div>
                     </div>
+
+                    <!-- Far Right: Cons -->
+                    <div class="iter-col-cons">
+                        <div class="annotation-pill con-pill" style="margin-top: 70px;">
+                            <div class="cross-icon">✗</div>
+                            <p>The reward section was too long and negatively affected the first screen <strong style="color:#f87171;">efficiency</strong>.</p>
+                        </div>
+                        <div class="annotation-pill con-pill" style="margin-top: 16px;">
+                            <div class="cross-icon">✗</div>
+                            <p>The rewards themselves lacked strong <strong style="color:#f87171;">appeal</strong>.</p>
+                        </div>
+                        <div class="annotation-pill con-pill" style="margin-top: 70px;">
+                            <div class="cross-icon">✗</div>
+                            <p>The magazine-tearing concept fit past looks better but felt inconsistent with this year's Met Gala <strong style="color:#f87171;">visuals</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block 1: Team Insights -->
+            <div class="iteration-block" style="margin-top: 80px;">
+                <h3 class="section-desc" style="color:#fff;font-weight:600;font-size:24px;margin-bottom:24px; font-family: var(--font-sans);">Goal : Improve The Page Hierarchy While<br>Keeping Rewards Engaging</h3>
+                
+                <div class="workshop-section">
+                    <div class="team-insights-pill">Team Insights</div>
+                    <div class="sticky-grid">
+                        <div class="sticky-note">The reward section lacked value and emotional engagement.</div>
+                        <div class="sticky-note">Voting flow perceived as most engaging.</div>
+                        <div class="sticky-note">Take inspiration from fashion apps to create a more stylish feel.</div>
+                        <div class="sticky-note">Can users from all regions currently receive the rewards?<br><br>The reward area feels long.</div>
+                        <div class="sticky-note">Open with the reward, then collapse it to shift focus back to voting.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block 2: Flow -->
+            <div class="iteration-block" style="margin-top: 80px;">
+                <h3 class="section-desc" style="color:#fff;font-weight:600;font-size:24px;margin-bottom:24px; font-family: var(--font-sans);">Goal : Make A Complex Flow Clearer<br>And More Focused</h3>
+                
+                <div class="flow-layout-section">
+                    <div class="flow-row">
+                        <div class="flow-pill-wrap"><div class="team-insights-pill" style="margin-bottom: 0;">Previous Flow</div></div>
+                        <img src="images/project-tiktok-metgala/20.png" alt="Previous Flow" class="flow-img">
+                    </div>
+                    <div class="flow-row mt-48">
+                        <div class="flow-pill-wrap"><div class="team-insights-pill" style="margin-bottom: 0;">Revised Flow</div></div>
+                        <img src="images/project-tiktok-metgala/21.png" alt="Revised Flow" class="flow-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block 3: 2nd Iteration -->
+            <div class="iteration-block" style="margin-top: 80px;">
+                <p class="section-desc" style="color:#fff;font-weight:600;font-size:20px;margin-bottom:8px;">2nd Iteration:</p>
+                <p class="section-desc">Restructured Entry Interaction, Yet Still Lacking A Strong Fashion Identity</p>
+                
+                <div class="iteration-layout-new" style="background: transparent; padding: 0;">
+                    <!-- Left: 22.png -->
+                    <div style="flex: 1; max-width: 50%;">
+                        <img src="images/project-tiktok-metgala/22.png" alt="2nd Iteration" style="width: 100%; border-radius: 24px;">
+                    </div>
+
+                    <!-- Right: Annotations -->
+                    <div class="iter-col-cons" style="flex: 1; max-width: 480px; padding-left: 20px;">
+                        <div class="annotation-pill con-pill" style="margin-top: 0;">
+                            <div class="check-icon" style="color:#4ade80;">✓</div>
+                            <p>Simplified The Visual Language For Greater Clarity.</p>
+                        </div>
+                        <div class="annotation-pill con-pill" style="margin-top: 32px;">
+                            <div class="check-icon" style="color:#4ade80;">✓</div>
+                            <p>Used Blur As A Motivational Cue To Drive Engagement.</p>
+                        </div>
+                        <div class="annotation-pill con-pill" style="margin-top: 32px;">
+                            <div class="cross-icon" style="color:#f87171;">✗</div>
+                            <p>Lacked A Strong Fashion Tone</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block 4: Moodboard -->
+            <div class="iteration-block" style="margin-top: 80px;">
+                <h3 class="section-desc" style="color:#fff;font-weight:600;font-size:24px;margin-bottom:24px; font-family: var(--font-sans);">Goal : Establish A Strong Fashion Aesthetic</h3>
+                
+                <div class="workshop-section">
+                    <div class="team-insights-pill">Mood Board</div>
+                    <div class="moodboard-grid">
+                        <img src="images/project-tiktok-metgala/23.png" alt="Mood 1">
+                        <img src="images/project-tiktok-metgala/24.png" alt="Mood 2">
+                        <img src="images/project-tiktok-metgala/25.png" alt="Mood 3">
+                        <img src="images/project-tiktok-metgala/26.png" alt="Mood 4">
+                        <img src="images/project-tiktok-metgala/27.png" alt="Mood 5">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block 5: 3rd Iteration -->
+            <div class="iteration-block" style="margin-top: 80px;">
+                <p class="section-desc" style="color:#fff;font-weight:600;font-size:20px;margin-bottom:8px;">3rd Iteration:</p>
+                <p class="section-desc">Added An Opening Animation, But Misaligned With This Year's Theme</p>
+                
+                <div class="iteration-layout-new" style="background: transparent; padding: 0;">
+                    <!-- Left: 28.png -->
+                    <div style="flex: 1; max-width: 50%;">
+                        <img src="images/project-tiktok-metgala/28.png" alt="3rd Iteration" style="width: 100%; border-radius: 24px;">
+                    </div>
+
+                    <!-- Right: Annotations -->
+                    <div class="iter-col-cons" style="flex: 1; max-width: 480px; padding-left: 20px;">
+                        <div class="annotation-pill pro-pill" style="margin-top: 0;">
+                            <div class="check-icon" style="color:#4ade80;">✓</div>
+                            <p>Repositioned Rewards To Prioritize Voting And Improve Flow Efficiency</p>
+                        </div>
+                        <div class="annotation-pill con-pill" style="margin-top: 32px;">
+                            <div class="cross-icon" style="color:#f87171;">✗</div>
+                            <p>The Spotlight Concept Did Not Align With This Year’s Met Gala Theme</p>
+                        </div>
+                        <div class="annotation-pill con-pill" style="margin-top: 32px;">
+                            <div class="cross-icon" style="color:#f87171;">✗</div>
+                            <p>The Reward Section Still Disrupted The Overall Fashion Tone Of The Page</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- FINAL DESIGN -->
+        <section class="final-design-section">
+            <h2 class="final-title">Final Design</h2>
+            <p class="final-subtitle">Snippets Of The Final Design And Interactions Details That I Feel Proud Of!</p>
+
+            <div class="final-card" style="background-image: url('images/project-tiktok-metgala/18.png');">
+                <div class="final-row-1">
+                    <img src="images/project-tiktok-metgala/29.png" alt="Screen 1">
+                    <img src="images/project-tiktok-metgala/30.png" alt="Screen 2">
+                    <img src="images/project-tiktok-metgala/31.png" alt="Screen 3">
+                    <img src="images/project-tiktok-metgala/32.png" alt="Screen 4">
+                    <img src="images/project-tiktok-metgala/33.png" alt="Screen 5">
+                </div>
+            </div>
+
+            <div class="final-row-2">
+                <div class="final-video-card" style="background-image: url('images/project-tiktok-metgala/18.png');">
+                    <div class="video-mockup-wrapper" style="margin-bottom: -60px;">
+                        <img src="images/project-tiktok-metgala/highlight-mockup.png.png" class="mockup-frame" alt="Phone Mockup">
+                        <video class="mockup-video" autoplay loop muted playsinline>
+                            <source src="images/project-tiktok-metgala/movie1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="final-video-card" style="background-image: url('images/project-tiktok-metgala/18.png');">
+                    <div class="video-mockup-wrapper" style="margin-bottom: -60px;">
+                        <img src="images/project-tiktok-metgala/highlight-mockup.png.png" class="mockup-frame" alt="Phone Mockup">
+                        <video class="mockup-video" autoplay loop muted playsinline>
+                            <source src="images/project-tiktok-metgala/movie2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="final-row-3" style="background-image: url('images/project-tiktok-metgala/18.png');">
+                <div class="final-row-3-left">
+                    <img src="images/project-tiktok-metgala/34.png" alt="Long Screen">
+                </div>
+                <div class="final-row-3-right">
+                    <img src="images/project-tiktok-metgala/35.png" alt="Right Screen 1">
+                    <img src="images/project-tiktok-metgala/36.png" alt="Right Screen 2">
+                    <img src="images/project-tiktok-metgala/37.png" alt="Right Screen 3">
                 </div>
             </div>
         </section>
 
         <!-- LEARNINGS -->
         <section class="mb-160">
-            <h2 class="section-title">My Biggest Learnings</h2>
-            <p class="section-desc">Collaborating in a fast-paced environment with designs that impact millions have taught me…</p>
+            <h2 class="section-red-title">My Biggest Learnings</h2>
+            <p class="section-desc" style="color:#fff;font-weight:600;font-size:18px;margin-bottom:48px;max-width:800px;">Collaborating In A Fast-Paced Environment With Designs That Impact Millions Have Taught Me...</p>
             <div class="learning-grid">
-                <div class="challenge-card">
-                    <h3 class="challenge-card-title">Iterate, fail, learn, repeat!<br>Design Under Pressure</h3>
-                    <p class="challenge-card-desc">There's always room to improve. I've learned to move fast - iterate, learn, and repeat - while seeking experienced perspectives and asking for feedback strategically.</p>
-                    <p class="challenge-card-desc" style="margin-top:16px;">Working in high-expectation, high-pressure environments strengthened my resilience and discipline. The more intense the situation, the more essential it becomes to clarify the logic, move step by step according to plan.</p>
+                <div class="challenge-card" style="background: #333336; padding: 48px;">
+                    <h3 class="challenge-card-title" style="margin-bottom: 32px; font-weight: 500;">Iterate, Fail, Learn, Repeat!</h3>
+                    <p class="challenge-card-desc" style="color: #eee;">There's Always Room To Improve. I've Learned To Move Fast - Iterate, Learn, And Repeat - While Seeking Experienced Perspectives And Asking For Feedback Strategically.</p>
                 </div>
-                <div class="challenge-card">
-                    <h3 class="challenge-card-title">Transparent Communication &amp; Team Alignment</h3>
-                    <p class="challenge-card-desc">Not all requirements are equal.</p>
-                    <p class="challenge-card-desc" style="margin-top:16px;">Proactive and transparent communication keeps teams aligned and focused. Cross-functional collaboration often brings unexpected support and valuable insights that refine and elevate the final design.</p>
-                    <p class="challenge-card-desc" style="margin-top:16px;">In complex projects, the ability to prioritize what matters most determines the strength of the final outcome.</p>
+                <div class="challenge-card" style="background: #333336; padding: 48px;">
+                    <h3 class="challenge-card-title" style="margin-bottom: 32px; font-weight: 500;">Design Under Pressure</h3>
+                    <p class="challenge-card-desc" style="color: #eee;">Working In High-Expectation, High-Pressure Environments Strengthened My Resilience And Discipline. The More Intense The Situation, The More Essential It Becomes To Clarify The Logic, Move Step By Step According To Plan.</p>
+                </div>
+                <div class="challenge-card" style="background: #333336; padding: 48px;">
+                    <h3 class="challenge-card-title" style="margin-bottom: 32px; font-weight: 500;">Transparent Communication &amp; Team Alignment</h3>
+                    <p class="challenge-card-desc" style="color: #eee;">Proactive And Transparent Communication Keeps Teams Aligned And Focused. Cross-Functional Collaboration Often Brings Unexpected Support And Valuable Insights That Refine And Elevate The Final Design.</p>
+                </div>
+                <div class="challenge-card" style="background: #333336; padding: 48px;">
+                    <h3 class="challenge-card-title" style="margin-bottom: 32px; font-weight: 500;">Not All Requirements Are Equal.</h3>
+                    <p class="challenge-card-desc" style="color: #eee;">In Complex Projects, The Ability To Prioritize What Matters Most Determines The Strength Of The Final Outcome.</p>
                 </div>
             </div>
         </section>
