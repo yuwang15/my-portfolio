@@ -127,6 +127,7 @@
         .gallery-row-full { margin-bottom: 24px; border-radius: 40px; overflow: hidden; }
         .gallery-row-two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
         .gallery-row-three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .visual-rounded { width: 100%; border-radius: 32px; overflow: hidden; display: flex; }
         
         /* CONTEXT & CHALLENGE */
         .section-red-title { font-family: var(--font-serif); font-size: 26px; font-style: italic; font-weight: 600; color: var(--red); margin-bottom: 24px; letter-spacing: 0.02em; }
@@ -186,13 +187,14 @@
         .mockup-video {
             position: absolute;
             z-index: 1; /* Video sits cleanly behind the shell, bleeding slightly behind bezel */
-            top: 50%;
+            top: 2.5%; /* Shift down to align top edge exactly */
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 88%;
-            height: 96%;
+            transform: translateX(-50%);
+            width: 89%;
+            height: 96%; /* Let it bleed over the bottom if needed */
             object-fit: cover;
-            border-radius: 40px;
+            object-position: top center; /* Make sure top is anchored */
+            border-radius: 46px 46px 0 0; /* Only curve the top to fit into bezel tightly */
             display: block;
         }
 
@@ -331,7 +333,7 @@
             <a href="https://www.linkedin.com/in/yuwang-gu" target="_blank" class="nav-icon">
                 <img src="images/homepage/linkedin.png" alt="LinkedIn">
             </a>
-            <a href="#" class="nav-resume">Resume</a>
+            <a href="https://drive.google.com/file/d/1-TIE4jiZG7CN5BS0eiYFkBCtmQ6enqYz/view?usp=drive_link" class="nav-resume" target="_blank">Resume</a>
             <a href="about.html" class="nav-about">About</a>
         </div>
     </nav>
@@ -423,9 +425,9 @@
                 </div>
             </div>
             <div class="gallery-row-three">
-                <img src="images/project-tiktok-metgala/5.png" alt="Gallery 5">
-                <img src="images/project-tiktok-metgala/6.png" alt="Gallery 6">
-                <img src="images/project-tiktok-metgala/7.png" alt="Gallery 7">
+                <div class="visual-rounded"><img src="images/project-tiktok-metgala/5.png" alt="Gallery 5"></div>
+                <div class="visual-rounded"><img src="images/project-tiktok-metgala/6.png" alt="Gallery 6"></div>
+                <div class="visual-rounded"><img src="images/project-tiktok-metgala/7.png" alt="Gallery 7"></div>
             </div>
         </section>
 
