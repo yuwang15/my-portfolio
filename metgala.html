@@ -186,15 +186,15 @@
         }
         .mockup-video {
             position: absolute;
-            z-index: 1; /* Video sits cleanly behind the shell, bleeding slightly behind bezel */
-            top: 2.5%; /* Shift down to align top edge exactly */
+            z-index: 1;
+            top: 2.2%;
             left: 50%;
             transform: translateX(-50%);
-            width: 89%;
-            height: 96%; /* Let it bleed over the bottom if needed */
+            width: 89.6%;
+            height: 96%;
             object-fit: cover;
-            object-position: top center; /* Make sure top is anchored */
-            border-radius: 46px 46px 0 0; /* Only curve the top to fit into bezel tightly */
+            object-position: top center;
+            border-radius: 12% 12% 0 0 / 6% 6% 0 0; /* Responsive border radius */
             display: block;
         }
 
@@ -493,12 +493,23 @@
         .final-video-card {
             background: #fdf5f6;
             border-radius: 32px;
-            padding: 60px 40px;
+            padding: 80px 10% 0 10%; /* 0 padding below, force pushing to bottom */
             display: flex;
             justify-content: center;
+            align-items: flex-end; /* align mockup to the absolute bottom */
             background-size: cover;
-            background-position: center;
+            background-position: top center; /* Start background from top without stretching */
             overflow: hidden;
+        }
+        .final-video-card .video-mockup-wrapper {
+            width: 100%;
+            height: auto; /* Allow height to scale dynamically based on image width */
+            margin-bottom: -24px; /* Pull it slightly down to crop bottom curve as desired */
+            display: flex; /* Remove strange descender spacing issues on the image */
+        }
+        .final-video-card .mockup-frame {
+            width: 100%;
+            height: auto;
         }
         .final-row-3 {
             display: grid;
@@ -954,7 +965,7 @@
 
             <div class="final-row-2">
                 <div class="final-video-card" style="background-image: url('images/project-tiktok-metgala/18.png');">
-                    <div class="video-mockup-wrapper" style="margin-bottom: -60px;">
+                    <div class="video-mockup-wrapper">
                         <img src="images/project-tiktok-metgala/highlight-mockup.png.png" class="mockup-frame" alt="Phone Mockup">
                         <video class="mockup-video" autoplay loop muted playsinline>
                             <source src="images/project-tiktok-metgala/movie1.mp4" type="video/mp4">
@@ -962,7 +973,7 @@
                     </div>
                 </div>
                 <div class="final-video-card" style="background-image: url('images/project-tiktok-metgala/18.png');">
-                    <div class="video-mockup-wrapper" style="margin-bottom: -60px;">
+                    <div class="video-mockup-wrapper">
                         <img src="images/project-tiktok-metgala/highlight-mockup.png.png" class="mockup-frame" alt="Phone Mockup">
                         <video class="mockup-video" autoplay loop muted playsinline>
                             <source src="images/project-tiktok-metgala/movie2.mp4" type="video/mp4">
