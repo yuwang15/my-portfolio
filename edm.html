@@ -23,20 +23,22 @@
 
     <style>
         :root {
-            --bg-page: #ffffff;
-            --bg-card: #ffffff;
-            --bg-subtle: #f5f5f5;
-            --text-dark: #111111;
-            --secondary-color: #7c3aed;
-            --text-body: #333333;
-            --text-secondary: #555555;
-            --text-muted: #777777;
-            --border: #e8e8e8;
-            --accent: #2c2c2c;
-            --heading-purple: #512DA8;
+            --bg-page: #050505;
+            --bg-card: #111111;
+            --bg-subtle: #1a1a1a;
+            --text-primary: #f5f5f5;
+            --text-dark: #f5f5f5;
+            --secondary-color: #d4af37;
+            --text-body: #a1a1aa;
+            --text-secondary: #888888;
+            --text-muted: #666666;
+            --border: #333333;
+            --accent: #d4af37;
+            --heading-purple: #d4af37;
             --site-width: 1240px;
             --site-pad: clamp(24px, 6vw, 80px);
-            --font-sans: -apple-system, 'SF Pro Text', 'SF Pro Display', BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            --font-sans: 'Inter', -apple-system, 'SF Pro Text', 'SF Pro Display', BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            --font-serif: 'Playfair Display', serif;
         }
 
         * {
@@ -45,10 +47,17 @@
             padding: 0;
         }
 
+        h1, h2, h3, .hero-title, .hero-title-line2, .section-title, .impact-title, .impact-desc, .goal-intro, .highlight-title, .pain-section-title, .option-title, .final-outcome-title, .grid-col h3, .section-red-title, .share-title {
+            font-family: var(--font-serif) !important;
+            letter-spacing: 0.02em !important;
+            font-style: italic;
+        }
+
         body {
             font-family: var(--font-sans);
             background: var(--bg-page);
-            color: var(--text-primary);
+            color: var(--text-dark);
+            background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             /* overflow-x: auto removed so position: sticky can connect to viewport bounds */
@@ -79,11 +88,11 @@
             align-items: center;
             padding: 0 var(--site-pad);
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(20, 20, 20, 0.55);
             backdrop-filter: blur(28px) saturate(180%);
             -webkit-backdrop-filter: blur(28px) saturate(180%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.45);
-            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .nav-left {
@@ -92,13 +101,14 @@
             gap: 12px;
             font-weight: 500;
             font-size: 15px;
-            color: #111;
+            color: #fff;
         }
 
         .nav-left img {
             width: 36px;
             height: 36px;
             object-fit: contain;
+            filter: invert(1);
         }
 
         .nav-center {
@@ -106,10 +116,10 @@
             gap: 32px;
             font-weight: 500;
             font-size: 15px;
-            color: #555;
+            color: var(--text-body);
         }
 
-        .nav-center a:hover { color: #111; }
+        .nav-center a:hover { color: #fff; }
 
         .nav-right {
             display: flex;
@@ -120,18 +130,18 @@
         }
 
         .nav-icon { width: 22px; height: 22px; display: flex; align-items: center; }
-        .nav-icon img { width: 22px; height: 22px; object-fit: contain; }
+        .nav-icon img { width: 22px; height: 22px; object-fit: contain; filter: invert(1); }
 
         .nav-resume {
             text-decoration: underline;
             text-underline-offset: 4px;
             font-weight: 600;
-            color: #111;
+            color: #fff;
         }
 
         .nav-about {
-            background: #111;
-            color: #fff;
+            background: var(--bg-card);
+            color: #000;
             padding: 7px 20px;
             border-radius: 999px;
             font-weight: 500;
@@ -439,7 +449,7 @@
             object-position: center top; /* 锚定在顶部，杜绝底部截断影响上方刘海对齐 */
             border-radius: 9%; /* 模拟内屏圆角 */
             z-index: 1; /* 落在边框下方，绝不仅会露出背后的背景 */
-            background: #fff; /* 防穿帮黑边 */
+            background: var(--bg-card); /* 防穿帮黑边 */
         }
 
         /* 统一横向居中 */
@@ -485,14 +495,14 @@
         }
 
         .context-chart {
-            background: #fff;
+            background: var(--bg-card);
             border-radius: 14px;
             overflow: visible;
             box-shadow: 0 8px 32px rgba(81, 45, 168, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .context-chart-header {
-            background: #EBE6F4; /* Even lighter, matching reference purple bg */
+            background: #2a2a2a; /* Even lighter, matching reference purple bg */
             color: rgba(0, 0, 0, 0.7); /* Slightly semi-transparent for priority 2 text */
             font-size: 14px;
             font-weight: 600;
@@ -511,7 +521,7 @@
             color: rgba(0, 0, 0, 0.45);
             padding: 7px 16px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-            background: #ffffff;
+            background: var(--bg-card);
             white-space: nowrap;
         }
 
@@ -543,7 +553,7 @@
         }
 
         .goal-card {
-            background: #ffffff;
+            background: var(--bg-card);
             border-radius: 20px;
             width: 320px;
             height: 200px;
@@ -599,7 +609,7 @@
             font-family: 'SF Pro Display', sans-serif;
             font-size: 18px;
             font-weight: 600;
-            color: #111;
+            color: #fff;
             margin-bottom: 12px;
         }
 
@@ -607,7 +617,7 @@
             font-family: 'SF Pro Display', sans-serif;
             font-size: 14px;
             line-height: 1.6;
-            color: #666;
+            color: var(--text-muted);
             margin: 0;
             white-space: normal;
         }
@@ -675,7 +685,7 @@
             align-items: center;
             gap: 12px;
             padding: 12px 20px;
-            background: #f7f7f8;
+            background: var(--bg-subtle);
             border-radius: 8px;
             border: 1px solid rgba(0,0,0,0.06);
             font-family: 'SF Pro Display', sans-serif;
@@ -775,7 +785,7 @@
         .content-pain-card {
             border-radius: 32px;
             padding: 56px 64px 80px;
-            background: #F9F9FB; /* 参考图中的极简淡色微紫/微灰底 */
+            background: var(--bg-subtle); /* 参考图中的极简淡色微紫/微灰底 */
             margin-bottom: 80px;
         }
 
@@ -798,7 +808,7 @@
         }
 
         .pain-quote-card {
-            background: #ffffff;
+            background: var(--bg-card);
             border-radius: 12px;
             padding: 24px 32px;
             font-family: 'SF Pro Display', sans-serif;
@@ -868,7 +878,7 @@
             width: 240px;
             flex-shrink: 0;
             margin-left: 24px;
-            background: #fff;
+            background: var(--bg-card);
             border-radius: 16px;
             padding: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.06);
@@ -885,7 +895,7 @@
         .design-decision-card {
             border-radius: 32px;
             padding: 40px 40px 32px;
-            background: linear-gradient(180deg, #f6f3ff 0%, #f8f6ff 45%, #ffffff 100%);
+            background: var(--bg-card);
             box-shadow: 0 20px 70px rgba(81, 45, 168, 0.12);
         }
 
@@ -977,7 +987,7 @@
         }
 
         .decision-pill-main {
-            background: #ffffff;
+            background: var(--bg-card);
             border: 1px solid rgba(0,0,0,0.06);
             color: var(--text-primary);
             font-weight: 500;
@@ -991,9 +1001,9 @@
         }
 
         .decision-pill-sub {
-            background: #EBEBEB;
+            background: #222;
             border: 1px solid #E2E2E2;
-            color: #666;
+            color: var(--text-muted);
             font-size: 12px;
             padding: 6px 16px;
             border-radius: 16px;
@@ -1110,13 +1120,13 @@
             height: auto;
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            background: #fff;
+            background: var(--bg-card);
         }
 
         .design-decision-card {
             border-radius: 32px;
             padding: 56px 64px 64px;
-            background: #F8F8FA;
+            background: var(--bg-subtle);
             margin-bottom: 80px;
         }
 
@@ -1138,7 +1148,7 @@
             margin-bottom: 32px;
             border-radius: 28px;
             padding: 28px 32px 24px;
-            background: radial-gradient(160% 200% at 0% 0%, rgba(81, 45, 168, 0.14) 0%, rgba(81, 45, 168, 0.03) 32%, #ffffff 100%);
+            background: var(--bg-subtle);
         }
 
         .design-directions-phones {
@@ -1154,7 +1164,7 @@
             height: auto;
             border-radius: 24px;
             box-shadow: 0 16px 50px rgba(0, 0, 0, 0.18);
-            background: #f5f5f8;
+            background: var(--bg-subtle);
         }
 
         .design-directions-variants {
@@ -1177,7 +1187,7 @@
         .option-title {
             font-size: 26px;
             font-weight: 700;
-            color: #111;
+            color: #fff;
             margin: 0 0 16px 0;
             line-height: 1.25;
             letter-spacing: -0.5px;
@@ -1202,7 +1212,7 @@
             border-radius: 28px;
             padding: 36px 32px 40px;
             position: relative;
-            background-color: #ffffff;
+            background-color: var(--bg-card);
             background-image: 
                 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E"),
                 radial-gradient(at 0% 0%, rgba(208, 235, 255, 1) 0%, transparent 60%),
@@ -1234,14 +1244,14 @@
             height: auto;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
-            background: #f5f5f8;
+            background: var(--bg-subtle);
         }
 
         .option-card-promo {
             margin-top: 20px;
             border-radius: 32px;
             padding: 28px 32px 32px;
-            background: radial-gradient(160% 200% at 0% 0%, rgba(81, 45, 168, 0.14) 0%, rgba(81, 45, 168, 0.03) 32%, #ffffff 100%);
+            background: var(--bg-subtle);
             box-shadow: 0 20px 70px rgba(81, 45, 168, 0.12);
             max-width: 720px;
             margin-left: auto;
@@ -1262,14 +1272,14 @@
             height: auto;
             border-radius: 24px;
             box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
-            background: #f5f5f8;
+            background: var(--bg-subtle);
         }
 
         /* FINAL OUTCOME — 单个最终效果视频 */
         .final-outcome-card {
             border-radius: 32px;
             padding: 80px 40px;
-            background: #fafafa;
+            background: var(--bg-subtle);
             box-shadow: 0 8px 40px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.03);
             border: 1px solid rgba(0,0,0,0.04);
             display: flex;
@@ -1312,7 +1322,7 @@
             transform: translateX(-50%);
             border-radius: 36px;
             overflow: hidden;
-            background: #fff;
+            background: var(--bg-card);
             box-shadow: 0 0 0 rgba(0,0,0,0);
             z-index: 1;
         }
@@ -1394,7 +1404,7 @@
         }
 
         .highlight-card {
-            background: #ffffff;
+            background: var(--bg-card);
             border-radius: 28px;
             padding: 22px 22px 18px;
             display: flex;
@@ -1414,7 +1424,7 @@
         .highlight-phone {
             border-radius: 24px;
             overflow: hidden;
-            background: #f5f5f8;
+            background: var(--bg-subtle);
             padding: 16px 18px 20px;
         }
 
@@ -2217,7 +2227,7 @@
                             </div>
 
                             <!-- Card 2: No User Segmentation -->
-                            <div class="pain-breathe-summary-card" style="flex: 1; background: #f7f7f8; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 22px 24px;">
+                            <div class="pain-breathe-summary-card" style="flex: 1; background: var(--bg-subtle); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 22px 24px;">
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 14px; display: block;">
                                     <rect x="4" y="2" width="16" height="20" rx="2"/>
                                     <line x1="8" y1="8" x2="16" y2="8"/>
@@ -2229,7 +2239,7 @@
                             </div>
 
                             <!-- Card 3: Meaningless Content -->
-                            <div class="pain-breathe-summary-card" style="flex: 1; background: #f7f7f8; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 22px 24px;">
+                            <div class="pain-breathe-summary-card" style="flex: 1; background: var(--bg-subtle); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 22px 24px;">
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 14px; display: block;">
                                     <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
                                 </svg>
@@ -2267,10 +2277,10 @@
                         <div style="flex-shrink: 0; width: 180px;">
                             <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px; text-align: center; letter-spacing: 0.5px; text-transform: uppercase;">Original Layout</div>
                             <div style="display: flex; flex-direction: column; gap: 5px;">
-                                <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Header</div>
-                                <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Title</div>
-                                <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 28px 12px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Notification</div>
-                                <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Footer</div>
+                                <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: var(--bg-subtle);">Email Header</div>
+                                <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: var(--bg-subtle);">Email Title</div>
+                                <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 28px 12px; font-size: 13px; text-align: center; color: #888; background: var(--bg-subtle);">Notification</div>
+                                <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: var(--bg-subtle);">Email Footer</div>
                             </div>
                         </div>
                     </div>
@@ -2300,13 +2310,13 @@
 
                     <!-- RIGHT: New Layout Structure — same 180px fixed width -->
                     <div style="flex-shrink: 0; width: 180px;">
-                        <div style="font-size: 12px; color: #666; font-weight: 600; margin-bottom: 10px; text-align: center; letter-spacing: 0.5px; text-transform: uppercase;">New Layout Structure</div>
+                        <div style="font-size: 12px; color: var(--text-muted); font-weight: 600; margin-bottom: 10px; text-align: center; letter-spacing: 0.5px; text-transform: uppercase;">New Layout Structure</div>
                         <div style="display: flex; flex-direction: column; gap: 5px;">
-                            <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Header</div>
-                            <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Title</div>
-                            <div style="border: 1px solid #7c3aed; border-radius: 6px; padding: 12px; font-size: 13px; text-align: center; color: #7c3aed; background: #f5f3ff;">Current Notifications</div>
-                            <div style="border: 1px solid #7c3aed; border-radius: 6px; padding: 12px; font-size: 13px; text-align: center; color: #7c3aed; background: #f5f3ff; line-height: 1.5;">Highlight Section<br><span style="font-size: 12px; opacity: 0.8;">(Video Thumbnails or Profile Avatars)</span></div>
-                            <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: #fafafa;">Email Footer</div>
+                            <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: var(--bg-subtle);">Email Header</div>
+                            <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: var(--bg-subtle);">Email Title</div>
+                            <div style="border: 1px solid #7c3aed; border-radius: 6px; padding: 12px; font-size: 13px; text-align: center; color: #7c3aed; background: var(--bg-subtle);">Current Notifications</div>
+                            <div style="border: 1px solid #7c3aed; border-radius: 6px; padding: 12px; font-size: 13px; text-align: center; color: #7c3aed; background: var(--bg-subtle); line-height: 1.5;">Highlight Section<br><span style="font-size: 12px; opacity: 0.8;">(Video Thumbnails or Profile Avatars)</span></div>
+                            <div style="border: 1px solid #d0d0d0; border-radius: 6px; padding: 8px 12px; font-size: 13px; text-align: center; color: #888; background: var(--bg-subtle);">Email Footer</div>
                         </div>
                     </div>
 
@@ -2326,9 +2336,9 @@
                             <div style="flex-shrink: 0; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-right: 12px solid #ffffff; margin-top: 14px;"></div>
                             
                             <!-- Bubble content -->
-                            <div style="background: #ffffff; border-radius: 4px 16px 16px 16px; padding: 20px 24px; flex: 1; min-width: 0;">
+                            <div style="background: var(--bg-card); border-radius: 4px 16px 16px 16px; padding: 20px 24px; flex: 1; min-width: 0;">
                                 <div style="font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 6px; letter-spacing: 0.5px; text-transform: uppercase;">Product Manager</div>
-                                <p style="font-size: 15px; color: #555; line-height: 1.6; margin: 0;">Can we explore <span style="font-weight: 600; color: #111;">different notification styles</span>—text-based, page-like, and marketing-style—each with a different <span style="font-weight: 600; color: #111;">highlight section</span>, and each highlight section using <span style="font-weight: 600; color: #111;">distinct strategies</span> to present key content?</p>
+                                <p style="font-size: 15px; color: var(--text-body); line-height: 1.6; margin: 0;">Can we explore <span style="font-weight: 600; color: #fff;">different notification styles</span>—text-based, page-like, and marketing-style—each with a different <span style="font-weight: 600; color: #fff;">highlight section</span>, and each highlight section using <span style="font-weight: 600; color: #fff;">distinct strategies</span> to present key content?</p>
                             </div>
                         </div>
                     </div>
@@ -2356,7 +2366,7 @@
                     <!-- Authentic User Thought Bubble (matches the PM bubble exactly!) -->
                     <div style="display: flex; align-items: flex-start; gap: 0; margin-bottom: 24px;">
                         <!-- Avatar -->
-                        <div style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: #f0f0f0;">
+                        <div style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: var(--bg-subtle);">
                             <img src="images/homepage/Oiiai 1.png" alt="UX Designer" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         
@@ -2366,12 +2376,12 @@
                             <div style="flex-shrink: 0; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-right: 12px solid #ffffff; margin-top: 14px;"></div>
                             
                             <!-- Bubble content -->
-                            <div style="background: #ffffff; border-radius: 4px 16px 16px 16px; padding: 20px 24px; flex: 1; min-width: 0;">
+                            <div style="background: var(--bg-card); border-radius: 4px 16px 16px 16px; padding: 20px 24px; flex: 1; min-width: 0;">
                                 <div style="font-size: 13px; font-weight: 700; color: #6b21a8; margin-bottom: 6px; letter-spacing: 0.5px; text-transform: uppercase;">UX Designer (Me)</div>
-                                <p style="font-size: 15px; color: #555; line-height: 1.6; margin: 0 0 10px;">
-                                    I felt lost in my design, and I began to wonder: <strong style="color: #111;">does notification actually matter to users?</strong>
+                                <p style="font-size: 15px; color: var(--text-body); line-height: 1.6; margin: 0 0 10px;">
+                                    I felt lost in my design, and I began to wonder: <strong style="color: #fff;">does notification actually matter to users?</strong>
                                 </p>
-                                <p style="font-size: 15px; color: #555; line-height: 1.6; margin: 0;">
+                                <p style="font-size: 15px; color: var(--text-body); line-height: 1.6; margin: 0;">
                                     All content can be meaningful in different scenarios—the question is how to attract people to read it in different scenarios.
                                 </p>
                             </div>
@@ -2409,7 +2419,7 @@
                     <div style="margin-top: 24px;">
                         <!-- The Title OUTSIDE -->
                         <div style="margin-bottom: 20px; text-align: center;">
-                            <h3 style="font-size: 24px; font-weight: 600; color: #111; margin: 0; letter-spacing: -0.5px;">Core Strategy Shift: Design for...</h3>
+                            <h3 style="font-size: 24px; font-weight: 600; color: #fff; margin: 0; letter-spacing: -0.5px;">Core Strategy Shift: Design for...</h3>
                         </div>
 
                         <div class="strategy-hover-wrapper" style="background-color: #fdfcff; border: 1px solid rgba(0,0,0,0.03); border-radius: 24px; box-shadow: 0 8px 32px rgba(168,85,247,0.03); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; min-height: 240px; padding: 40px;">
@@ -2504,11 +2514,11 @@
                 <div class="option-section">
                     <p class="option-eyebrow">Option 1</p>
                     <h3 class="option-title">Scenario: Promotional-Style Email</h3>
-                    <p style="font-size: 15px; color: #555; line-height: 1.65; margin: 0 0 32px; max-width: 680px;">Prioritizes bold visuals and strong CTAs over social context or personalization. Best for campaign launches, sales, and event announcements.</p>
+                    <p style="font-size: 15px; color: var(--text-body); line-height: 1.65; margin: 0 0 32px; max-width: 680px;">Prioritizes bold visuals and strong CTAs over social context or personalization. Best for campaign launches, sales, and event announcements.</p>
                     <div style="position: relative; margin-bottom: 40px; margin-top: 20px; z-index: 1;">
                         <!-- Soft Ambient Glow Orbs in the background -->
                         <div style="position: absolute; top: 10%; left: 15%; width: 250px; height: 250px; background: #c4b5fd; border-radius: 50%; filter: blur(60px); opacity: 0.3; z-index: -1;"></div>
-                        <div style="position: absolute; bottom: -10%; right: 15%; width: 300px; height: 300px; background: #fecdd3; border-radius: 50%; filter: blur(80px); opacity: 0.3; z-index: -1;"></div>
+                        <div style="position: absolute; bottom: -10%; right: 15%; width: 300px; height: 300px; background: var(--bg-subtle); border-radius: 50%; filter: blur(80px); opacity: 0.3; z-index: -1;"></div>
 
                         <!-- NEW PREMIUM FROSTED GLASS CSS -->
                         <style>
@@ -2544,7 +2554,7 @@
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
-                                background: rgba(255, 255, 255, 0.5);
+                                background: rgba(20, 20, 20, 0.55);
                                 backdrop-filter: blur(12px);
                                 box-shadow: inset 0 2px 4px rgba(255,255,255,0.8), 0 4px 12px rgba(0,0,0,0.05);
                                 border: 1px solid rgba(255,255,255,0.8);
@@ -2573,12 +2583,12 @@
                                     <div class="glass-icon-orb pros">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                     </div>
-                                    <span style="font-size: 16px; font-weight: 600; color: #111; letter-spacing: -0.5px;">Pros</span>
+                                    <span style="font-size: 16px; font-weight: 600; color: #fff; letter-spacing: -0.5px;">Pros</span>
                                 </div>
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
-                                    <div style="display: flex; gap: 12px; align-items: flex-start;"><div class="glass-bullet" style="color: rgba(168,85,247,0.8); background: #a855f7;"></div><span style="font-size: 13px; color: #555; line-height: 1.6;">High visual impact — instantly grabs attention</span></div>
-                                    <div style="display: flex; gap: 12px; align-items: flex-start;"><div class="glass-bullet" style="color: rgba(168,85,247,0.8); background: #a855f7;"></div><span style="font-size: 13px; color: #555; line-height: 1.6;">Drives immediate action through strong CTAs</span></div>
-                                    <div style="display: flex; gap: 12px; align-items: flex-start;"><div class="glass-bullet" style="color: rgba(168,85,247,0.8); background: #a855f7;"></div><span style="font-size: 13px; color: #555; line-height: 1.6;">Works well for campaigns, sales, and event announcements</span></div>
+                                    <div style="display: flex; gap: 12px; align-items: flex-start;"><div class="glass-bullet" style="color: rgba(168,85,247,0.8); background: #a855f7;"></div><span style="font-size: 13px; color: var(--text-body); line-height: 1.6;">High visual impact — instantly grabs attention</span></div>
+                                    <div style="display: flex; gap: 12px; align-items: flex-start;"><div class="glass-bullet" style="color: rgba(168,85,247,0.8); background: #a855f7;"></div><span style="font-size: 13px; color: var(--text-body); line-height: 1.6;">Drives immediate action through strong CTAs</span></div>
+                                    <div style="display: flex; gap: 12px; align-items: flex-start;"><div class="glass-bullet" style="color: rgba(168,85,247,0.8); background: #a855f7;"></div><span style="font-size: 13px; color: var(--text-body); line-height: 1.6;">Works well for campaigns, sales, and event announcements</span></div>
                                 </div>
                             </div>
 
@@ -2588,11 +2598,11 @@
                                     <div class="glass-icon-orb cons">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                                     </div>
-                                    <span style="font-size: 16px; font-weight: 600; color: #111; letter-spacing: -0.5px;">Cons</span>
+                                    <span style="font-size: 16px; font-weight: 600; color: #fff; letter-spacing: -0.5px;">Cons</span>
                                 </div>
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
-                                    <div style="display: flex; gap: 12px; align-items: flex-start;"><div class="glass-bullet" style="color: rgba(244,63,94,0.8); background: #f43f5e;"></div><span style="font-size: 13px; color: #555; line-height: 1.6;">Feels less personal, lower relevance for non-interested users</span></div>
-                                    <div style="display: flex; gap: 12px; align-items: flex-start;"><div class="glass-bullet" style="color: rgba(244,63,94,0.8); background: #f43f5e;"></div><span style="font-size: 13px; color: #555; line-height: 1.6;">Risk of being perceived as spam</span></div>
+                                    <div style="display: flex; gap: 12px; align-items: flex-start;"><div class="glass-bullet" style="color: rgba(244,63,94,0.8); background: var(--bg-subtle);"></div><span style="font-size: 13px; color: var(--text-body); line-height: 1.6;">Feels less personal, lower relevance for non-interested users</span></div>
+                                    <div style="display: flex; gap: 12px; align-items: flex-start;"><div class="glass-bullet" style="color: rgba(244,63,94,0.8); background: var(--bg-subtle);"></div><span style="font-size: 13px; color: var(--text-body); line-height: 1.6;">Risk of being perceived as spam</span></div>
                                 </div>
                             </div>
                         </div>
@@ -2621,7 +2631,7 @@
                 </style>
 
                 <!-- Floating pill — larger and bolder -->
-                <div style="position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; background: #ffffff; padding: 20px 56px; border-radius: 100px; border: 1.5px solid rgba(168,85,247,0.35); animation: realityPulse 3s ease-in-out infinite; gap: 16px;">
+                <div style="position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; background: var(--bg-card); padding: 20px 56px; border-radius: 100px; border: 1.5px solid rgba(168,85,247,0.35); animation: realityPulse 3s ease-in-out infinite; gap: 16px;">
                     <!-- Pulsing dot -->
                     <div style="position: relative; width: 8px; height: 8px; flex-shrink: 0;">
                         <div style="position: absolute; inset: 0; background: #a855f7; border-radius: 50%;"></div>
@@ -2658,24 +2668,24 @@
                         <div style="display: flex; flex-direction: column; width: 150px; flex-shrink: 0; padding-top: 24px; z-index: 20;">
 
                         <!-- 1. Email Header -->
-                        <div style="background: #FFFFFF; border: 1px solid #D1D5DB; padding: 14px 10px; font-weight: 500; font-size: 13px; color: #6B7280; text-align: center; border-radius: 6px; margin-bottom: 8px;">Email Header</div>
+                        <div style="background: var(--bg-card); border: 1px solid #D1D5DB; padding: 14px 10px; font-weight: 500; font-size: 13px; color: #6B7280; text-align: center; border-radius: 6px; margin-bottom: 8px;">Email Header</div>
                         
                         <!-- 2. Email Title -->
-                        <div style="background: #FFFFFF; border: 1px solid #D1D5DB; padding: 14px 10px; font-weight: 500; font-size: 13px; color: #6B7280; text-align: center; border-radius: 6px; margin-bottom: 8px;">Email Title</div>
+                        <div style="background: var(--bg-card); border: 1px solid #D1D5DB; padding: 14px 10px; font-weight: 500; font-size: 13px; color: #6B7280; text-align: center; border-radius: 6px; margin-bottom: 8px;">Email Title</div>
                         
                         <!-- 3. Current Notifications (Purple) -->
-                        <div style="background: #F5F3FF; border: 1px solid #8B5CF6; padding: 18px 10px; font-weight: 500; font-size: 13px; color: #8B5CF6; text-align: center; border-radius: 6px; margin-bottom: 8px;">Current Notifications</div>
+                        <div style="background: var(--bg-subtle); border: 1px solid #8B5CF6; padding: 18px 10px; font-weight: 500; font-size: 13px; color: #8B5CF6; text-align: center; border-radius: 6px; margin-bottom: 8px;">Current Notifications</div>
                         
                         <!-- 4. Highlight Section (Purple) -->
-                        <div style="background: #F5F3FF; border: 1px solid #8B5CF6; padding: 24px 10px; font-weight: 500; font-size: 13px; color: #8B5CF6; text-align: center; border-radius: 6px; margin-bottom: 8px; line-height: 1.4;">Highlight Section<br><span style="font-size: 11px; font-weight: 400; opacity: 0.8;">(Video Thumbnails or<br>Profile Avatars)</span></div>
+                        <div style="background: var(--bg-subtle); border: 1px solid #8B5CF6; padding: 24px 10px; font-weight: 500; font-size: 13px; color: #8B5CF6; text-align: center; border-radius: 6px; margin-bottom: 8px; line-height: 1.4;">Highlight Section<br><span style="font-size: 11px; font-weight: 400; opacity: 0.8;">(Video Thumbnails or<br>Profile Avatars)</span></div>
                         
                         <!-- 5. Email Footer -->
-                        <div style="background: #FFFFFF; border: 1px solid #D1D5DB; padding: 14px 10px; font-weight: 500; font-size: 13px; color: #6B7280; text-align: center; border-radius: 6px;">Email Footer</div>
+                        <div style="background: var(--bg-card); border: 1px solid #D1D5DB; padding: 14px 10px; font-weight: 500; font-size: 13px; color: #6B7280; text-align: center; border-radius: 6px;">Email Footer</div>
                     </div>
 
                     <!-- MIDDLE: PHONE FRAME (Sticky, scrolling inner image) -->
                     <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; z-index: 10; margin: 0 20px;">
-                        <div style="position: relative; width: 100%; max-width: 380px; height: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.06); overflow: hidden; border-radius: 30px; background: #fff;">
+                        <div style="position: relative; width: 100%; max-width: 380px; height: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.06); overflow: hidden; border-radius: 30px; background: var(--bg-card);">
                             <div class="scroll-mockup-wrapper" style="width: 100%; height: 100%; position: relative;">
                                 <img src="images/project-tiktok-edm/6.png" alt="Email design mockup" style="width: 100%; height: auto; display: block; position: absolute; top: 0; left: 0; will-change: transform;">
                             </div>
@@ -2690,7 +2700,7 @@
                             <svg style="position: absolute; left: -40px; top: 12px; width: 40px; height: 2px; z-index: 1;"><line x1="0" y1="0" x2="40" y2="0" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="3 3"/></svg>
                             <div style="width: 5px; background: #8B5CF6; border-radius: 4px; align-self: stretch; flex-shrink: 0; z-index: 2; min-height: 48px; margin-bottom: 12px;"></div>
                             <div style="padding-bottom: 12px;">
-                                <div style="font-weight: 700; font-size: 13px; color: #111; margin-bottom: 4px;">Email Header</div>
+                                <div style="font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 4px;">Email Header</div>
                                 <div style="font-size: 11px; color: #6B7280; font-weight: 500; line-height: 1.5; padding-right: 20px;">No Header, Icon Link</div>
                             </div>
                         </div>
@@ -2700,7 +2710,7 @@
                             <svg style="position: absolute; left: -40px; top: 12px; width: 40px; height: 2px; z-index: 1;"><line x1="0" y1="0" x2="40" y2="0" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="3 3"/></svg>
                             <div style="width: 5px; background: #3B82F6; border-radius: 4px; align-self: stretch; flex-shrink: 0; z-index: 2; min-height: 56px; margin-bottom: 12px;"></div>
                             <div style="padding-bottom: 12px;">
-                                <div style="font-weight: 700; font-size: 13px; color: #111; margin-bottom: 4px;">Title Section</div>
+                                <div style="font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 4px;">Title Section</div>
                                 <div style="font-size: 11px; color: #6B7280; font-weight: 500; line-height: 1.5; padding-right: 20px;">Official Style Copy, Left, Colorful Vibe</div>
                             </div>
                         </div>
@@ -2710,7 +2720,7 @@
                             <svg style="position: absolute; left: -40px; top: 12px; width: 40px; height: 2px; z-index: 1;"><line x1="0" y1="0" x2="40" y2="0" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="3 3"/></svg>
                             <div style="width: 5px; background: #10B981; border-radius: 4px; align-self: stretch; flex-shrink: 0; z-index: 2; min-height: 80px; margin-bottom: 12px;"></div>
                             <div style="padding-bottom: 12px;">
-                                <div style="font-weight: 700; font-size: 13px; color: #111; margin-bottom: 4px;">Email Main CTA</div>
+                                <div style="font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 4px;">Email Main CTA</div>
                                 <div style="font-size: 11px; color: #6B7280; font-weight: 500; line-height: 1.5; padding-right: 20px;">
                                     General Style Copy, Button Link, Large Size, Center
                                     <span style="color: #9CA3AF; margin-top: 6px; display: block; white-space: nowrap;">→ Go To TikTok</span>
@@ -2721,9 +2731,9 @@
                         <!-- 4. Main Content Area -->
                         <div class="anatomy-item" style="display: flex; gap: 16px; align-items: flex-start; flex: 3.5; position: relative;">
                             <svg style="position: absolute; left: -40px; top: 12px; width: 40px; height: 2px; z-index: 1;"><line x1="0" y1="0" x2="40" y2="0" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="3 3"/></svg>
-                            <div style="width: 5px; background: #F59E0B; border-radius: 4px; align-self: stretch; flex-shrink: 0; z-index: 2; min-height: 100px; margin-bottom: 12px;"></div>
+                            <div style="width: 5px; background: var(--bg-subtle); border-radius: 4px; align-self: stretch; flex-shrink: 0; z-index: 2; min-height: 100px; margin-bottom: 12px;"></div>
                             <div style="padding-bottom: 12px;">
-                                <div style="font-weight: 700; font-size: 13px; color: #111; margin-bottom: 4px;">Main Content Area</div>
+                                <div style="font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 4px;">Main Content Area</div>
                                 <div style="font-size: 11px; color: #6B7280; font-weight: 500; line-height: 1.5; padding-right: 20px;">
                                     Middle Size, Single Column, Cover First Video Card
                                     <span style="color: #9CA3AF; margin-top: 6px; display: block; white-space: nowrap;">→ Go To TikTok Video Page</span>
@@ -2734,9 +2744,9 @@
                         <!-- 5. Secondary Content Area -->
                         <div class="anatomy-item" style="display: flex; gap: 16px; align-items: flex-start; flex: 2; position: relative;">
                             <svg style="position: absolute; left: -40px; top: 12px; width: 40px; height: 2px; z-index: 1;"><line x1="0" y1="0" x2="40" y2="0" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="3 3"/></svg>
-                            <div style="width: 5px; background: #F97316; border-radius: 4px; align-self: stretch; flex-shrink: 0; z-index: 2; min-height: 80px; margin-bottom: 12px;"></div>
+                            <div style="width: 5px; background: var(--bg-subtle); border-radius: 4px; align-self: stretch; flex-shrink: 0; z-index: 2; min-height: 80px; margin-bottom: 12px;"></div>
                             <div style="padding-bottom: 12px;">
-                                <div style="font-weight: 700; font-size: 13px; color: #111; margin-bottom: 4px;">Secondary Content Area</div>
+                                <div style="font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 4px;">Secondary Content Area</div>
                                 <div style="font-size: 11px; color: #6B7280; font-weight: 500; line-height: 1.5; padding-right: 20px;">
                                     Single Column, Avatar Card, Small Size
                                     <span style="color: #9CA3AF; margin-top: 6px; display: block; white-space: nowrap;">→ Go To TikTok Avatar Profile Page</span>
@@ -2749,7 +2759,7 @@
                             <svg style="position: absolute; left: -40px; top: 12px; width: 40px; height: 2px; z-index: 1;"><line x1="0" y1="0" x2="40" y2="0" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="3 3"/></svg>
                             <div style="width: 5px; background: #EF4444; border-radius: 4px; align-self: stretch; flex-shrink: 0; z-index: 2; min-height: 48px; margin-bottom: 0px;"></div>
                             <div>
-                                <div style="font-weight: 700; font-size: 13px; color: #111; margin-bottom: 4px;">Email Footer</div>
+                                <div style="font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 4px;">Email Footer</div>
                                 <div style="font-size: 11px; color: #6B7280; font-weight: 500;">Display</div>
                             </div>
                         </div>
@@ -2909,7 +2919,7 @@
                                         <div style="width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #10B981; color: #10B981; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; left: -28px; background: white;">
                                             <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         </div>
-                                        <div style="font-size: 12px; color: #111; font-weight: 500; line-height: 1.4; margin-left: -28px;">Remove The Notification Section</div>
+                                        <div style="font-size: 12px; color: #fff; font-weight: 500; line-height: 1.4; margin-left: -28px;">Remove The Notification Section</div>
                                     </div>
                                 </div>
 
@@ -2920,7 +2930,7 @@
                                         <div style="width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #10B981; color: #10B981; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; left: -28px; background: white;">
                                             <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         </div>
-                                        <div style="font-size: 12px; color: #111; font-weight: 500; line-height: 1.4; margin-left: -28px;">Added Personalized Information Alongside Video Tags To Provide More Useful Context.</div>
+                                        <div style="font-size: 12px; color: #fff; font-weight: 500; line-height: 1.4; margin-left: -28px;">Added Personalized Information Alongside Video Tags To Provide More Useful Context.</div>
                                     </div>
                                 </div>
 
@@ -2931,7 +2941,7 @@
                                         <div style="width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #10B981; color: #10B981; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; left: -28px; background: white;">
                                             <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         </div>
-                                        <div style="font-size: 12px; color: #111; font-weight: 500; line-height: 1.4; margin-left: -28px;">Use Large PlayButton for immediately recognizable clickability.</div>
+                                        <div style="font-size: 12px; color: #fff; font-weight: 500; line-height: 1.4; margin-left: -28px;">Use Large PlayButton for immediately recognizable clickability.</div>
                                     </div>
                                 </div>
 
@@ -2942,7 +2952,7 @@
                                         <div style="width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #10B981; color: #10B981; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; left: -28px; background: white;">
                                             <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                         </div>
-                                        <div style="font-size: 12px; color: #111; font-weight: 500; line-height: 1.4; margin-left: -28px;">Added Social CTA Buttons And Amplified The People Info Section To Drive Curiosity.</div>
+                                        <div style="font-size: 12px; color: #fff; font-weight: 500; line-height: 1.4; margin-left: -28px;">Added Social CTA Buttons And Amplified The People Info Section To Drive Curiosity.</div>
                                     </div>
                                 </div>
 
@@ -2971,14 +2981,14 @@
                         <p class="option-eyebrow">Option 2</p>
                         <h3 class="option-title">Scenario: People And Social Relationship-Driven</h3>
                                 
-                                <div style="font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 16px;">
-                                    <strong style="color: #333;">Scenario:</strong> People & Social Relationship-Driven, Video Serves As Supplementary Context, With Thumbnails Optionally Hidden To Maximize Curiosity On The Awareness End.
+                                <div style="font-size: 13px; color: var(--text-body); line-height: 1.6; margin-bottom: 16px;">
+                                    <strong style="color: var(--text-body);">Scenario:</strong> People & Social Relationship-Driven, Video Serves As Supplementary Context, With Thumbnails Optionally Hidden To Maximize Curiosity On The Awareness End.
                                 </div>
-                                <div style="font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 16px;">
-                                    <strong style="color: #333;">Pros:</strong> Added Social CTA Buttons, Amplified The People Info Section, De-Emphasized Video Content To Build Curiosity. Best Suited For Social-First Post Types: Friend Posts, Suggested Friends, Follow Posts, And Interactive Posts.
+                                <div style="font-size: 13px; color: var(--text-body); line-height: 1.6; margin-bottom: 16px;">
+                                    <strong style="color: var(--text-body);">Pros:</strong> Added Social CTA Buttons, Amplified The People Info Section, De-Emphasized Video Content To Build Curiosity. Best Suited For Social-First Post Types: Friend Posts, Suggested Friends, Follow Posts, And Interactive Posts.
                                 </div>
-                                <div style="font-size: 13px; color: #555; line-height: 1.6;">
-                                    <strong style="color: #333;">Cons:</strong> Not Ideal For Pure Content Recommendation Scenarios Where The Content Itself Takes Center Stage.
+                                <div style="font-size: 13px; color: var(--text-body); line-height: 1.6;">
+                                    <strong style="color: var(--text-body);">Cons:</strong> Not Ideal For Pure Content Recommendation Scenarios Where The Content Itself Takes Center Stage.
                                 </div>
                                 
                                 <!-- Small variations image -->
@@ -2991,16 +3001,16 @@
                         </div>
 
                         <!-- RIGHT COLUMN: Gray BG + 2 Large Phones touching right edge -->
-                        <div style="flex: 1; min-width: 0; background: #fafafa; border-radius: 40px 0 0 40px; padding: 100px 40px; display: flex; gap: 48px; justify-content: center; align-items: center; position: sticky; top: 120px; min-height: 80vh;">
+                        <div style="flex: 1; min-width: 0; background: var(--bg-subtle); border-radius: 40px 0 0 40px; padding: 100px 40px; display: flex; gap: 48px; justify-content: center; align-items: center; position: sticky; top: 120px; min-height: 80vh;">
                             <div style="position: relative; width: 45%; max-width: 320px; box-shadow: 0 16px 40px rgba(0,0,0,0.12); border-radius: 46px;">
                                 <img src="images/project-tiktok-edm/Blue.png" alt="Phone Mockup" style="position: relative; width: 100%; display: block; z-index: 2; pointer-events: none;">
-                                <div class="scroll-mockup-wrapper" style="position: absolute; top: 2.2%; left: 4.8%; width: 90%; height: 95.5%; border-radius: 30px; overflow: hidden; z-index: 1; background: #fff;">
+                                <div class="scroll-mockup-wrapper" style="position: absolute; top: 2.2%; left: 4.8%; width: 90%; height: 95.5%; border-radius: 30px; overflow: hidden; z-index: 1; background: var(--bg-card);">
                                     <img src="images/project-tiktok-edm/9.png" alt="Main UI 1" style="width: 100%; height: auto; display: block; will-change: transform;">
                                 </div>
                             </div>
                             <div style="position: relative; width: 45%; max-width: 320px; box-shadow: 0 16px 40px rgba(0,0,0,0.12); border-radius: 46px;">
                                 <img src="images/project-tiktok-edm/Blue.png" alt="Phone Mockup" style="position: relative; width: 100%; display: block; z-index: 2; pointer-events: none;">
-                                <div class="scroll-mockup-wrapper" style="position: absolute; top: 2.2%; left: 4.8%; width: 90%; height: 95.5%; border-radius: 30px; overflow: hidden; z-index: 1; background: #fff;">
+                                <div class="scroll-mockup-wrapper" style="position: absolute; top: 2.2%; left: 4.8%; width: 90%; height: 95.5%; border-radius: 30px; overflow: hidden; z-index: 1; background: var(--bg-card);">
                                     <img src="images/project-tiktok-edm/10.png" alt="Main UI 2" style="width: 100%; height: auto; display: block; will-change: transform;">
                                 </div>
                             </div>
@@ -3012,10 +3022,10 @@
                     <div class="scroll-track" style="display: flex; align-items: flex-start; height: 300vh; position: relative;">
                         
                         <!-- LEFT COLUMN: Gray BG + 1 Large Phone touching left edge -->
-                        <div style="flex: 1; min-width: 0; background: #fafafa; border-radius: 0 40px 40px 0; padding: 100px 40px; display: flex; justify-content: center; align-items: center; position: sticky; top: 120px; min-height: 80vh;">
+                        <div style="flex: 1; min-width: 0; background: var(--bg-subtle); border-radius: 0 40px 40px 0; padding: 100px 40px; display: flex; justify-content: center; align-items: center; position: sticky; top: 120px; min-height: 80vh;">
                             <div style="position: relative; width: 100%; max-width: 320px; box-shadow: 0 16px 48px rgba(0,0,0,0.15); border-radius: 46px;">
                                 <img src="images/project-tiktok-edm/Blue.png" alt="Phone Mockup" style="position: relative; width: 100%; display: block; z-index: 2; pointer-events: none;">
-                                <div class="scroll-mockup-wrapper" style="position: absolute; top: 2.2%; left: 4.8%; width: 90%; height: 95.5%; border-radius: 30px; overflow: hidden; z-index: 1; background: #fff;">
+                                <div class="scroll-mockup-wrapper" style="position: absolute; top: 2.2%; left: 4.8%; width: 90%; height: 95.5%; border-radius: 30px; overflow: hidden; z-index: 1; background: var(--bg-card);">
                                     <img src="images/project-tiktok-edm/12.png" alt="Option 2 main email screen" style="width: 100%; height: auto; display: block; will-change: transform;">
                                 </div>
                             </div>
@@ -3026,14 +3036,14 @@
                         <p class="option-eyebrow">Option 3</p>
                         <h3 class="option-title">Scenario: Video Cover First / Content-Driven</h3>
                         
-                        <p style="font-size: 15px; color: #555; line-height: 1.65; margin-bottom: 16px;">
-                            <strong style="color: #333;">Scenario:</strong> Video Cover First, Prioritizes The Video Thumbnail, With De-Emphasized People Info.
+                        <p style="font-size: 15px; color: var(--text-body); line-height: 1.65; margin-bottom: 16px;">
+                            <strong style="color: var(--text-body);">Scenario:</strong> Video Cover First, Prioritizes The Video Thumbnail, With De-Emphasized People Info.
                         </p>
-                        <p style="font-size: 15px; color: #555; line-height: 1.65; margin-bottom: 16px;">
-                            <strong style="color: #333;">Pros:</strong> Best Suited For Content-Forward Post Types Like Suggested Videos And Reposts.
+                        <p style="font-size: 15px; color: var(--text-body); line-height: 1.65; margin-bottom: 16px;">
+                            <strong style="color: var(--text-body);">Pros:</strong> Best Suited For Content-Forward Post Types Like Suggested Videos And Reposts.
                         </p>
-                        <p style="font-size: 15px; color: #555; line-height: 1.65;">
-                            <strong style="color: #333;">Cons:</strong> Not Ideal For Posts With A Strong Social Context.
+                        <p style="font-size: 15px; color: var(--text-body); line-height: 1.65;">
+                            <strong style="color: var(--text-body);">Cons:</strong> Not Ideal For Posts With A Strong Social Context.
                         </p>
                             <!-- 4 Scrolling/Staggered tall phones -->
                             <style>
@@ -3186,16 +3196,16 @@
                 <h2 class="section-title">Something you can’t learn in a class</h2>
                 <div class="learning-grid">
                     <div class="learning-card" style="margin-bottom: 48px;">
-                        <h3 style="font-size: 20px; font-weight: 500; color: #111; margin-bottom: 16px;">01 | Exhaustive Exploration Approach Can Be Valuable</h3>
-                        <p style="font-size: 15px; color: #555; line-height: 1.6;">My previous understanding of design was more about innovation—looking for clues, analyzing problems, and doing problem solving, trying to find the “key” through logic. However, through this project, I realized that Design does not always have to be completely innovative; sometimes, by trying many possibilities and making adjustments, meaningful directions can emerge.</p>
+                        <h3 style="font-size: 20px; font-weight: 500; color: #fff; margin-bottom: 16px;">01 | Exhaustive Exploration Approach Can Be Valuable</h3>
+                        <p style="font-size: 15px; color: var(--text-body); line-height: 1.6;">My previous understanding of design was more about innovation—looking for clues, analyzing problems, and doing problem solving, trying to find the “key” through logic. However, through this project, I realized that Design does not always have to be completely innovative; sometimes, by trying many possibilities and making adjustments, meaningful directions can emerge.</p>
                     </div>
                     <div class="learning-card" style="margin-bottom: 48px;">
-                        <h3 style="font-size: 20px; font-weight: 500; color: #111; margin-bottom: 16px;">02 | I Realized I Could Contribute More Than Just Visual Execution</h3>
-                        <p style="font-size: 15px; color: #555; line-height: 1.6;">Working on this project taught me that as a designer — even as an intern — you can and should engage with the product direction, not just the visual execution. When the initial brief felt unclear, asking questions and understanding the "why" behind the design helped me make more intentional decisions.</p>
+                        <h3 style="font-size: 20px; font-weight: 500; color: #fff; margin-bottom: 16px;">02 | I Realized I Could Contribute More Than Just Visual Execution</h3>
+                        <p style="font-size: 15px; color: var(--text-body); line-height: 1.6;">Working on this project taught me that as a designer — even as an intern — you can and should engage with the product direction, not just the visual execution. When the initial brief felt unclear, asking questions and understanding the "why" behind the design helped me make more intentional decisions.</p>
                     </div>
                     <div class="learning-card">
-                        <h3 style="font-size: 20px; font-weight: 500; color: #111; margin-bottom: 16px;">03 | Looking Back At Existing Data And Past Design Iterations Gave Me A Lot Of Context That I Wouldn't Have Had Otherwise.</h3>
-                        <p style="font-size: 15px; color: #555; line-height: 1.6;">For a product that had gone through many iterations, I found it incredibly valuable to dig into existing data, past design files, and how previous designers had approached similar problems. It gave me context I couldn't have gotten from the brief alone, and helped me arrive at a more informed direction rather than starting from scratch.</p>
+                        <h3 style="font-size: 20px; font-weight: 500; color: #fff; margin-bottom: 16px;">03 | Looking Back At Existing Data And Past Design Iterations Gave Me A Lot Of Context That I Wouldn't Have Had Otherwise.</h3>
+                        <p style="font-size: 15px; color: var(--text-body); line-height: 1.6;">For a product that had gone through many iterations, I found it incredibly valuable to dig into existing data, past design files, and how previous designers had approached similar problems. It gave me context I couldn't have gotten from the brief alone, and helped me arrive at a more informed direction rather than starting from scratch.</p>
                     </div>
                 </div>
             </section>
