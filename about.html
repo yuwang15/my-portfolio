@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJMGD4CVT0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-MJMGD4CVT0');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Yuwang Gu</title>
@@ -34,15 +43,17 @@
 
         a { text-decoration: none; color: inherit; }
 
-        /* NAV */
+        /* NAV — Unified glass design */
         nav {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 56px;
+            top: 0; left: 0; width: 100%; height: 52px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 var(--site-pad); z-index: 1000;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.05);
             opacity: 0; animation: fadeInDown 0.8s forwards;
         }
         .nav-left { display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 15px; }
@@ -52,8 +63,8 @@
         .nav-icon { width: 24px; height: 24px; display: flex; align-items: center; }
         .nav-icon img { width: 24px; height: 24px; object-fit: contain; }
         .nav-resume { text-decoration: underline; text-underline-offset: 4px; font-weight: 600; }
-        .nav-about { background: var(--black); color: #fff; padding: 8px 20px; border-radius: 999px; transition: transform 0.2s; }
-        .nav-about:hover { transform: scale(1.05); }
+        .nav-about { background: var(--black); color: #fff; padding: 7px 20px; border-radius: 999px; transition: transform 0.2s, background 0.2s; }
+        .nav-about:hover { background: #333; transform: scale(1.03); }
         .nav-cat { transition: transform 0.3s; }
         .nav-cat:hover { transform: rotate(1turn); }
 
