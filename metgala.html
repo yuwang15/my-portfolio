@@ -211,21 +211,22 @@
             border-radius: 40px;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Ensure it stays aligned to the top and can be clipped smoothly at bottom */
-            padding-top: 80px; /* Offset the phone down */
-            height: clamp(380px, 45vw, 440px); /* Strictly lock height to crop the bottom of the phone */
+            height: 520px; /* Fixed height to enforce clipping area */
             overflow: hidden;
+            position: relative;
         }
         .phone-card .video-mockup-wrapper {
-            width: 100%;
-            max-width: 250px; /* Limits size directly */
+            position: absolute;
+            top: 72px; /* Push the phone down securely relative to the parent */
+            width: 250px; /* Restrict width, preventing any deformation */
             height: auto;
-            margin: 0 !important;
-            display: flex;
+            margin: 0;
+            display: block; /* Remove flex to completely ensure intrinsic image aspect ratio */
         }
         .phone-card .mockup-frame {
             width: 100%;
             height: auto;
+            display: block;
         }
 
         /* 03: text + side image */
@@ -497,25 +498,26 @@
         .final-video-card {
             background: #fdf5f6;
             border-radius: 32px;
-            padding-top: 60px; /* Top padding to push phone down */
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* align mockup to the top edge padding */
-            height: clamp(380px, 45vw, 440px); /* Strict height limit to enforce bottom cutoff */
+            height: 520px; /* Enforce bottom cutoff */
             background-size: cover;
-            background-position: top center; /* Start background from top without stretching */
+            background-position: top center;
             overflow: hidden;
+            position: relative;
         }
         .final-video-card .video-mockup-wrapper {
-            width: 100%;
-            max-width: 250px; /* Make the mockup smaller to match the other images */
+            position: absolute;
+            top: 64px; /* Pull phone down */
+            width: 250px; /* Match mockup phone sizing to 02 section */
             height: auto; 
             margin: 0; 
-            display: flex; /* Remove strange descender spacing issues on the image */
+            display: block;
         }
         .final-video-card .mockup-frame {
             width: 100%;
             height: auto;
+            display: block;
         }
         .final-row-3 {
             display: grid;
