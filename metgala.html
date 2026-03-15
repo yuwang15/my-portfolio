@@ -84,20 +84,31 @@
             margin-top: 16px;
         }
         .hero-phones {
-            display: flex;
-            justify-content: center; /* Ensures the group sits tightly in the middle */
-            align-items: flex-start;
+            position: relative;
             width: 100%;
-            gap: 64px; /* Set exact 64px gap */
+            max-width: 1280px;
+            height: 681.56px; /* Exact height */
+            margin: 0 auto;
         }
         .hero-phones img {
-            width: 337.31px; /* Exact width from Figma */
-            height: auto; /* Allow intrinsic ratio to dictate height, avoids squishing/cropping */
-            border-radius: 28px;
+            height: 681.56px; /* Let height dictate intrinsic scale uniformly for both */
+            width: auto;
+            position: absolute;
+            top: 0;
             display: block;
-            flex-shrink: 0;
-            object-fit: contain;
-            position: relative;
+            pointer-events: none; /* Let empty shadow space not block clicks if any */
+        }
+        .hero-phones img:first-child {
+            /* Left Mockup Center: 270.69 (margin) + 168.655 (half of 337.31) = 439.345px */
+            left: 439.345px;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        .hero-phones img:last-child {
+            /* Right Mockup Center: 1280 - 270.69 (margin) - 168.655 (half) = 840.655px */
+            left: 840.655px;
+            transform: translateX(-50%);
+            z-index: 1;
         }
 
         /* OVERVIEW */
